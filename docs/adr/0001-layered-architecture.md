@@ -18,12 +18,12 @@ Four layers inside one package:
 
 Dependency rule: `app -> application -> domain`. `infrastructure` implements what `application` needs, and `app` wires everything together.
 
-| Layer          | May import                                          | Must not import                                  |
-| -------------- | --------------------------------------------------- | ------------------------------------------------ |
-| domain         | relative paths, `node:` builtins, `vitest` in tests | any external package, other layers               |
-| application    | domain, pure libraries such as Zod                  | infrastructure, app, Next, React, `pg`, LLM SDKs |
-| infrastructure | application, domain, `pg`, Zod                      | app, Next, React                                 |
-| app            | all layers                                          | `pg` and LLM SDKs directly                       |
+| Layer          | May import                         | Must not import                                  |
+| -------------- | ---------------------------------- | ------------------------------------------------ |
+| domain         | relative paths, `node:` builtins   | any external package, other layers               |
+| application    | domain, pure libraries such as Zod | infrastructure, app, Next, React, `pg`, LLM SDKs |
+| infrastructure | application, domain, `pg`, Zod     | app, Next, React                                 |
+| app            | all layers                         | `pg` and LLM SDKs directly                       |
 
 Interfaces exist only where there are two real implementations or a test double is needed: `OfferSource` (two sources) and `LlmClient` (a fake is used in tests and in evaluation).
 
@@ -37,6 +37,7 @@ The rule is enforced with ESLint `no-restricted-imports` in the flat config, plu
 - There are more folders and files than in a flat Next.js app. That is accepted for the testability gain.
 - The rule compares import strings and does not resolve paths, so it can produce false positives for third-party subpaths that contain `app` or `application` segments. It does not cover `require()`.
 - Domain cannot use Zod. If a domain model needs schema validation, revisit this ADR.
+- Tests live in a top-level `tests/` folder that mirrors `src/`, and the layer rules do not apply to them.
 
 ## Alternatives considered
 

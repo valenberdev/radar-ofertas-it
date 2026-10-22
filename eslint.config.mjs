@@ -31,7 +31,7 @@ const layerRules = [
         {
           patterns: [
             {
-              regex: "^(?!\\.{1,2}/|@/domain/|node:|vitest$)",
+              regex: "^(?!\\.{1,2}/|@/domain/|node:)",
               message:
                 "domain must stay pure: no external packages (only node: builtins and relative imports).",
             },
