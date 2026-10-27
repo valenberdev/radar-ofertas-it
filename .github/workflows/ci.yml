@@ -19,6 +19,20 @@ jobs:
     env:
       DATABASE_URL: postgres://ci:ci@127.0.0.1:5432/ci
       DATABASE_URL_UNPOOLED: postgres://ci:ci@127.0.0.1:5432/ci
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: radar
+          POSTGRES_PASSWORD: radar
+          POSTGRES_DB: radar
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U radar -d radar"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -29,4 +43,7 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
+      - run: npm run test:integration
+        env:
+          TEST_DATABASE_ADMIN_URL: postgres://radar:radar@127.0.0.1:5432/radar
       - run: npm run build
