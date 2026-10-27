@@ -1,0 +1,1 @@
+alter table offers add column expires_at timestamptz;
