@@ -47,11 +47,11 @@ describe("createHimalayasClient", () => {
   });
 
   it("identifies the app and asks for JSON", async () => {
-    const fetchMock = vi.fn(async (_url: URL, _init?: RequestInit) =>
+    const fetchMock = vi.fn<typeof fetch>(async () =>
       jsonResponse({ jobs: [] }),
     );
 
-    await clientWith(fetchMock as unknown as typeof fetch).fetchPage(null);
+    await clientWith(fetchMock).fetchPage(null);
 
     const init = fetchMock.mock.calls[0]?.[1];
     expect(init?.headers).toEqual({
