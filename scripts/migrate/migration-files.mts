@@ -6,7 +6,7 @@ export type MigrationFile = {
 
 const FILE_NAME_PATTERN = /^(\d{4})_([a-z0-9]+(?:_[a-z0-9]+)*)\.sql$/;
 
-function formatVersion(version: number): string {
+export function formatVersion(version: number): string {
   return String(version).padStart(4, "0");
 }
 
