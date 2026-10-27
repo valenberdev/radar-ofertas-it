@@ -1,5 +1,6 @@
 import { fileURLToPath } from "node:url";
 import { Client } from "pg";
+import { assertDirectConnection } from "./connection.mts";
 import { migrate } from "./migrator.mts";
 
 const MIGRATIONS_DIRECTORY = fileURLToPath(
@@ -11,6 +12,8 @@ async function main(): Promise<void> {
   if (!connectionString) {
     throw new Error("DATABASE_URL_UNPOOLED is not set.");
   }
+
+  assertDirectConnection(connectionString);
 
   const client = new Client({ connectionString });
   await client.connect();
