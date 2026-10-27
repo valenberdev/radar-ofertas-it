@@ -13,6 +13,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
     "incremental": true,
     "plugins": [
       {
