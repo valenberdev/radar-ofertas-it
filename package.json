@@ -10,7 +10,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:integration": "vitest run --config vitest.integration.config.mts",
-    "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate/run.mts"
+    "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate/run.mts",
+    "db:migrate:prod": "node --env-file=.env.production.local scripts/migrate/run.mts"
   },
   "dependencies": {
     "next": "16.4.2",
