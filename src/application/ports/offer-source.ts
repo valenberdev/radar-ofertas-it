@@ -5,9 +5,12 @@ export interface FetchOffersOptions {
   readonly maxRequests: number;
 }
 
+export interface OfferBatch {
+  readonly offers: readonly SourceOffer[];
+  readonly rejected: number;
+}
+
 export interface OfferSource {
   readonly name: SourceName;
-  fetchOffers(
-    options: FetchOffersOptions,
-  ): AsyncIterable<readonly SourceOffer[]>;
+  fetchOffers(options: FetchOffersOptions): AsyncIterable<OfferBatch>;
 }
