@@ -11,11 +11,16 @@ function jsonResponse(body: unknown, status = 200): Response {
   });
 }
 
-function clientWith(fetchImpl: typeof fetch, timeoutMs = 1000) {
+function clientWith(
+  fetchImpl: typeof fetch,
+  timeoutMs = 1000,
+  apiKey?: string,
+) {
   return createHimalayasClient({
     fetch: fetchImpl,
     userAgent: USER_AGENT,
     timeoutMs,
+    apiKey,
   });
 }
 
@@ -59,6 +64,48 @@ describe("createHimalayasClient", () => {
       Accept: "application/json",
     });
     expect(init?.signal).toBeInstanceOf(AbortSignal);
+  });
+
+  it("sends the API key as a bearer token when there is one", async () => {
+    const fetchMock = vi.fn<typeof fetch>(async () =>
+      jsonResponse({ jobs: [] }),
+    );
+
+    await clientWith(fetchMock, 1000, "hml_test_key").fetchPage(null);
+
+    expect(fetchMock.mock.calls[0]?.[1]?.headers).toEqual({
+      "User-Agent": USER_AGENT,
+      Accept: "application/json",
+      Authorization: "Bearer hml_test_key",
+    });
+  });
+
+  it.each([[undefined], [""]])(
+    "sends no Authorization header when the API key is %j",
+    async (apiKey) => {
+      const fetchMock = vi.fn<typeof fetch>(async () =>
+        jsonResponse({ jobs: [] }),
+      );
+
+      await clientWith(fetchMock, 1000, apiKey).fetchPage(null);
+
+      expect(fetchMock.mock.calls[0]?.[1]?.headers).not.toHaveProperty(
+        "Authorization",
+      );
+    },
+  );
+
+  it("never puts the API key in an error message", async () => {
+    const fetchMock = vi.fn<typeof fetch>(
+      async () => new Response("denied", { status: 401 }),
+    );
+
+    const call = clientWith(fetchMock, 1000, "hml_test_key").fetchPage(null);
+
+    await expect(call).rejects.toThrow(
+      "Himalayas request failed with status 401",
+    );
+    await expect(call).rejects.not.toThrow(/hml_test_key/);
   });
 
   it("returns the jobs and the next cursor", async () => {

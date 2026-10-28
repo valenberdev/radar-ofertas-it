@@ -18,6 +18,7 @@ export interface HimalayasClientOptions {
   readonly fetch: typeof fetch;
   readonly userAgent: string;
   readonly timeoutMs: number;
+  readonly apiKey?: string | undefined;
 }
 
 export interface HimalayasClient {
@@ -29,11 +30,15 @@ export function createHimalayasClient(
 ): HimalayasClient {
   async function request(url: URL): Promise<Response> {
     try {
+      const headers: Record<string, string> = {
+        "User-Agent": options.userAgent,
+        Accept: "application/json",
+      };
+      if (options.apiKey) {
+        headers.Authorization = `Bearer ${options.apiKey}`;
+      }
       return await options.fetch(url, {
-        headers: {
-          "User-Agent": options.userAgent,
-          Accept: "application/json",
-        },
+        headers,
         signal: AbortSignal.timeout(options.timeoutMs),
       });
     } catch (error) {
