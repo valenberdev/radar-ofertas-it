@@ -4,7 +4,7 @@ Postgres 18. Schema changes go through numbered SQL files in `db/migrations`, ap
 
 ## Implemented
 
-### `offers` (migration 0002)
+### `offers` (migrations 0002 and 0003)
 
 One row per job posting, identified by `(source, source_id)`. Ingestion upserts on that key, so running it twice never duplicates a row.
 
@@ -14,15 +14,18 @@ One row per job posting, identified by `(source, source_id)`. Ingestion upserts 
 | `source`, `source_id`         | Where the offer came from and its id there. Unique together.                                                                                                                                                                             |
 | `title`, `url`, `description` | Required. `title` cannot be blank.                                                                                                                                                                                                       |
 | `company`, `posted_at`        | Nullable: free-text sources do not always provide them.                                                                                                                                                                                  |
+| `expires_at`                  | Nullable. When the offer stops being valid: the expiry date the source publishes (Himalayas) or the posting date plus 45 days (Hacker News, which publishes none). Drives retention.                                                     |
 | `raw`                         | Original payload from the source. Kept so phase 4 can extract region, stack and seniority without refetching offers that may have left the source. Its size is measured after the first real ingestion and dropped if it costs too much. |
 | `first_ingested_at`           | First time an ingestion saw the offer. Drives "new since your last visit".                                                                                                                                                               |
-| `last_ingested_at`            | Last time an ingestion saw it. Drives retention.                                                                                                                                                                                         |
+| `last_ingested_at`            | Last time an ingestion updated the row. Informational only: Himalayas ingestion is incremental and does not revisit old offers, so this column does not say whether an offer is still listed.                                            |
 
 Normalized fields (region, stack, seniority) and deduplication columns are deliberately absent. They are added by phase 4 with their own migration, once the sources are known.
 
-### `ingest_runs` (migration 0001)
+### `ingest_runs` (migrations 0001 and 0004)
 
-One row per ingestion run and source: `status` (`running`, `succeeded`, `failed`), start and end time, counts of fetched, inserted and updated offers, and an error message for failures. A run that is `running` has no end time, and any other status requires one; the database enforces it.
+One row per ingestion run and source: `status` (`running`, `succeeded`, `failed`), start and end time, counts of fetched, inserted, updated and rejected offers, and an error message for failures. A rejected item is one the source returned that failed validation and was skipped. A run that is `running` has no end time, and any other status requires one; the database enforces it.
+
+The next incremental run starts from the start time of the last `succeeded` run, minus an overlap of two hours. Failed runs never move that point, so a failure cannot leave a gap.
 
 ## Planned
 
@@ -36,15 +39,17 @@ These tables exist in the design but have no migration yet. Each is created by t
 | `owner_profile`  | At most one row: the owner's profile and the time of the last visit.                                                       | 7          | Enforcing the single row.                                       |
 | `rate_limits`    | Per-IP counters with a salted hash of the address.                                                                         | 9          | Window size and limit.                                          |
 
-## Storage budget and retention (open)
+## Storage budget and retention
 
 Neon Free allows 1 GB per project, and writes fail once it is full. Nothing is billed and nothing is deleted when that happens, but the app would stop ingesting and scoring.
 
-Proposed policy, to be confirmed with measurements:
+Implemented policy: at the end of every ingestion run, successful or not, offers with `expires_at` in the past are deleted. An offer without `expires_at` is never deleted.
 
-- Delete offers whose `last_ingested_at` is older than a retention window. An offer that no ingestion has seen for that long has most likely been taken down by its source.
-- Keep the offers table under roughly half of the budget, so the cache tables of phase 5 have room.
-- Set the window from the measured size per offer and the real daily volume, not from a guess.
+Still open, to be decided with measurements:
+
+- How many offers arrive without `expires_at`, and whether they need a fallback rule (for example, deleting by `first_ingested_at` after a fixed number of days). Until then they accumulate.
+- Keeping the offers table under roughly half of the budget, so the cache tables of phase 5 have room.
+- Whether `raw` keeps the full description or only the fields phase 4 needs.
 
 Measure after the first real ingestion (phase 3):
 
@@ -59,6 +64,13 @@ select
   avg(pg_column_size(raw))::int as raw_bytes,
   avg(pg_column_size(description))::int as description_bytes
 from offers;
+
+select
+  source,
+  count(*) as offers,
+  count(*) filter (where expires_at is null) as without_expiry
+from offers
+group by source;
 ```
 
 If `raw` is a large share of the total, the decision is whether to keep it for every offer or only the fields phase 4 needs.
