@@ -75,4 +75,76 @@ describe("parseEnv", () => {
     expect(message).not.toBe("");
     expect(message).not.toContain("hunter2");
   });
+
+  describe("optional ingestion variables", () => {
+    const secret = "0123456789abcdef";
+
+    it("leaves them undefined when they are missing", () => {
+      const parsed = parseEnv(valid);
+
+      expect(parsed.CRON_SECRET).toBeUndefined();
+      expect(parsed.HIMALAYAS_API_KEY).toBeUndefined();
+    });
+
+    it("returns them when they are present", () => {
+      const parsed = parseEnv({
+        ...valid,
+        CRON_SECRET: secret,
+        HIMALAYAS_API_KEY: "hml_example",
+      });
+
+      expect(parsed.CRON_SECRET).toBe(secret);
+      expect(parsed.HIMALAYAS_API_KEY).toBe("hml_example");
+    });
+
+    it.each(["CRON_SECRET", "HIMALAYAS_API_KEY"])(
+      "treats an empty %s as missing",
+      (name) => {
+        expect(
+          parseEnv({ ...valid, [name]: "" })[name as "CRON_SECRET"],
+        ).toBeUndefined();
+      },
+    );
+
+    it.each(["CRON_SECRET", "HIMALAYAS_API_KEY"])(
+      "treats a blank %s as missing",
+      (name) => {
+        expect(
+          parseEnv({ ...valid, [name]: "   \r\n" })[name as "CRON_SECRET"],
+        ).toBeUndefined();
+      },
+    );
+
+    it("trims surrounding whitespace from the values", () => {
+      const parsed = parseEnv({
+        ...valid,
+        CRON_SECRET: ` ${secret}\r\n`,
+        HIMALAYAS_API_KEY: " hml_example \n",
+      });
+
+      expect(parsed.CRON_SECRET).toBe(secret);
+      expect(parsed.HIMALAYAS_API_KEY).toBe("hml_example");
+    });
+
+    it("accepts a cron secret of exactly sixteen characters", () => {
+      expect(parseEnv({ ...valid, CRON_SECRET: secret }).CRON_SECRET).toBe(
+        secret,
+      );
+    });
+
+    it("rejects a cron secret shorter than sixteen characters without echoing it", () => {
+      const act = () => parseEnv({ ...valid, CRON_SECRET: "hunter2-short" });
+
+      expect(act).toThrow(EnvError);
+      expect(messageOf(act)).toMatch(/CRON_SECRET$/m);
+      expect(messageOf(act)).not.toContain("hunter2-short");
+    });
+
+    it("measures the cron secret length after trimming it", () => {
+      const act = () =>
+        parseEnv({ ...valid, CRON_SECRET: `  ${secret.slice(0, 15)}  ` });
+
+      expect(act).toThrow(EnvError);
+    });
+  });
 });
