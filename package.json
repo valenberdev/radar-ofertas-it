@@ -11,7 +11,9 @@
     "test": "vitest run",
     "test:integration": "vitest run --config vitest.integration.config.mts",
     "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate/run.mts",
-    "db:migrate:prod": "node --env-file=.env.production.local scripts/migrate/run.mts"
+    "db:migrate:prod": "node --env-file=.env.production.local scripts/migrate/run.mts",
+    "db:renormalize": "tsx --env-file-if-exists=.env.local scripts/renormalize.mts",
+    "db:renormalize:prod": "tsx --env-file=.env.production.local scripts/renormalize.mts"
   },
   "dependencies": {
     "next": "16.4.2",
@@ -27,6 +29,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^5.0.5"
   }
