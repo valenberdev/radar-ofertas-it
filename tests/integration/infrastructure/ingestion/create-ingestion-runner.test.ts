@@ -300,8 +300,8 @@ describe("createIngestionRunner", () => {
       expect(count.rows[0].n).toBe(0);
 
       const pages = [
-        [himalayasJob(1, T0_S - 30 * DAY_S)],
-        [himalayasJob(2, T0_S - 31 * DAY_S)],
+        [himalayasJob(1, T0_S - 10 * DAY_S)],
+        [himalayasJob(2, T0_S - 11 * DAY_S)],
       ];
       const fetchImpl = himalayasFetch(pages);
       const recovered = await runnerWith(fetchImpl).run("himalayas", {
@@ -446,7 +446,7 @@ describe("createIngestionRunner", () => {
             id: THREAD_OLD,
             type: "story",
             title: "Ask HN: Who is hiring? (September 2026)",
-            kids: [901],
+            kids: [901, 902],
           },
           1001: hackerNewsComment(
             1001,
@@ -464,11 +464,16 @@ describe("createIngestionRunner", () => {
             postedAt - 20 * DAY_S,
             "Initech | SRE | REMOTE (Worldwide)<p>Pager included.",
           ),
+          902: hackerNewsComment(
+            902,
+            T0_S - 50 * DAY_S,
+            "Hooli | Engineer | REMOTE<p>Posted long ago.",
+          ),
         },
       });
     }
 
-    it("ingests the remote comments of the latest two threads", async () => {
+    it("ingests the remote comments of the latest two threads and skips the ones that already expired", async () => {
       const { run } = await runnerWith(world()).run("hackernews", {
         backfill: false,
       });

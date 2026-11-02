@@ -37,6 +37,10 @@ function describeError(error: unknown): string {
     : "Unknown error";
 }
 
+function hasExpired(offer: SourceOffer, at: Date): boolean {
+  return offer.expiresAt !== null && offer.expiresAt.getTime() < at.getTime();
+}
+
 function dedupeBySourceId(offers: readonly SourceOffer[]): SourceOffer[] {
   const bySourceId = new Map<string, SourceOffer>();
   for (const offer of offers) {
@@ -75,10 +79,13 @@ export async function ingestOffers(
       maxRequests: options.maxRequests,
     })) {
       const batchTime = deps.now();
-      fetched += batch.offers.length;
+      const live = batch.offers.filter(
+        (offer) => !hasExpired(offer, batchTime),
+      );
+      fetched += live.length;
       rejected += batch.rejected;
 
-      const unique = dedupeBySourceId(batch.offers.map(sanitizeOffer));
+      const unique = dedupeBySourceId(live.map(sanitizeOffer));
       if (unique.length > 0) {
         const result = await deps.offers.upsertMany(unique, batchTime);
         inserted += result.inserted;

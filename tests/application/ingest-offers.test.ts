@@ -370,6 +370,101 @@ describe("ingestOffers", () => {
       expect(result.counts.fetched).toBe(3);
     });
 
+    it("does not save offers that have already expired", async () => {
+      const expired = makeOffer("old", {
+        expiresAt: new Date(at(1).getTime() - 1),
+      });
+      const { deps, upsertMany } = build({
+        batches: [{ offers: [expired, makeOffer("new")], rejected: 0 }],
+      });
+
+      await ingestOffers(deps, BASE);
+
+      expect(
+        upsertMany.mock.calls[0]?.[0].map((offer) => offer.sourceId),
+      ).toEqual(["new"]);
+    });
+
+    it("does not count expired offers as fetched", async () => {
+      const expired = makeOffer("old", {
+        expiresAt: new Date(at(1).getTime() - 1),
+      });
+      const { deps } = build({
+        batches: [{ offers: [expired, makeOffer("new")], rejected: 0 }],
+      });
+
+      const result = await ingestOffers(deps, BASE);
+
+      expect(result.counts).toEqual({
+        fetched: 1,
+        inserted: 1,
+        updated: 0,
+        rejected: 0,
+      });
+    });
+
+    it("keeps an offer that expires exactly now, as the purge does", async () => {
+      const edge = makeOffer("edge", { expiresAt: at(1) });
+      const { deps, upsertMany } = build({
+        batches: [{ offers: [edge], rejected: 0 }],
+      });
+
+      await ingestOffers(deps, BASE);
+
+      expect(
+        upsertMany.mock.calls[0]?.[0].map((offer) => offer.sourceId),
+      ).toEqual(["edge"]);
+    });
+
+    it("keeps offers that have no expiry date", async () => {
+      const forever = makeOffer("forever", { expiresAt: null });
+      const { deps, upsertMany } = build({
+        batches: [{ offers: [forever], rejected: 0 }],
+      });
+
+      const result = await ingestOffers(deps, BASE);
+
+      expect(
+        upsertMany.mock.calls[0]?.[0].map((offer) => offer.sourceId),
+      ).toEqual(["forever"]);
+      expect(result.counts.fetched).toBe(1);
+    });
+
+    it("does not call the repository when every offer in a batch has expired", async () => {
+      const expired = makeOffer("old", {
+        expiresAt: new Date(at(1).getTime() - 1),
+      });
+      const { deps, upsertMany } = build({
+        batches: [{ offers: [expired], rejected: 2 }],
+      });
+
+      const result = await ingestOffers(deps, BASE);
+
+      expect(upsertMany).not.toHaveBeenCalled();
+      expect(result.counts).toEqual({
+        fetched: 0,
+        inserted: 0,
+        updated: 0,
+        rejected: 2,
+      });
+    });
+
+    it("judges expiry with the clock reading of each batch", async () => {
+      const expiresBetween = makeOffer("x", {
+        expiresAt: new Date(at(2).getTime() - 1),
+      });
+      const { deps, upsertMany } = build({
+        batches: [
+          { offers: [expiresBetween], rejected: 0 },
+          { offers: [expiresBetween], rejected: 0 },
+        ],
+      });
+
+      await ingestOffers(deps, BASE);
+
+      expect(upsertMany).toHaveBeenCalledTimes(1);
+    });
+
     it("does not call the repository for an empty batch but counts its rejections", async () => {
       const { deps, upsertMany } = build({
         batches: [{ offers: [], rejected: 4 }, batchOf(["a"])],
