@@ -16,6 +16,7 @@ import {
   createTestDatabase,
   type TestDatabase,
 } from "../../support/test-database";
+import { dedupKey } from "../../../../src/domain/dedup-key";
 
 const MIGRATIONS_DIRECTORY = fileURLToPath(
   new URL("../../../../db/migrations", import.meta.url),
@@ -259,6 +260,162 @@ describe("createPgOfferRepository", () => {
     await expect(
       repo.upsertMany([makeOffer("a"), makeOffer("a")], FIRST_RUN),
     ).rejects.toThrow();
+  });
+
+  describe("region and dedup key", () => {
+    it("stores a countries region with its list in order", async () => {
+      const repo = createPgOfferRepository(pool);
+
+      await repo.upsertMany(
+        [
+          makeOffer("a", {
+            region: {
+              kind: "countries",
+              countries: ["Chile", "Argentina", "Brazil"],
+            },
+          }),
+        ],
+        FIRST_RUN,
+      );
+
+      const { rows } = await pool.query(
+        "select region_status, allowed_countries from offers",
+      );
+      expect(rows[0]).toEqual({
+        region_status: "countries",
+        allowed_countries: ["Chile", "Argentina", "Brazil"],
+      });
+    });
+
+    it("stores worldwide and unknown with an empty list", async () => {
+      const repo = createPgOfferRepository(pool);
+
+      await repo.upsertMany(
+        [
+          makeOffer("w", { region: { kind: "worldwide" } }),
+          makeOffer("u", { region: { kind: "unknown" } }),
+        ],
+        FIRST_RUN,
+      );
+
+      const { rows } = await pool.query(
+        "select source_id, region_status, allowed_countries from offers order by source_id",
+      );
+      expect(rows).toEqual([
+        { source_id: "u", region_status: "unknown", allowed_countries: [] },
+        { source_id: "w", region_status: "worldwide", allowed_countries: [] },
+      ]);
+    });
+
+    it("keeps country names with commas, quotes and braces intact", async () => {
+      const repo = createPgOfferRepository(pool);
+      const countries = [
+        "Congo, Democratic Republic of the",
+        'Say "hi"',
+        "{braces}",
+        "Côte d'Ivoire",
+      ];
+
+      await repo.upsertMany(
+        [makeOffer("a", { region: { kind: "countries", countries } })],
+        FIRST_RUN,
+      );
+
+      const { rows } = await pool.query("select allowed_countries from offers");
+      expect(rows[0].allowed_countries).toEqual(countries);
+    });
+
+    it("keeps each offer's own list when the batch has different lengths", async () => {
+      const repo = createPgOfferRepository(pool);
+
+      await repo.upsertMany(
+        [
+          makeOffer("one", {
+            region: { kind: "countries", countries: ["Argentina"] },
+          }),
+          makeOffer("three", {
+            region: {
+              kind: "countries",
+              countries: ["Chile", "Peru", "Brazil"],
+            },
+          }),
+          makeOffer("none", { region: { kind: "worldwide" } }),
+        ],
+        FIRST_RUN,
+      );
+
+      const { rows } = await pool.query(
+        "select source_id, allowed_countries from offers order by source_id",
+      );
+      expect(rows).toEqual([
+        { source_id: "none", allowed_countries: [] },
+        { source_id: "one", allowed_countries: ["Argentina"] },
+        { source_id: "three", allowed_countries: ["Chile", "Peru", "Brazil"] },
+      ]);
+    });
+
+    it("stores the dedup key computed by the domain function", async () => {
+      const repo = createPgOfferRepository(pool);
+      const offer = makeOffer("a");
+
+      await repo.upsertMany([offer], FIRST_RUN);
+
+      const { rows } = await pool.query("select dedup_key from offers");
+      expect(rows[0].dedup_key).toBe(dedupKey(offer));
+    });
+
+    it("gives the same key to the same listing under different source ids", async () => {
+      const repo = createPgOfferRepository(pool);
+
+      await repo.upsertMany(
+        [makeOffer("a"), makeOffer("b", { title: "Engineer a" })],
+        FIRST_RUN,
+      );
+
+      const { rows } = await pool.query(
+        "select count(distinct dedup_key)::int as keys from offers",
+      );
+      expect(rows[0].keys).toBe(1);
+    });
+
+    it("updates region and dedup key when an existing offer changes", async () => {
+      const repo = createPgOfferRepository(pool);
+      await repo.upsertMany([makeOffer("a")], FIRST_RUN);
+
+      const changed = makeOffer("a", {
+        title: "Staff Engineer",
+        region: { kind: "worldwide" },
+      });
+      await repo.upsertMany([changed], SECOND_RUN);
+
+      const { rows } = await pool.query(
+        "select region_status, allowed_countries, dedup_key from offers",
+      );
+      expect(rows).toEqual([
+        {
+          region_status: "worldwide",
+          allowed_countries: [],
+          dedup_key: dedupKey(changed),
+        },
+      ]);
+    });
+
+    it("fills the key of a row that was stored before the column existed", async () => {
+      const repo = createPgOfferRepository(pool);
+      await repo.upsertMany([makeOffer("a")], FIRST_RUN);
+      await pool.query(
+        "update offers set dedup_key = null, region_status = 'unknown', allowed_countries = '{}'",
+      );
+
+      await repo.upsertMany([makeOffer("a")], SECOND_RUN);
+
+      const { rows } = await pool.query(
+        "select region_status, allowed_countries, dedup_key from offers",
+      );
+      expect(rows[0].region_status).toBe("countries");
+      expect(rows[0].allowed_countries).toEqual(["Argentina", "Chile"]);
+      expect(rows[0].dedup_key).toBe(dedupKey(makeOffer("a")));
+    });
   });
 
   describe("deleteExpired", () => {
