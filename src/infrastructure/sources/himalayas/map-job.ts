@@ -1,5 +1,6 @@
 import { z } from "zod";
 import type { JsonValue, SourceOffer } from "../../../domain/source-offer";
+import { regionOfHimalayasJob } from "./map-region";
 
 const MAX_UNIX_SECONDS = 4_102_444_800;
 
@@ -13,6 +14,8 @@ const himalayasJobSchema = z.object({
   description: z.string().min(1),
   pubDate: unixSeconds.nullish(),
   expiryDate: unixSeconds.nullish(),
+  locationRestrictions: z.array(z.string()).nullish().catch(undefined),
+  timezoneRestrictions: z.array(z.number()).nullish().catch(undefined),
 });
 
 function fromUnixSeconds(seconds: number | null | undefined): Date | null {
@@ -45,6 +48,10 @@ export function mapHimalayasJob(raw: JsonValue): SourceOffer {
     description: job.description,
     postedAt: fromUnixSeconds(job.pubDate),
     expiresAt: fromUnixSeconds(job.expiryDate),
+    region: regionOfHimalayasJob(
+      job.locationRestrictions,
+      job.timezoneRestrictions,
+    ),
     raw,
   };
 }

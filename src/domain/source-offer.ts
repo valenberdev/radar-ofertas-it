@@ -1,3 +1,5 @@
+import type { Region } from "./region";
+
 export type JsonValue =
   | string
   | number
@@ -17,5 +19,6 @@ export interface SourceOffer {
   readonly description: string;
   readonly postedAt: Date | null;
   readonly expiresAt: Date | null;
+  readonly region: Region;
   readonly raw: JsonValue;
 }

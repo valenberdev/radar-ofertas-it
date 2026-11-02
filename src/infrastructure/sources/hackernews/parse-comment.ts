@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { JsonValue, SourceOffer } from "../../../domain/source-offer";
 import { htmlToText } from "./html-to-text";
+import { regionOfHackerNewsHeader } from "./map-region";
 
 const MAX_UNIX_SECONDS = 4_102_444_800;
 const TITLE_MAX_LENGTH = 160;
@@ -95,6 +96,7 @@ export function parseHackerNewsComment(item: JsonValue): ParsedComment {
       expiresAt: new Date(
         postedAt.getTime() + OFFER_LIFETIME_DAYS * MS_PER_DAY,
       ),
+      region: regionOfHackerNewsHeader(header),
       raw: item,
     },
   };

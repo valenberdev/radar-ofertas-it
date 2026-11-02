@@ -19,6 +19,7 @@ function makeOffer(overrides: Partial<SourceOffer> = {}): SourceOffer {
     description: "We build things.",
     postedAt: new Date("2026-10-01T10:00:00Z"),
     expiresAt: new Date("2026-11-01T10:00:00Z"),
+    region: { kind: "countries", countries: ["Argentina", "Chile"] },
     raw: {
       guid: "https://himalayas.app/job/1",
       tags: ["a", "b"],
@@ -179,6 +180,64 @@ describe("sanitizeOffer", () => {
       ).raw;
 
       expect(JSON.stringify(cleaned)).not.toMatch(/\\ud[89ab]/i);
+    });
+  });
+
+  describe("region", () => {
+    it("removes NUL characters from the names of the countries", () => {
+      const cleaned = sanitizeOffer(
+        makeOffer({
+          region: {
+            kind: "countries",
+            countries: [`Arg${NUL}entina`, "Chile"],
+          },
+        }),
+      );
+
+      expect(cleaned.region).toEqual({
+        kind: "countries",
+        countries: ["Argentina", "Chile"],
+      });
+    });
+
+    it("drops a country that was only NUL characters", () => {
+      const cleaned = sanitizeOffer(
+        makeOffer({ region: { kind: "countries", countries: [NUL, "Chile"] } }),
+      );
+
+      expect(cleaned.region).toEqual({
+        kind: "countries",
+        countries: ["Chile"],
+      });
+    });
+
+    it("becomes unknown when no country is left", () => {
+      const cleaned = sanitizeOffer(
+        makeOffer({ region: { kind: "countries", countries: [NUL] } }),
+      );
+
+      expect(cleaned.region).toEqual({ kind: "unknown" });
+    });
+
+    it.each([[{ kind: "worldwide" }], [{ kind: "unknown" }]] as const)(
+      "leaves %j as it is",
+      (region) => {
+        expect(sanitizeOffer(makeOffer({ region })).region).toEqual(region);
+      },
+    );
+
+    it("does not modify the region it receives", () => {
+      const region: SourceOffer["region"] = {
+        kind: "countries",
+        countries: [`Arg${NUL}entina`],
+      };
+
+      sanitizeOffer(makeOffer({ region }));
+
+      expect(region).toEqual({
+        kind: "countries",
+        countries: [`Arg${NUL}entina`],
+      });
     });
   });
 

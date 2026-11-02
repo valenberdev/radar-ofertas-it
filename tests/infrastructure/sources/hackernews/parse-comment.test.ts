@@ -54,6 +54,36 @@ describe("parseHackerNewsComment", () => {
       expect(offer.raw).toEqual(item);
     });
 
+    it("reads the region from the header", () => {
+      const offer = offerFrom(
+        makeComment(
+          "Acme | Backend Engineer | Remote (US) | Full-time<p>We build things.",
+        ),
+      );
+
+      expect(offer.region).toEqual({
+        kind: "countries",
+        countries: ["United States"],
+      });
+    });
+
+    it("has an unknown region when the header names no scope", () => {
+      expect(offerFrom(makeComment("Acme | Engineer | Remote")).region).toEqual(
+        { kind: "unknown" },
+      );
+    });
+
+    it("reads the region from the whole header, even the part the title cuts off", () => {
+      const offer = offerFrom(
+        makeComment(
+          `Acme | ${"Backend ".repeat(30)}| REMOTE (Worldwide) | Full-time`,
+        ),
+      );
+
+      expect(offer.title).not.toContain("Worldwide");
+      expect(offer.region).toEqual({ kind: "worldwide" });
+    });
+
     it("expires 45 days after it was posted", () => {
       const offer = offerFrom(makeComment("Acme | Engineer | Remote"));
 

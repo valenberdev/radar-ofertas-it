@@ -1,3 +1,4 @@
+import { regionOfCountries, type Region } from "../domain/region";
 import type { JsonValue, SourceOffer } from "../domain/source-offer";
 
 const NUL = String.fromCharCode(0);
@@ -29,6 +30,12 @@ function cleanJson(value: JsonValue): JsonValue {
   return value;
 }
 
+function cleanRegion(region: Region): Region {
+  return region.kind === "countries"
+    ? regionOfCountries(region.countries.map(cleanString))
+    : region;
+}
+
 export function sanitizeOffer(offer: SourceOffer): SourceOffer {
   return {
     ...offer,
@@ -37,6 +44,7 @@ export function sanitizeOffer(offer: SourceOffer): SourceOffer {
     company: offer.company === null ? null : cleanString(offer.company),
     url: cleanString(offer.url),
     description: cleanString(offer.description),
+    region: cleanRegion(offer.region),
     raw: cleanJson(offer.raw),
   };
 }

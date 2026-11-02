@@ -37,6 +37,7 @@ function makeOffer(
     description: "We build things.",
     postedAt: new Date("2026-10-30T08:00:00Z"),
     expiresAt: new Date("2026-12-01T08:00:00Z"),
+    region: { kind: "countries", countries: ["Argentina", "Chile"] },
     raw: { id: sourceId },
     ...overrides,
   };

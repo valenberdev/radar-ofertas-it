@@ -64,6 +64,52 @@ describe("mapHimalayasJob", () => {
     expect(mapHimalayasJob(job).raw).toEqual(job);
   });
 
+  describe("region", () => {
+    it("is the list of countries the job names", () => {
+      expect(mapHimalayasJob(makeJob()).region).toEqual({
+        kind: "countries",
+        countries: ["Argentina", "Brazil"],
+      });
+    });
+
+    it("is worldwide when neither countries nor time zones restrict the job", () => {
+      const offer = mapHimalayasJob(
+        makeJob({ locationRestrictions: [], timezoneRestrictions: [] }),
+      );
+
+      expect(offer.region).toEqual({ kind: "worldwide" });
+    });
+
+    it("is unknown when the fields are missing", () => {
+      const job = without(
+        without(makeJob(), "locationRestrictions"),
+        "timezoneRestrictions",
+      );
+
+      expect(mapHimalayasJob(job).region).toEqual({ kind: "unknown" });
+    });
+
+    it.each([
+      ["a countries list of numbers", { locationRestrictions: [1, 2] }],
+      [
+        "a countries field that is not a list",
+        { locationRestrictions: "Argentina" },
+      ],
+      [
+        "a time zones list of strings",
+        { locationRestrictions: [], timezoneRestrictions: ["-3"] },
+      ],
+    ])(
+      "is unknown and does not reject the job with %s",
+      (_label, overrides) => {
+        const offer = mapHimalayasJob(makeJob(overrides));
+
+        expect(offer.region).toEqual({ kind: "unknown" });
+        expect(offer.title).toBe("Senior Backend Engineer");
+      },
+    );
+  });
+
   it("trims the title and the company", () => {
     const offer = mapHimalayasJob(
       makeJob({ title: "  Data Engineer \n", companyName: "  Acme Corp " }),
