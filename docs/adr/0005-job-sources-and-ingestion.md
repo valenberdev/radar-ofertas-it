@@ -72,3 +72,38 @@ A run that ends `failed` answers HTTP 500, so Vercel shows the invocation as fai
   - Offers without `expires_at` are never deleted. How many there are will be measured.
   - Hacker News comments include usernames and sometimes recruiter emails inside `raw` and the text. Privacy treatment is a phase 9 task.
 - Not yet measured: the expected volume of about 4,000 new Himalayas jobs per day (roughly 200 pages, about 200 of the 270 available seconds) is an estimate. The first real runs decide whether the margin is enough or plan B is needed.
+
+## Operational results (2026-11-02)
+
+Measured on the first production run, after backfilling both sources into Neon and triggering one manual run of each from Vercel.
+
+### Measured
+
+| Run                                 | Duration    | Offers read | Notes                                     |
+| ----------------------------------- | ----------- | ----------- | ----------------------------------------- |
+| Hacker News backfill (Neon)         | 22 s        | 163         | Inserted 163                              |
+| Himalayas backfill (Neon)           | 20 min 12 s | 4,700       | Inserted 4,700, 0 rejected                |
+| Hacker News scheduled path (Vercel) | 4.7 s       | 175         | 13 inserted, 162 updated, 2 offers purged |
+| Himalayas incremental (Vercel)      | 5.2 s       | 26          | 0 inserted, 26 updated                    |
+
+- The same Himalayas backfill took 18 min 35 s against the local database. The remote database adds roughly 10% because every batch is a network round trip.
+- Himalayas requests cost about 1.4 s each. The backfill must therefore run outside Vercel (see the runbook); the scheduled path is bounded by the 270 s deadline.
+- Steady-state arrival rate of relevant Himalayas offers is 5 to 32 per hour. On 2026-11-01 between 11:00 and 13:59 UTC about 4,256 relevant offers appeared at once, which is why the first backfill returned so many.
+- Storage is about 7.8 kB per offer including indexes and TOAST. With 4,698 Himalayas and 176 Hacker News offers the local database weighed 45 MB.
+
+### Not measured yet
+
+- The duration of an incremental Himalayas run that covers a full 24 hours. The manual run on 2026-11-02 moved `since`, so the first scheduled run covers about 14 hours and the second one is the first full-day sample.
+- Behavior of the scheduled crons themselves. Vercel Hobby fires them at any point within the configured hour and does not retry.
+
+### Runbook: ingestion keeps failing with "Deadline reached"
+
+1. Confirm the symptom: `ingest_runs` shows consecutive `failed` rows for the same source with `Deadline reached` in `error_message`, and the Vercel cron log shows HTTP 500.
+2. Cause: a burst of new offers makes the window between `since` and now larger than what 270 s can read. A failed run does not advance `since`, so the next run faces an even larger window.
+3. Fix: run a backfill from a local machine. Backfill is refused when `NODE_ENV` is `production`, so start `next dev` with the production database URLs in a temporary, untracked `.env.development.local`, call the source endpoint with `?backfill=1`, and delete the file afterwards.
+4. Verify: the backfill run is `succeeded` and the next scheduled run finishes in seconds.
+
+### Consequences
+
+- A burst larger than the deadline requires manual intervention. This is accepted for now; if it happens twice, the scheduled path should save partial progress instead of discarding it.
+- A run killed before it finishes stays in `running`. It does not affect `since`, which only considers succeeded runs.
