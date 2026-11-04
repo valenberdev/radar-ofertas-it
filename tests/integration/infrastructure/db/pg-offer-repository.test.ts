@@ -400,21 +400,30 @@ describe("createPgOfferRepository", () => {
       ]);
     });
 
-    it("fills the key of a row that was stored before the column existed", async () => {
-      const repo = createPgOfferRepository(pool);
-      await repo.upsertMany([makeOffer("a")], FIRST_RUN);
-      await pool.query(
-        "update offers set dedup_key = null, region_status = 'unknown', allowed_countries = '{}'",
-      );
+    it("rejects a row without a dedup key", async () => {
+      await expect(
+        pool.query(
+          "insert into offers (source, source_id, title, url, description, raw) values ('himalayas', 'k', 'T', 'https://x.test', 'D', '{}')",
+        ),
+      ).rejects.toThrow(/dedup_key/);
+    });
 
-      await repo.upsertMany([makeOffer("a")], SECOND_RUN);
-
-      const { rows } = await pool.query(
-        "select region_status, allowed_countries, dedup_key from offers",
-      );
-      expect(rows[0].region_status).toBe("countries");
-      expect(rows[0].allowed_countries).toEqual(["Argentina", "Chile"]);
-      expect(rows[0].dedup_key).toBe(dedupKey(makeOffer("a")));
+    it("rejects a dedup key that is not a lowercase sha-256 hex digest", async () => {
+      for (const key of [
+        "",
+        "abc",
+        "A".repeat(64),
+        "g".repeat(64),
+        "a".repeat(63),
+        "a".repeat(65),
+      ]) {
+        await expect(
+          pool.query(
+            "insert into offers (source, source_id, title, url, description, raw, dedup_key) values ('himalayas', 'k', 'T', 'https://x.test', 'D', '{}', $1)",
+            [key],
+          ),
+        ).rejects.toThrow(/dedup_key/);
+      }
     });
   });
 

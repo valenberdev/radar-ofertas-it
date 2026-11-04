@@ -539,8 +539,8 @@ describe("createIngestionRunner", () => {
   describe("purging expired offers", () => {
     async function insertOffer(sourceId: string, expiresAt: Date | null) {
       await pool.query(
-        "insert into offers (source, source_id, title, url, description, raw, expires_at) values ('himalayas', $1, 'T', 'https://x.test', 'D', '{}', $2)",
-        [sourceId, expiresAt],
+        "insert into offers (source, source_id, title, url, description, raw, expires_at, dedup_key) values ('himalayas', $1, 'T', 'https://x.test', 'D', '{}', $2, $3)",
+        [sourceId, expiresAt, "a".repeat(64)],
       );
     }
 
