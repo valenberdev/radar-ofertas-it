@@ -15,6 +15,7 @@ const EU = [...COUNTRY_GROUPS.europeanUnion];
 const EUROPE = [...COUNTRY_GROUPS.europe];
 const NA = [...COUNTRY_GROUPS.northAmerica];
 const AMERICAS = [...COUNTRY_GROUPS.americas];
+const SOUTH_AMERICA = [...COUNTRY_GROUPS.southAmerica];
 const EU_NA = [...EU, ...NA];
 const NA_EUROPE = [...NA, ...EUROPE];
 const AMERICAS_EUROPE = [...AMERICAS, ...EUROPE];
@@ -245,6 +246,14 @@ const SAMPLE: ReadonlyArray<readonly [string, Expected]> = [
   ],
   ["HRS Systems | https://hrssystems.com | Remote (US) | Full-Time | SWE", US],
   [
+    "Simple Analytics | DevOps Engineer | REMOTE (worldwide, any timezone) | Full-time, 32h, 24h possible | €5,000/month (full-time) | https://ww",
+    "worldwide",
+  ],
+  [
+    "River | Staff Engineers (Elixir) | NYC or REMOTE (US, Europe, South America) | Full-Time | $200K-$250K + equity | https://jobs.ashbyhq.com/r",
+    [...US, ...EUROPE, ...SOUTH_AMERICA],
+  ],
+  [
     "Wipro.com | Multiple roles - Software - AI - FDE - Cloud | Global (US/CAN/EU/India) | on-site and remote",
     "unknown",
   ],
@@ -284,6 +293,8 @@ describe("regionOfHackerNewsHeader", () => {
       ["LatAm", COUNTRY_GROUPS.latinAmerica],
       ["Latin America", COUNTRY_GROUPS.latinAmerica],
       ["the Americas", AMERICAS],
+      ["South America", SOUTH_AMERICA],
+      ["south america", SOUTH_AMERICA],
       ["Czech Republic", ["Czechia"]],
       ["Russia", ["Russian Federation"]],
       ["Argentina", ["Argentina"]],
@@ -349,6 +360,15 @@ describe("regionOfHackerNewsHeader", () => {
       );
     });
 
+    it("reads South America inside a list", () => {
+      expectRegion(
+        regionOfHackerNewsHeader(
+          "Acme | REMOTE (US, South America) | Full-time",
+        ),
+        [...US, ...SOUTH_AMERICA],
+      );
+    });
+
     it("gives up on the whole list when one term is not understood", () => {
       expectRegion(
         regionOfHackerNewsHeader(
@@ -378,6 +398,31 @@ describe("regionOfHackerNewsHeader", () => {
         expected,
       );
     });
+
+    it.each([
+      ["worldwide, any timezone", "worldwide"],
+      ["any timezone, worldwide", "worldwide"],
+      ["anywhere, any time zone", "worldwide"],
+      ["Worldwide, all timezones", "worldwide"],
+      ["Global, any time-zone", "worldwide"],
+      ["US, any timezone", US],
+      ["US/Canada, any time zones", US_CA],
+      ["any timezone", "unknown"],
+      ["all time zones", "unknown"],
+      ["any", "unknown"],
+      ["anytime zone", "unknown"],
+      ["any timezone preferred", "unknown"],
+      ["US, any timezone preferred", "unknown"],
+      ["US, many timezones", "unknown"],
+    ] as const)(
+      "treats %s as a statement about time zones only",
+      (scope, expected) => {
+        expectRegion(
+          regionOfHackerNewsHeader(`Acme | REMOTE (${scope}) | Full-time`),
+          expected,
+        );
+      },
+    );
 
     it.each([
       "US preferred",

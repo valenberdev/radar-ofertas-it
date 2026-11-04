@@ -10,6 +10,7 @@ import {
 const REMOTE = /\bremote\b(?![.]\w)/gi;
 const LEADING_SEPARATORS = /^[\s\-–—:,/]+/;
 const TERM_SEPARATORS = /\s*(?:[/,&+;]|\band\b|\bor\b)\s*/i;
+const ANY_TIMEZONE = /^(?:any|all)[\s-]+time[\s-]?zones?$/;
 const TRAILING_QUALIFIER = /[\s-]+(?:only|time ?zones?|based)$/;
 const AMBIGUOUS_NAMES: ReadonlySet<string> = new Set(["georgia"]);
 const WORLDWIDE_TERMS: ReadonlySet<string> = new Set([
@@ -49,6 +50,7 @@ function buildNamedTerms(): ReadonlyMap<string, readonly string[]> {
     ["na", COUNTRY_GROUPS.northAmerica],
     ["latam", COUNTRY_GROUPS.latinAmerica],
     ["latin america", COUNTRY_GROUPS.latinAmerica],
+    ["south america", COUNTRY_GROUPS.southAmerica],
     ["americas", COUNTRY_GROUPS.americas],
     ["the americas", COUNTRY_GROUPS.americas],
   ];
@@ -63,7 +65,9 @@ const NAMED_TERMS = buildNamedTerms();
 function toTerms(scope: string): string[] {
   return scope
     .split(TERM_SEPARATORS)
-    .map((part) => normalizeTerm(part).replace(TRAILING_QUALIFIER, ""))
+    .map(normalizeTerm)
+    .filter((term) => !ANY_TIMEZONE.test(term))
+    .map((term) => term.replace(TRAILING_QUALIFIER, ""))
     .filter((term) => term !== "");
 }
 

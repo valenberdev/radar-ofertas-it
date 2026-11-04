@@ -55,6 +55,21 @@ const LATIN_AMERICA = [
   "Venezuela",
 ] as const;
 
+const SOUTH_AMERICA = [
+  "Argentina",
+  "Bolivia",
+  "Brazil",
+  "Chile",
+  "Colombia",
+  "Ecuador",
+  "Guyana",
+  "Paraguay",
+  "Peru",
+  "Suriname",
+  "Uruguay",
+  "Venezuela",
+] as const;
+
 export const COUNTRY_GROUPS = {
   europeanUnion: EUROPEAN_UNION,
   europe: [
@@ -79,6 +94,7 @@ export const COUNTRY_GROUPS = {
   ],
   northAmerica: NORTH_AMERICA,
   latinAmerica: LATIN_AMERICA,
+  southAmerica: SOUTH_AMERICA,
   americas: [
     ...NORTH_AMERICA,
     ...LATIN_AMERICA,

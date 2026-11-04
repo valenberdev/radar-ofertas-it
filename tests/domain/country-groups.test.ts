@@ -26,6 +26,7 @@ describe("COUNTRY_GROUPS", () => {
     ["europe", 44],
     ["northAmerica", 2],
     ["latinAmerica", 20],
+    ["southAmerica", 12],
     ["americas", 35],
   ] as const)("%s has %i members", (group, size) => {
     expect(members(group)).toHaveLength(size);
@@ -45,6 +46,20 @@ describe("COUNTRY_GROUPS", () => {
       ...members("latinAmerica"),
     ].filter((name) => !americas.has(name));
     expect(outside).toEqual([]);
+  });
+
+  it("keeps South America inside the Americas", () => {
+    const americas = new Set(members("americas"));
+    expect(
+      members("southAmerica").filter((name) => !americas.has(name)),
+    ).toEqual([]);
+  });
+
+  it("places Argentina in South America and Mexico outside of it", () => {
+    expect(members("southAmerica")).toContain("Argentina");
+    expect(members("southAmerica")).not.toContain("Mexico");
+    expect(members("southAmerica")).not.toContain("Panama");
+    expect(members("southAmerica")).not.toContain("French Guiana");
   });
 
   it("places Argentina in Latin America and the Americas only", () => {
