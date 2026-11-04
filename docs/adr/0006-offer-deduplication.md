@@ -1,6 +1,6 @@
 # ADR-0006: Offer deduplication
 
-Status: Accepted (2026-11-02)
+Status: Accepted (2026-11-02), amended 2026-11-04 after implementation
 
 ## Context
 
@@ -21,7 +21,7 @@ What the duplicates look like:
 
 All the groups inspected were posted on 2026-11-01 between 12:00 and 13:30 UTC, during a one-off burst. The steady-state duplicate rate is not known.
 
-Duplicates matter more than the 2.6% suggests. They concentrate in offers aimed at Latin America, which are the ones a candidate in Argentina is matched against. Duplicates in the top-K of phase 5 waste Gemini calls and show identical cards in the interface.
+Duplicates matter more than the 2.6% suggests. Among the Himalayas offers eligible for a candidate in Argentina (worldwide, or listing Argentina) the rate is 5.7%: 962 offers, 907 distinct keys, measured the same day. Duplicates in the top-K of phase 5 waste Gemini calls and show identical cards in the interface.
 
 ## Decision
 
@@ -36,17 +36,17 @@ Merging variants into one row was rejected. Eligibility is a location rule and a
 Each offer gets a `dedup_key`: a SHA-256 hash, computed in TypeScript by a pure function with unit tests, of:
 
 - Himalayas: source, company, title and description.
-- Hacker News: source, company (empty if the header has none) and title. The title is the whole header line. The description is left out because the same header with edited text is the same offer renewed.
+- Hacker News: source, company (empty if the header has none) and title. The title is the header line as stored, clipped to 160 characters.. The description is left out because the same header with edited text is the same offer renewed.
 
 Company and title are trimmed, lower-cased and have whitespace runs collapsed. The description is hashed exactly as stored, after sanitization. The source is part of the hashed input, so keys never collide across sources.
 
-The key is stored in `offers.dedup_key`, filled on every upsert and derived from the stored columns for rows that already exist. It lives in application code and not in a generated SQL column, because the rules will change as more data arrives and a rule change should not require a migration.
+The key is stored in `offers.dedup_key`. The repository computes it on every insert and update, from the sanitized offer, which is what gets stored. Rows that existed before got theirs from their stored columns, in a one-off script that was removed afterwards. The function lives in TypeScript and not in a generated SQL column, because the rules will change as more data arrives and a rule change should not require a migration.
 
 ### Reading
 
-Consumers first filter offers by eligibility, row by row, and then keep one row per `dedup_key`: the newest `posted_at`, with ties broken by the highest `id`. Rows with no `posted_at` rank last. Filtering first means the representative shown is a variant that fits the candidate, with its own application link.
+Consumers first filter offers row by row, keeping those that have not expired and whose region is worldwide or lists the candidate's country, and then keep one row per `dedup_key`: the newest `posted_at`, with ties broken by the highest `id`. Rows with no `posted_at` rank last. Filtering first means the representative shown is a variant that fits the candidate, with its own application link.
 
-This rule is implemented once, in a single repository function. No other code queries `offers` directly to list offers.
+This rule is implemented once, in `OfferReader.listEligible`. No other code queries `offers` directly to list offers.
 
 ### Not done
 
@@ -62,8 +62,9 @@ There is no deduplication across sources. Four shared companies do not justify p
 
 ## Consequences
 
-- A migration adds `dedup_key` and an index on it, together with the other normalized columns of phase 4.
-- Rows already stored get their key from stored data, without refetching anything.
+- Migration 0005 adds `dedup_key` together with the region columns. It is nullable at first, because the key is computed in TypeScript and the rows already stored had none. Migration 0006 makes it required once every row had one.
+- There is no index on `dedup_key`. The read query filters first and sorts a few thousand rows: with 30,000 synthetic rows it took about 24 ms with a sequential scan. Revisit if the table grows well beyond that or the query shows up as slow.
+- Rows already stored got their key from stored data, without refetching anything.
 - A code path that lists offers without the repository function will show duplicates. Keeping a single read function is what prevents that.
 - Known misses: the same job with its words in a different order (for example "AWS, NodeJS - Latin America, Remote" and "Remote, Latin America") keeps two keys, and so does a Himalayas offer whose description was edited after publication.
 - A Hacker News header reused with a different role is hidden. This is accepted.
