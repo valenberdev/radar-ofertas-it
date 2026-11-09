@@ -7,6 +7,8 @@ import {
 } from "../../../src/infrastructure/llm/gemini-profile-extractor";
 import type { JsonGenerator } from "../../../src/infrastructure/llm/json-generator";
 
+const MODEL = "gemini-test-model";
+
 const VALID_OUTPUT = {
   seniority: "junior",
   yearsOfExperience: 1,
@@ -28,13 +30,13 @@ function generatorReturning(value: unknown) {
 
 async function promptFor(text: string): Promise<string> {
   const { generator, generateJson } = generatorReturning(VALID_OUTPUT);
-  await createGeminiProfileExtractor(generator).extract(text);
+  await createGeminiProfileExtractor(generator, MODEL).extract(text);
   return String(generateJson.mock.calls[0]?.[0]);
 }
 
 async function schemaUsed(): Promise<z.ZodType<unknown>> {
   const { generator, generateJson } = generatorReturning(VALID_OUTPUT);
-  await createGeminiProfileExtractor(generator).extract("text");
+  await createGeminiProfileExtractor(generator, MODEL).extract("text");
   const schema = generateJson.mock.calls[0]?.[1];
   if (schema === undefined) {
     throw new Error("no schema was passed");
@@ -50,12 +52,28 @@ describe("PROFILE_EXTRACTION_PROMPT_VERSION", () => {
 });
 
 describe("createGeminiProfileExtractor", () => {
+  it("identifies itself by the model and the prompt version", () => {
+    const { generator } = generatorReturning(VALID_OUTPUT);
+
+    expect(createGeminiProfileExtractor(generator, MODEL).id).toBe(
+      `gemini:${MODEL}:profile-v${PROFILE_EXTRACTION_PROMPT_VERSION}`,
+    );
+  });
+
+  it("identifies different models differently", () => {
+    const { generator } = generatorReturning(VALID_OUTPUT);
+
+    expect(createGeminiProfileExtractor(generator, "model-a").id).not.toBe(
+      createGeminiProfileExtractor(generator, "model-b").id,
+    );
+  });
+
   it("returns what the generator returns", async () => {
     const { generator } = generatorReturning(VALID_OUTPUT);
 
-    expect(await createGeminiProfileExtractor(generator).extract("text")).toBe(
-      VALID_OUTPUT,
-    );
+    expect(
+      await createGeminiProfileExtractor(generator, MODEL).extract("text"),
+    ).toBe(VALID_OUTPUT);
   });
 
   it("lets generator errors through", async () => {
@@ -67,7 +85,7 @@ describe("createGeminiProfileExtractor", () => {
     };
 
     await expect(
-      createGeminiProfileExtractor(generator).extract("text"),
+      createGeminiProfileExtractor(generator, MODEL).extract("text"),
     ).rejects.toBe(error);
   });
 

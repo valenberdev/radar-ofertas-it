@@ -24,9 +24,15 @@ describe.skipIf(apiKey === "" || model === "")("Gemini live smoke test", () => {
       model,
       timeoutMs: 60_000,
     });
-    const extractor = createGeminiProfileExtractor(client);
+    const extractor = createGeminiProfileExtractor(client, model);
+    const deps = {
+      extractor,
+      profiles: { find: async () => null, save: async () => undefined },
+      quota: { tryConsume: async () => true },
+      now: () => new Date(),
+    };
 
-    const result = await extractProfile({ extractor }, SYNTHETIC_CV);
+    const result = await extractProfile(deps, SYNTHETIC_CV);
 
     expect(result.ok).toBe(true);
     if (!result.ok) {

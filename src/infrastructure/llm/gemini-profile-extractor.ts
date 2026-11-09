@@ -45,8 +45,10 @@ function buildPrompt(text: string): string {
 
 export function createGeminiProfileExtractor(
   generator: JsonGenerator,
+  model: string,
 ): ProfileExtractor {
   return {
+    id: `gemini:${model}:profile-v${PROFILE_EXTRACTION_PROMPT_VERSION}`,
     extract(text) {
       return generator.generateJson(buildPrompt(text), extractedProfileSchema);
     },
