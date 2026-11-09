@@ -10,6 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:integration": "vitest run --config vitest.integration.config.mts",
+    "test:smoke": "vitest run --config vitest.smoke.config.mts",
     "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate/run.mts",
     "db:migrate:prod": "node --env-file=.env.production.local scripts/migrate/run.mts"
   },
