@@ -12,7 +12,13 @@
     "test:integration": "vitest run --config vitest.integration.config.mts",
     "test:smoke": "vitest run --config vitest.smoke.config.mts",
     "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate/run.mts",
-    "db:migrate:prod": "node --env-file=.env.production.local scripts/migrate/run.mts"
+    "db:migrate:prod": "node --env-file=.env.production.local scripts/migrate/run.mts",
+    "eval:personas": "tsx --env-file-if-exists=.env.local scripts/eval/extract-personas.mts",
+    "eval:snapshot": "tsx --env-file-if-exists=.env.local scripts/eval/export-snapshot.mts",
+    "eval:snapshot:prod": "tsx --env-file=.env.production.local scripts/eval/export-snapshot.mts",
+    "eval:label": "tsx scripts/eval/build-labeling.mts",
+    "eval:retest": "tsx scripts/eval/build-labeling.mts --retest",
+    "eval:agreement": "tsx scripts/eval/report-agreement.mts"
   },
   "dependencies": {
     "next": "16.4.2",

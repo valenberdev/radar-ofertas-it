@@ -1,0 +1,6 @@
+{
+  "id": "a-junior-backend",
+  "label": "A · Junior backend (Node, TypeScript, PostgreSQL)",
+  "cvText": "Desarrollador backend junior. Sin experiencia profesional formal; un año construyendo proyectos personales y académicos de punta a punta.\n\nStack: Node.js, TypeScript, Express, PostgreSQL con SQL explícito (sin ORM), Docker, Vitest, Git y GitHub Actions. También Java 21 con Spring Boot en un proyecto personal, y React a nivel básico.\n\nProyectos: API REST de control de gastos con autenticación JWT, tests automatizados, CI y despliegue con Docker; sistema de reservas en Java 21 y Spring Boot con PostgreSQL.\n\nIdiomas: español nativo, inglés B2.\n\nBusco un primer puesto backend remoto, trabajando con Node.js o Java.",
+  "profile": null
+}
