@@ -109,3 +109,45 @@ select
 from offers
 group by source;
 ```
+
+## profiles
+
+Cache of structured profiles extracted from a CV or self-description. The raw text is never stored.
+
+| Column         | Type        | Notes                                                    |
+| -------------- | ----------- | -------------------------------------------------------- |
+| `text_hash`    | text        | SHA-256 (hex) of the whitespace-normalized redacted text |
+| `extractor_id` | text        | `gemini:<model>:profile-v<prompt version>`               |
+| `profile`      | jsonb       | Structured profile, always a JSON object                 |
+| `created_at`   | timestamptz | First time it was stored                                 |
+| `last_used_at` | timestamptz | Updated on every cache hit, so old entries can be purged |
+
+Primary key: `(text_hash, extractor_id)`.
+
+## usage_counters
+
+Daily count of calls made to the model, one row per day and resource.
+
+| Column     | Type    | Notes                                       |
+| ---------- | ------- | ------------------------------------------- |
+| `day`      | date    | Pacific day                                 |
+| `resource` | text    | One per model, for example a Gemini model   |
+| `used`     | integer | Never negative; never above the daily limit |
+
+Primary key: `(day, resource)`. The limit is not stored: the increment is a single statement that refuses to go over the limit it receives.
+
+## scores
+
+Cache of offer scores for a profile.
+
+| Column         | Type        | Notes                                                                   |
+| -------------- | ----------- | ----------------------------------------------------------------------- |
+| `profile_hash` | text        | SHA-256 (hex) of the canonical structured profile                       |
+| `offer_hash`   | text        | SHA-256 (hex) of the redacted, truncated title, company and description |
+| `scorer_id`    | text        | `gemini:<model>:score-v<prompt version>`                                |
+| `score`        | smallint    | 0 to 100                                                                |
+| `reason_es`    | text        | Reason in Spanish, not blank                                            |
+| `reason_en`    | text        | Reason in English, not blank                                            |
+| `created_at`   | timestamptz | Time of the last write                                                  |
+
+Primary key: `(profile_hash, offer_hash, scorer_id)`. There are no foreign keys: scores do not depend on a row of `offers` or `profiles`, only on the content that was scored.
