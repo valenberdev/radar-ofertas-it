@@ -1,0 +1,6 @@
+[
+  { "id": "flash-lite-b5", "model": "gemini-3.5-flash-lite", "batchSize": 5 },
+  { "id": "flash-lite-b10", "model": "gemini-3.5-flash-lite", "batchSize": 10 },
+  { "id": "flash-lite-b15", "model": "gemini-3.5-flash-lite", "batchSize": 15 },
+  { "id": "flash-lite-b30", "model": "gemini-3.5-flash-lite", "batchSize": 30 }
+]

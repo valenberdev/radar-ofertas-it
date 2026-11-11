@@ -18,7 +18,9 @@
     "eval:snapshot:prod": "tsx --env-file=.env.production.local scripts/eval/export-snapshot.mts",
     "eval:label": "tsx scripts/eval/build-labeling.mts",
     "eval:retest": "tsx scripts/eval/build-labeling.mts --retest",
-    "eval:agreement": "tsx scripts/eval/report-agreement.mts"
+    "eval:agreement": "tsx scripts/eval/report-agreement.mts",
+    "eval:run": "tsx --env-file-if-exists=.env.local scripts/eval/run-experiments.mts",
+    "eval:report": "tsx scripts/eval/report-experiments.mts"
   },
   "dependencies": {
     "next": "16.4.2",

@@ -146,6 +146,8 @@ describe("EVAL_PATHS", () => {
     expect(EVAL_PATHS.retestLabels).toMatch(
       /[\\/]eval[\\/]labels-retest\.json$/,
     );
+    expect(EVAL_PATHS.configs).toMatch(/[\\/]eval[\\/]configs\.json$/);
+    expect(EVAL_PATHS.results).toMatch(/[\\/]eval[\\/]results\.json$/);
+    expect(EVAL_PATHS.runs).toMatch(/runs\.local\.jsonl$/);
   });
 });
-    

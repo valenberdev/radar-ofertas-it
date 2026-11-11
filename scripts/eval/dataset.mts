@@ -116,7 +116,7 @@ export type Snapshot = z.infer<typeof snapshotSchema>;
 export type Label = z.infer<typeof labelSchema>;
 export type LabelsFile = z.infer<typeof labelsFileSchema>;
 
-function failure(what: string, error: z.ZodError): Error {
+export function failure(what: string, error: z.ZodError): Error {
   const issue = error.issues[0];
   const location =
     issue === undefined || issue.path.length === 0

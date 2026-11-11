@@ -13,6 +13,9 @@ export const EVAL_PATHS = {
   retestLabels: join(DIRECTORY, "labels-retest.json"),
   labelingPage: join(DIRECTORY, "labeling.local.html"),
   retestPage: join(DIRECTORY, "retest.local.html"),
+  configs: join(DIRECTORY, "configs.json"),
+  runs: join(DIRECTORY, "runs.local.jsonl"),
+  results: join(DIRECTORY, "results.json"),
 } as const;
 
 export async function readJsonFile(path: string): Promise<unknown> {

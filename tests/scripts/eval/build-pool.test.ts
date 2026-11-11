@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildPool,
   DEFAULT_POOL_SIZES,
+  rankOffers,
   type PoolItem,
   type PoolOrigin,
 } from "../../../scripts/eval/build-pool.mts";
@@ -301,5 +302,51 @@ describe("buildPool", () => {
     buildPool(PROFILE, offers, createRandom(1));
 
     expect(offers).toEqual(copy);
+  });
+});
+
+describe("rankOffers", () => {
+  it("lists the matching offers by prefilter score and the others apart", () => {
+    const offers = [
+      snapshotOffer(1),
+      snapshotOffer(2, { title: "Docker engineer" }),
+      snapshotOffer(3, { description: "We cook pasta" }),
+    ];
+
+    const { ranked, unmatched } = rankOffers(PROFILE, offers);
+
+    expect(ranked.map((entry) => entry.offer.id)).toEqual(["2", "1"]);
+    expect(ranked.map((entry) => entry.score)).toEqual([3, 1]);
+    expect(unmatched.map((offer) => offer.id)).toEqual(["3"]);
+  });
+
+  it("covers every offer exactly once", () => {
+    const offers = [...matching(5), ...unmatching(4)];
+
+    const { ranked, unmatched } = rankOffers(PROFILE, offers);
+
+    expect(ranked.length + unmatched.length).toBe(9);
+  });
+
+  it("returns nothing ranked for a profile without skills", () => {
+    const { ranked, unmatched } = rankOffers(buildProfile({}), matching(3));
+
+    expect(ranked).toEqual([]);
+    expect(unmatched).toHaveLength(3);
+  });
+
+  it("returns empty lists for an empty snapshot", () => {
+    expect(rankOffers(PROFILE, [])).toEqual({ ranked: [], unmatched: [] });
+  });
+
+  it("agrees with the candidates of the pool", () => {
+    const offers = [...matching(40), ...unmatching(10)];
+
+    const { ranked } = rankOffers(PROFILE, offers);
+    const pool = buildPool(PROFILE, offers, createRandom(1));
+
+    expect(ofOrigin(pool, "candidate").map((offer) => offer.id)).toEqual(
+      ranked.slice(0, 30).map((entry) => entry.offer.id),
+    );
   });
 });
