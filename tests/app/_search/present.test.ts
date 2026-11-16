@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  formatDate,
   formatPostedDate,
   scoreBand,
   SOURCES,
@@ -49,5 +50,28 @@ describe("formatPostedDate", () => {
     expect(formatPostedDate("2026-11-06T00:30:00.000Z", "en")).toBe(
       "Nov 6, 2026",
     );
+  });
+});
+
+describe("formatDate", () => {
+  it("uses the time zone it receives", () => {
+    expect(
+      formatDate(
+        "2026-11-13T01:30:00.000Z",
+        "es",
+        "America/Argentina/Buenos_Aires",
+      ),
+    ).toBe("12 nov 2026");
+    expect(formatDate("2026-11-13T01:30:00.000Z", "es", "UTC")).toBe(
+      "13 nov 2026",
+    );
+  });
+
+  it("uses the time zone of the browser when it receives none", () => {
+    const expected = new Intl.DateTimeFormat("en", {
+      dateStyle: "medium",
+    }).format(new Date("2026-11-13T01:30:00.000Z"));
+
+    expect(formatDate("2026-11-13T01:30:00.000Z", "en")).toBe(expected);
   });
 });

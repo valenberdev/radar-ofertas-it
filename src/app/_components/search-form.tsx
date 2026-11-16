@@ -1,15 +1,33 @@
 "use client";
 
-import { startTransition, useActionState, type FormEvent } from "react";
+import {
+  startTransition,
+  useActionState,
+  useState,
+  type FormEvent,
+} from "react";
 import { searchAction } from "@/app/_actions/search";
 import { SearchResults } from "@/app/_components/search-results";
 import type { Locale } from "@/app/_i18n/config";
 import type { Dictionary } from "@/app/_i18n/dictionaries";
 import { formatMessage } from "@/app/_i18n/format-message";
+import {
+  readLastSearch,
+  writeLastSearch,
+  type SearchStorage,
+} from "@/app/_search/new-since";
 import type { SearchState } from "@/app/_search/run-search";
 import styles from "./search-form.module.css";
 
 const INITIAL_STATE: SearchState = { status: "idle" };
+
+function browserStorage(): SearchStorage | null {
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
+}
 
 export interface SearchFormProps {
   readonly labels: Dictionary["search"];
@@ -29,10 +47,18 @@ export function SearchForm({
   maxLength,
 }: SearchFormProps) {
   const [state, action, pending] = useActionState(searchAction, INITIAL_STATE);
+  const [previousSearchAt, setPreviousSearchAt] = useState<
+    string | null | undefined
+  >(undefined);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    const storage = browserStorage();
+    if (previousSearchAt === undefined) {
+      setPreviousSearchAt(readLastSearch(storage));
+    }
+    writeLastSearch(storage, new Date());
     startTransition(() => action(formData));
   }
 
@@ -97,6 +123,7 @@ export function SearchForm({
           view={state.view}
           labels={resultLabels}
           locale={locale}
+          previousSearchAt={previousSearchAt ?? null}
         />
       ) : null}
     </section>

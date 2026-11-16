@@ -26,9 +26,19 @@ export function scoreBand(score: number): ScoreBand {
   return "low";
 }
 
+export function formatDate(
+  iso: string,
+  locale: Locale,
+  timeZone?: string,
+): string {
+  return new Intl.DateTimeFormat(
+    locale,
+    timeZone === undefined
+      ? { dateStyle: "medium" }
+      : { dateStyle: "medium", timeZone },
+  ).format(new Date(iso));
+}
+
 export function formatPostedDate(iso: string, locale: Locale): string {
-  return new Intl.DateTimeFormat(locale, {
-    dateStyle: "medium",
-    timeZone: "UTC",
-  }).format(new Date(iso));
+  return formatDate(iso, locale, "UTC");
 }

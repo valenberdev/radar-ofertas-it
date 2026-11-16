@@ -1,7 +1,13 @@
 import type { Locale } from "@/app/_i18n/config";
 import type { Dictionary } from "@/app/_i18n/dictionaries";
 import { formatMessage } from "@/app/_i18n/format-message";
-import { formatPostedDate, scoreBand, SOURCES } from "@/app/_search/present";
+import { isNewSince } from "@/app/_search/new-since";
+import {
+  formatDate,
+  formatPostedDate,
+  scoreBand,
+  SOURCES,
+} from "@/app/_search/present";
 import type { OfferView, SearchView } from "@/app/_search/search-view";
 import styles from "./search-results.module.css";
 
@@ -53,9 +59,10 @@ interface OfferItemProps {
   readonly offer: OfferView;
   readonly labels: ResultLabels;
   readonly locale: Locale;
+  readonly isNew: boolean;
 }
 
-function OfferItem({ offer, labels, locale }: OfferItemProps) {
+function OfferItem({ offer, labels, locale, isNew }: OfferItemProps) {
   const source = SOURCES[offer.source];
 
   return (
@@ -69,6 +76,9 @@ function OfferItem({ offer, labels, locale }: OfferItemProps) {
       )}
       <article className={styles.body}>
         <h4 className={styles.title}>
+          {isNew ? (
+            <span className={styles.newBadge}>{labels.newBadge}</span>
+          ) : null}
           {offer.url === null ? (
             offer.title
           ) : (
@@ -112,11 +122,41 @@ export interface SearchResultsProps {
   readonly view: SearchView;
   readonly labels: ResultLabels;
   readonly locale: Locale;
+  readonly previousSearchAt: string | null;
 }
 
-export function SearchResults({ view, labels, locale }: SearchResultsProps) {
+function newOffersMessage(
+  labels: ResultLabels,
+  locale: Locale,
+  previousSearchAt: string | null,
+  count: number,
+): string {
+  if (previousSearchAt === null) {
+    return labels.firstSearch;
+  }
+  const date = formatDate(previousSearchAt, locale);
+  if (count === 0) {
+    return formatMessage(labels.noneNewSince, { date });
+  }
+  return formatMessage(count === 1 ? labels.newSinceOne : labels.newSinceMany, {
+    count,
+    date,
+  });
+}
+
+export function SearchResults({
+  view,
+  labels,
+  locale,
+  previousSearchAt,
+}: SearchResultsProps) {
   const scored = view.offers.filter((offer) => offer.score !== null);
   const unscored = view.offers.filter((offer) => offer.score === null);
+  const newIds = new Set(
+    view.offers
+      .filter((offer) => isNewSince(offer.firstSeenAt, previousSearchAt))
+      .map((offer) => offer.id),
+  );
 
   return (
     <section className={styles.results} aria-labelledby="results-heading">
@@ -134,6 +174,11 @@ export function SearchResults({ view, labels, locale }: SearchResultsProps) {
               eligible: view.eligibleCount,
             })}
       </p>
+      {view.offers.length === 0 ? null : (
+        <p className={styles.newSummary}>
+          {newOffersMessage(labels, locale, previousSearchAt, newIds.size)}
+        </p>
+      )}
 
       {scored.length === 0 ? null : (
         <div className={styles.group}>
@@ -145,6 +190,7 @@ export function SearchResults({ view, labels, locale }: SearchResultsProps) {
                 offer={offer}
                 labels={labels}
                 locale={locale}
+                isNew={newIds.has(offer.id)}
               />
             ))}
           </ol>
@@ -164,6 +210,7 @@ export function SearchResults({ view, labels, locale }: SearchResultsProps) {
                 offer={offer}
                 labels={labels}
                 locale={locale}
+                isNew={newIds.has(offer.id)}
               />
             ))}
           </ul>

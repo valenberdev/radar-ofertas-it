@@ -82,5 +82,11 @@ export const es: Dictionary = {
     noDate: "Sin fecha",
     noCompany: "Empresa no indicada",
     source: "Fuente:",
+    newBadge: "Nueva",
+    newSinceOne: "1 oferta nueva desde tu última búsqueda, el {date}.",
+    newSinceMany: "{count} ofertas nuevas desde tu última búsqueda, el {date}.",
+    noneNewSince: "Ninguna oferta nueva desde tu última búsqueda, el {date}.",
+    firstSearch:
+      "Desde tu próxima búsqueda en este navegador se van a marcar las ofertas nuevas.",
   },
 };

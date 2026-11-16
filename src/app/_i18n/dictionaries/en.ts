@@ -80,6 +80,12 @@ export const en = {
     noDate: "Date not stated",
     noCompany: "Company not stated",
     source: "Source:",
+    newBadge: "New",
+    newSinceOne: "1 new offer since your last search, on {date}.",
+    newSinceMany: "{count} new offers since your last search, on {date}.",
+    noneNewSince: "No new offers since your last search, on {date}.",
+    firstSearch:
+      "From your next search in this browser on, new offers will be marked.",
   },
 };
 
