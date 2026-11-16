@@ -41,12 +41,18 @@ export interface OfferMatch {
   readonly reasonEn: string;
 }
 
+export interface UnscoredCandidate {
+  readonly offer: StoredOffer;
+  readonly matchedSkills: readonly string[];
+}
+
 export type ScoringStop = "quota" | "error";
 
 export interface MatchOffersResult {
   readonly eligibleCount: number;
   readonly candidateCount: number;
   readonly matches: readonly OfferMatch[];
+  readonly unscored: readonly UnscoredCandidate[];
   readonly unscoredCount: number;
   readonly stoppedBy: ScoringStop | null;
 }
@@ -132,28 +138,33 @@ export async function matchOffers(
     known,
   );
 
-  const matches = prepared
-    .flatMap(({ candidate, hash }): OfferMatch[] => {
-      const score = known.get(hash);
-      return score === undefined
-        ? []
-        : [
-            {
-              offer: candidate.offer,
-              matchedSkills: candidate.matchedSkills,
-              score: score.score,
-              reasonEs: score.reasonEs,
-              reasonEn: score.reasonEn,
-            },
-          ];
-    })
-    .sort((first, second) => second.score - first.score);
+  const matches: OfferMatch[] = [];
+  const unscored: UnscoredCandidate[] = [];
+  for (const { candidate, hash } of prepared) {
+    const score = known.get(hash);
+    if (score === undefined) {
+      unscored.push({
+        offer: candidate.offer,
+        matchedSkills: candidate.matchedSkills,
+      });
+    } else {
+      matches.push({
+        offer: candidate.offer,
+        matchedSkills: candidate.matchedSkills,
+        score: score.score,
+        reasonEs: score.reasonEs,
+        reasonEn: score.reasonEn,
+      });
+    }
+  }
+  matches.sort((first, second) => second.score - first.score);
 
   return {
     eligibleCount: eligible.length,
     candidateCount: candidates.length,
     matches,
-    unscoredCount: candidates.length - matches.length,
+    unscored,
+    unscoredCount: unscored.length,
     stoppedBy,
   };
 }

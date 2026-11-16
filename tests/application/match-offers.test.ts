@@ -143,6 +143,7 @@ describe("matchOffers", () => {
         eligibleCount: 0,
         candidateCount: 0,
         matches: [],
+        unscored: [],
         unscoredCount: 0,
         stoppedBy: null,
       });
@@ -677,6 +678,167 @@ describe("matchOffers", () => {
       await expect(
         matchOffers(deps, { profile: PROFILE, country: "Argentina" }),
       ).rejects.toBe(error);
+    });
+  });
+
+  describe("candidates without a score", () => {
+    function unscoredIds(result: {
+      unscored: readonly { offer: StoredOffer }[];
+    }): string[] {
+      return result.unscored.map((candidate) => candidate.offer.id);
+    }
+
+    it("keeps the candidates that were not scored when the quota runs out", async () => {
+      const { deps } = setup({
+        offers: numbered(25),
+        quotaAllows: (call) => call === 1,
+      });
+
+      const result = await matchOffers(deps, {
+        profile: PROFILE,
+        country: "Argentina",
+      });
+
+      expect(result.matches).toHaveLength(10);
+      expect(result.unscored).toHaveLength(15);
+      expect(result.stoppedBy).toBe("quota");
+    });
+
+    it("keeps every candidate when the quota is denied from the start", async () => {
+      const { deps } = setup({ offers: numbered(3), quotaAllows: () => false });
+
+      const result = await matchOffers(deps, {
+        profile: PROFILE,
+        country: "Argentina",
+      });
+
+      expect(unscoredIds(result).sort()).toEqual(["1", "2", "3"]);
+    });
+
+    it("keeps the candidates left after a Gemini error", async () => {
+      const { deps } = setup({
+        offers: numbered(3),
+        scoreImplementation: async () => {
+          throw new LlmError("unavailable", "503");
+        },
+      });
+
+      const result = await matchOffers(deps, {
+        profile: PROFILE,
+        country: "Argentina",
+      });
+
+      expect(result).toMatchObject({ matches: [], stoppedBy: "error" });
+      expect(result.unscored).toHaveLength(3);
+    });
+
+    it("keeps the candidates the scorer could not score", async () => {
+      const { deps } = setup({
+        offers: numbered(3),
+        scoreImplementation: async (_profile, scorables) =>
+          scorables.map((scorable) =>
+            offerNumber(scorable) === 2
+              ? null
+              : { score: 50, reasonEs: "a", reasonEn: "b" },
+          ),
+      });
+
+      const result = await matchOffers(deps, {
+        profile: PROFILE,
+        country: "Argentina",
+      });
+
+      expect(unscoredIds(result)).toEqual(["2"]);
+      expect(matchedIds(result).sort()).toEqual(["1", "3"]);
+    });
+
+    it("keeps the prefilter order and the matched skills", async () => {
+      const profile = buildProfile({
+        skills: [
+          { name: "Docker", aliases: [] },
+          { name: "Rust", aliases: [] },
+        ],
+      });
+      const offers = [
+        storedOffer(1, { description: "Docker" }),
+        storedOffer(2, {
+          title: "Rust and Docker engineer",
+          description: "Rust",
+        }),
+        storedOffer(3, { description: "Docker and Rust" }),
+      ];
+      const { deps } = setup({ offers, quotaAllows: () => false });
+
+      const result = await matchOffers(deps, { profile, country: "Argentina" });
+
+      expect(
+        result.unscored.map((candidate) => [
+          candidate.offer.id,
+          candidate.matchedSkills,
+        ]),
+      ).toEqual([
+        ["2", ["Docker", "Rust"]],
+        ["3", ["Docker", "Rust"]],
+        ["1", ["Docker"]],
+      ]);
+    });
+
+    it("never lists an offer both as a match and as unscored", async () => {
+      const { deps } = setup({
+        offers: numbered(25),
+        quotaAllows: (call) => call !== 2,
+      });
+
+      const result = await matchOffers(deps, {
+        profile: PROFILE,
+        country: "Argentina",
+      });
+      const scored = new Set(matchedIds(result));
+
+      expect(unscoredIds(result).some((id) => scored.has(id))).toBe(false);
+      expect(result.matches.length + result.unscored.length).toBe(
+        result.candidateCount,
+      );
+    });
+
+    it("counts the unscored candidates it lists", async () => {
+      const { deps } = setup({
+        offers: numbered(25),
+        quotaAllows: (call) => call === 1,
+      });
+
+      const result = await matchOffers(deps, {
+        profile: PROFILE,
+        country: "Argentina",
+      });
+
+      expect(result.unscoredCount).toBe(result.unscored.length);
+    });
+
+    it("has no unscored candidates when everything was scored", async () => {
+      const { deps } = setup({ offers: numbered(5) });
+
+      expect(
+        (await matchOffers(deps, { profile: PROFILE, country: "Argentina" }))
+          .unscored,
+      ).toEqual([]);
+    });
+
+    it("does not list the offers the prefilter left out", async () => {
+      const { deps } = setup({
+        offers: [
+          storedOffer(1),
+          storedOffer(2, { title: "Chef", description: "We cook pasta" }),
+        ],
+        quotaAllows: () => false,
+      });
+
+      const result = await matchOffers(deps, {
+        profile: PROFILE,
+        country: "Argentina",
+      });
+
+      expect(unscoredIds(result)).toEqual(["1"]);
     });
   });
 });
