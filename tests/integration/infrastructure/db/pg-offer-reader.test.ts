@@ -74,10 +74,17 @@ describe("createPgOfferReader", () => {
     await pool.query("truncate offers restart identity");
   });
 
-  async function store(...offers: SourceOffer[]): Promise<void> {
+  async function storeAt(
+    ingestedAt: Date,
+    ...offers: SourceOffer[]
+  ): Promise<void> {
     for (const offer of offers) {
-      await createPgOfferRepository(pool).upsertMany([offer], INGESTED_AT);
+      await createPgOfferRepository(pool).upsertMany([offer], ingestedAt);
     }
+  }
+
+  async function store(...offers: SourceOffer[]): Promise<void> {
+    await storeAt(INGESTED_AT, ...offers);
   }
 
   async function sourceIdsFor(
@@ -304,6 +311,7 @@ describe("createPgOfferReader", () => {
         description: offer.description,
         postedAt: offer.postedAt,
         expiresAt: offer.expiresAt,
+        firstSeenAt: INGESTED_AT,
         region: countries("Argentina", "Chile"),
       });
     });
@@ -317,6 +325,65 @@ describe("createPgOfferReader", () => {
       });
 
       expect(found?.region).toEqual({ kind: "worldwide" });
+    });
+
+    it("keeps the first time an offer was seen when it is ingested again", async () => {
+      const later = new Date("2026-11-04T09:00:00Z");
+      await storeAt(INGESTED_AT, makeOffer("again"));
+      await storeAt(
+        later,
+        makeOffer("again", { title: "Engineer again, edited" }),
+      );
+
+      const [found] = await createPgOfferReader(pool).listEligible({
+        country: "Argentina",
+        now: NOW,
+      });
+
+      expect(found?.firstSeenAt).toEqual(INGESTED_AT);
+    });
+
+    it("dates a duplicate by the first time any of its copies was seen", async () => {
+      const shared = {
+        company: "Acme",
+        title: "Backend Engineer",
+        description: "Same text",
+      };
+      const earlier = new Date("2026-11-01T06:00:00Z");
+      await storeAt(
+        earlier,
+        makeOffer("old-copy", { ...shared, postedAt: hoursAgo(30) }),
+      );
+      await storeAt(
+        INGESTED_AT,
+        makeOffer("new-copy", { ...shared, postedAt: hoursAgo(2) }),
+      );
+
+      const offers = await createPgOfferReader(pool).listEligible({
+        country: "Argentina",
+        now: NOW,
+      });
+
+      expect(
+        offers.map((offer) => [offer.sourceId, offer.firstSeenAt]),
+      ).toEqual([["new-copy", earlier]]);
+    });
+
+    it("dates an offer by its own copies only", async () => {
+      const earlier = new Date("2026-11-01T06:00:00Z");
+      await storeAt(earlier, makeOffer("first"));
+      await storeAt(INGESTED_AT, makeOffer("second"));
+
+      const offers = await createPgOfferReader(pool).listEligible({
+        country: "Argentina",
+        now: NOW,
+      });
+
+      expect(
+        Object.fromEntries(
+          offers.map((offer) => [offer.sourceId, offer.firstSeenAt]),
+        ),
+      ).toEqual({ first: earlier, second: INGESTED_AT });
     });
 
     it("returns an empty list when nothing matches", async () => {

@@ -16,6 +16,7 @@ function offer(id: string, overrides: Partial<StoredOffer> = {}): StoredOffer {
     description: "A long description that the browser does not need",
     postedAt: new Date("2026-11-10T12:00:00.000Z"),
     expiresAt: null,
+    firstSeenAt: new Date("2026-11-09T08:00:00.000Z"),
     region: WORLDWIDE,
     ...overrides,
   };
@@ -124,6 +125,7 @@ describe("toSearchView", () => {
       company: "Acme",
       url: "https://example.com/1",
       postedAt: "2026-11-10T12:00:00.000Z",
+      firstSeenAt: "2026-11-09T08:00:00.000Z",
       matchedSkills: ["Node.js"],
       score: 90,
       reason: { es: "Encaja", en: "Fits" },

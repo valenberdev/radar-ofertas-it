@@ -12,6 +12,7 @@ export interface StoredOffer {
   readonly description: string;
   readonly postedAt: Date | null;
   readonly expiresAt: Date | null;
+  readonly firstSeenAt: Date;
   readonly region: Region;
 }
 

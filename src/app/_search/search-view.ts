@@ -10,6 +10,7 @@ export interface OfferView {
   readonly company: string | null;
   readonly url: string | null;
   readonly postedAt: string | null;
+  readonly firstSeenAt: string;
   readonly matchedSkills: readonly string[];
   readonly score: number | null;
   readonly reason: { readonly es: string; readonly en: string } | null;
@@ -48,6 +49,7 @@ function baseView(
     company: offer.company,
     url: safeUrl(offer.url),
     postedAt: offer.postedAt === null ? null : offer.postedAt.toISOString(),
+    firstSeenAt: offer.firstSeenAt.toISOString(),
     matchedSkills,
   };
 }

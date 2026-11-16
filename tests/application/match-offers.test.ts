@@ -44,6 +44,7 @@ function storedOffer(
     description: `We use Docker (${id})`,
     postedAt: null,
     expiresAt: null,
+    firstSeenAt: NOW,
     region: { kind: "worldwide" },
     ...overrides,
   };

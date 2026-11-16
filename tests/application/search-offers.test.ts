@@ -41,6 +41,7 @@ const OFFER: StoredOffer = {
   description: "We use Docker",
   postedAt: NOW,
   expiresAt: null,
+  firstSeenAt: NOW,
   region: WORLDWIDE,
 };
 

@@ -17,7 +17,8 @@ select *
 from (
   select distinct on (dedup_key)
     id, source, source_id, title, company, url, description,
-    posted_at, expires_at, region_status, allowed_countries
+    posted_at, expires_at, region_status, allowed_countries,
+    min(first_ingested_at) over (partition by dedup_key) as first_seen_at
   from offers
   where (expires_at is null or expires_at >= $2::timestamptz)
     and (
@@ -41,6 +42,7 @@ interface OfferRow {
   readonly expires_at: Date | null;
   readonly region_status: "worldwide" | "countries" | "unknown";
   readonly allowed_countries: readonly string[];
+  readonly first_seen_at: Date;
 }
 
 function regionOfRow(row: OfferRow): Region {
@@ -65,6 +67,7 @@ function toStoredOffer(row: OfferRow): StoredOffer {
     description: row.description,
     postedAt: row.posted_at,
     expiresAt: row.expires_at,
+    firstSeenAt: row.first_seen_at,
     region: regionOfRow(row),
   };
 }
