@@ -1,0 +1,31 @@
+.list {
+    display: flex;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.current,
+.link {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.875rem;
+    border-radius: var(--radius);
+}
+
+.current {
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--track);
+}
+
+.link {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.link:hover {
+    color: var(--ink);
+    text-decoration: underline;
+}
