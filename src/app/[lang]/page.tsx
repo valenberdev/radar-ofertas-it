@@ -7,13 +7,16 @@ import { COUNTRIES } from "@/domain/countries";
 export const maxDuration = 120;
 
 export default async function HomePage({ params }: PageProps<"/[lang]">) {
-  const dict = getDictionary(await resolveLocale(params));
+  const locale = await resolveLocale(params);
+  const dict = getDictionary(locale);
   return (
     <main>
       <h1>{dict.home.heading}</h1>
       <p>{dict.home.tagline}</p>
       <SearchForm
         labels={dict.search}
+        resultLabels={dict.results}
+        locale={locale}
         countries={COUNTRIES}
         defaultCountry="Argentina"
         maxLength={MAX_PROFILE_TEXT_LENGTH}

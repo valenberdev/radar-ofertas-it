@@ -2,6 +2,8 @@
 
 import { startTransition, useActionState, type FormEvent } from "react";
 import { searchAction } from "@/app/_actions/search";
+import { SearchResults } from "@/app/_components/search-results";
+import type { Locale } from "@/app/_i18n/config";
 import type { Dictionary } from "@/app/_i18n/dictionaries";
 import { formatMessage } from "@/app/_i18n/format-message";
 import type { SearchState } from "@/app/_search/run-search";
@@ -10,6 +12,8 @@ const INITIAL_STATE: SearchState = { status: "idle" };
 
 export interface SearchFormProps {
   readonly labels: Dictionary["search"];
+  readonly resultLabels: Dictionary["results"];
+  readonly locale: Locale;
   readonly countries: readonly string[];
   readonly defaultCountry: string;
   readonly maxLength: number;
@@ -17,6 +21,8 @@ export interface SearchFormProps {
 
 export function SearchForm({
   labels,
+  resultLabels,
+  locale,
   countries,
   defaultCountry,
   maxLength,
@@ -70,12 +76,15 @@ export function SearchForm({
             {formatMessage(labels.errors[state.reason], { max: maxLength })}
           </p>
         ) : null}
-        {state.status === "done" ? (
-          <p>
-            {formatMessage(labels.summary, { count: state.view.offers.length })}
-          </p>
-        ) : null}
       </div>
+
+      {state.status === "done" ? (
+        <SearchResults
+          view={state.view}
+          labels={resultLabels}
+          locale={locale}
+        />
+      ) : null}
     </section>
   );
 }

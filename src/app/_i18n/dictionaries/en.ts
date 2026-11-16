@@ -38,7 +38,6 @@ export const en = {
     countryHint: "Only offers that accept people from this country are shown.",
     submit: "Find offers",
     submitting: "Searching… it can take up to a minute",
-    summary: "{count} offers fit your skills.",
     errors: {
       empty: "Paste your profile first.",
       too_long: "The text is too long. Shorten it to {max} characters.",
@@ -52,6 +51,35 @@ export const en = {
       disabled: "AI search is not set up on this server.",
       unexpected: "Something went wrong. Try again in a few minutes.",
     },
+  },
+  results: {
+    heading: "Results",
+    profileSkills: "Skills found in your profile: {skills}.",
+    summary:
+      "{matching} of the {eligible} active offers for your country mention your skills.",
+    none: "None of the active offers for your country mention your skills. Add more technologies to your profile and try again.",
+    scoredHeading: "Ranked by fit",
+    unscoredHeading: "Not scored",
+    unscoredNotice: {
+      quota:
+        "The daily limit of AI searches ran out before these offers could be scored. They mention your skills, so they are listed by how many of them they mention.",
+      error:
+        "Gemini stopped answering before these offers could be scored. They mention your skills, so they are listed by how many of them they mention.",
+      partial:
+        "Gemini could not score these offers. They mention your skills, so they are listed by how many of them they mention.",
+    },
+    score: "{score}/100",
+    bands: {
+      excellent: "Very good fit",
+      good: "Good fit",
+      partial: "Partial fit",
+      low: "Poor fit",
+    },
+    matchedSkills: "Matching skills: {skills}",
+    posted: "Posted on {date}",
+    noDate: "Date not stated",
+    noCompany: "Company not stated",
+    source: "Source:",
   },
 };
 

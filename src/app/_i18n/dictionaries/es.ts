@@ -40,7 +40,6 @@ export const es: Dictionary = {
     countryHint: "Solo se muestran ofertas que aceptan personas de este país.",
     submit: "Buscar ofertas",
     submitting: "Buscando… puede tardar hasta un minuto",
-    summary: "{count} ofertas encajan con tus habilidades.",
     errors: {
       empty: "Primero pega tu perfil.",
       too_long: "El texto es demasiado largo. Acórtalo a {max} caracteres.",
@@ -54,5 +53,34 @@ export const es: Dictionary = {
       disabled: "La búsqueda con IA no está configurada en este servidor.",
       unexpected: "Algo salió mal. Vuelve a intentarlo en unos minutos.",
     },
+  },
+  results: {
+    heading: "Resultados",
+    profileSkills: "Habilidades encontradas en tu perfil: {skills}.",
+    summary:
+      "{matching} de las {eligible} ofertas activas para tu país mencionan tus habilidades.",
+    none: "Ninguna de las ofertas activas para tu país menciona tus habilidades. Agrega más tecnologías a tu perfil y vuelve a intentarlo.",
+    scoredHeading: "Ordenadas por encaje",
+    unscoredHeading: "Sin puntaje",
+    unscoredNotice: {
+      quota:
+        "Se agotó el límite diario de búsquedas con IA antes de puntuar estas ofertas. Mencionan tus habilidades, así que se ordenan por cuántas mencionan.",
+      error:
+        "Gemini dejó de responder antes de puntuar estas ofertas. Mencionan tus habilidades, así que se ordenan por cuántas mencionan.",
+      partial:
+        "Gemini no pudo puntuar estas ofertas. Mencionan tus habilidades, así que se ordenan por cuántas mencionan.",
+    },
+    score: "{score}/100",
+    bands: {
+      excellent: "Encaje muy bueno",
+      good: "Buen encaje",
+      partial: "Encaje parcial",
+      low: "Encaje bajo",
+    },
+    matchedSkills: "Habilidades que coinciden: {skills}",
+    posted: "Publicada el {date}",
+    noDate: "Sin fecha",
+    noCompany: "Empresa no indicada",
+    source: "Fuente:",
   },
 };
