@@ -3,8 +3,51 @@ import type { Dictionary } from "@/app/_i18n/dictionaries";
 import { formatMessage } from "@/app/_i18n/format-message";
 import { formatPostedDate, scoreBand, SOURCES } from "@/app/_search/present";
 import type { OfferView, SearchView } from "@/app/_search/search-view";
+import styles from "./search-results.module.css";
 
 type ResultLabels = Dictionary["results"];
+
+const METER_BARS = 10;
+
+interface ScoreProps {
+  readonly score: number;
+  readonly labels: ResultLabels;
+}
+
+function Score({ score, labels }: ScoreProps) {
+  const band = scoreBand(score);
+  const filled = Math.round((score / 100) * METER_BARS);
+
+  return (
+    <div className={styles.score} data-band={band}>
+      <p className={styles.value}>
+        <span className="sr-only">
+          {formatMessage(labels.score, { score })}
+        </span>
+        <span className={styles.number} aria-hidden="true">
+          {score}
+        </span>
+        <span className={styles.max} aria-hidden="true">
+          /100
+        </span>
+      </p>
+      <div className={styles.meter} aria-hidden="true">
+        {Array.from({ length: METER_BARS }, (_, index) => (
+          <span
+            key={index}
+            className={styles.bar}
+            data-on={index < filled ? "" : undefined}
+            style={{
+              height: `${(index + 1) * 10}%`,
+              animationDelay: `${index * 30}ms`,
+            }}
+          />
+        ))}
+      </div>
+      <p className={styles.bandLabel}>{labels.bands[band]}</p>
+    </div>
+  );
+}
 
 interface OfferItemProps {
   readonly offer: OfferView;
@@ -14,17 +57,18 @@ interface OfferItemProps {
 
 function OfferItem({ offer, labels, locale }: OfferItemProps) {
   const source = SOURCES[offer.source];
-  const posted =
-    offer.postedAt === null
-      ? labels.noDate
-      : formatMessage(labels.posted, {
-          date: formatPostedDate(offer.postedAt, locale),
-        });
 
   return (
-    <li>
-      <article>
-        <h4>
+    <li
+      className={
+        offer.score === null ? `${styles.item} ${styles.unscored}` : styles.item
+      }
+    >
+      {offer.score === null ? null : (
+        <Score score={offer.score} labels={labels} />
+      )}
+      <article className={styles.body}>
+        <h4 className={styles.title}>
           {offer.url === null ? (
             offer.title
           ) : (
@@ -33,26 +77,27 @@ function OfferItem({ offer, labels, locale }: OfferItemProps) {
             </a>
           )}
         </h4>
-        <p>
-          {offer.company ?? labels.noCompany} · {posted}
+        <p className={styles.meta}>
+          <span>{offer.company ?? labels.noCompany}</span>
+          {offer.postedAt === null ? (
+            <span>{labels.noDate}</span>
+          ) : (
+            <time dateTime={offer.postedAt}>
+              {formatMessage(labels.posted, {
+                date: formatPostedDate(offer.postedAt, locale),
+              })}
+            </time>
+          )}
         </p>
-        {offer.score === null ? null : (
-          <p>
-            <strong>
-              {formatMessage(labels.score, { score: offer.score })}
-            </strong>{" "}
-            {labels.bands[scoreBand(offer.score)]}
-          </p>
-        )}
         {offer.reason === null ? null : <p>{offer.reason[locale]}</p>}
         {offer.matchedSkills.length === 0 ? null : (
-          <p>
+          <p className={styles.skills}>
             {formatMessage(labels.matchedSkills, {
               skills: offer.matchedSkills.join(", "),
             })}
           </p>
         )}
-        <p>
+        <p className={styles.source}>
           {labels.source}{" "}
           <a href={source.url} target="_blank" rel="noopener noreferrer">
             {source.name}
@@ -74,14 +119,14 @@ export function SearchResults({ view, labels, locale }: SearchResultsProps) {
   const unscored = view.offers.filter((offer) => offer.score === null);
 
   return (
-    <section aria-labelledby="results-heading">
+    <section className={styles.results} aria-labelledby="results-heading">
       <h2 id="results-heading">{labels.heading}</h2>
-      <p>
+      <p className={styles.summary}>
         {formatMessage(labels.profileSkills, {
           skills: view.profile.skills.join(", "),
         })}
       </p>
-      <p>
+      <p className={styles.summary}>
         {view.offers.length === 0
           ? labels.none
           : formatMessage(labels.summary, {
@@ -91,9 +136,9 @@ export function SearchResults({ view, labels, locale }: SearchResultsProps) {
       </p>
 
       {scored.length === 0 ? null : (
-        <>
+        <div className={styles.group}>
           <h3>{labels.scoredHeading}</h3>
-          <ol>
+          <ol className={styles.list}>
             {scored.map((offer) => (
               <OfferItem
                 key={offer.id}
@@ -103,14 +148,16 @@ export function SearchResults({ view, labels, locale }: SearchResultsProps) {
               />
             ))}
           </ol>
-        </>
+        </div>
       )}
 
       {unscored.length === 0 ? null : (
-        <>
+        <div className={styles.group}>
           <h3>{labels.unscoredHeading}</h3>
-          <p>{labels.unscoredNotice[view.scoringStoppedBy ?? "partial"]}</p>
-          <ul>
+          <p className={styles.notice}>
+            {labels.unscoredNotice[view.scoringStoppedBy ?? "partial"]}
+          </p>
+          <ul className={styles.list}>
             {unscored.map((offer) => (
               <OfferItem
                 key={offer.id}
@@ -120,7 +167,7 @@ export function SearchResults({ view, labels, locale }: SearchResultsProps) {
               />
             ))}
           </ul>
-        </>
+        </div>
       )}
     </section>
   );

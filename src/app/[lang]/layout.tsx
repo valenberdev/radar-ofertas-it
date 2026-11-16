@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Schibsted_Grotesk } from "next/font/google";
 import { LanguageSwitcher } from "@/app/_components/language-switcher";
 import { locales } from "@/app/_i18n/config";
 import { getDictionary } from "@/app/_i18n/dictionaries";
 import { resolveLocale } from "@/app/_i18n/resolve-locale";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sans = Schibsted_Grotesk({
+  variable: "--font-sans",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const dynamicParams = false;
@@ -37,9 +33,14 @@ export default async function RootLayout({
   const dict = getDictionary(lang);
 
   return (
-    <html lang={lang} className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={lang} className={sans.variable}>
       <body>
-        <LanguageSwitcher current={lang} label={dict.languageSwitcher.label} />
+        <header className="site-header">
+          <LanguageSwitcher
+            current={lang}
+            label={dict.languageSwitcher.label}
+          />
+        </header>
         {children}
       </body>
     </html>

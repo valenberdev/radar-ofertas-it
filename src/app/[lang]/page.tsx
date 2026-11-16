@@ -3,6 +3,7 @@ import { getDictionary } from "@/app/_i18n/dictionaries";
 import { resolveLocale } from "@/app/_i18n/resolve-locale";
 import { MAX_PROFILE_TEXT_LENGTH } from "@/application/extract-profile";
 import { COUNTRIES } from "@/domain/countries";
+import styles from "./page.module.css";
 
 export const maxDuration = 120;
 
@@ -11,8 +12,10 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
   const dict = getDictionary(locale);
   return (
     <main>
-      <h1>{dict.home.heading}</h1>
-      <p>{dict.home.tagline}</p>
+      <div className={styles.intro}>
+        <h1>{dict.home.heading}</h1>
+        <p className={styles.tagline}>{dict.home.tagline}</p>
+      </div>
       <SearchForm
         labels={dict.search}
         resultLabels={dict.results}

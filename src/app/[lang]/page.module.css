@@ -1,0 +1,10 @@
+.intro {
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.tagline {
+    font-size: 1.125rem;
+    color: var(--muted);
+}
