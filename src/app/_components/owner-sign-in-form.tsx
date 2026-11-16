@@ -6,6 +6,7 @@ import {
   type OwnerSignInState,
 } from "@/app/_actions/owner-session";
 import type { Dictionary } from "@/app/_i18n/dictionaries";
+import styles from "./owner-sign-in-form.module.css";
 
 const INITIAL_STATE: OwnerSignInState = { status: "idle" };
 
@@ -17,7 +18,7 @@ export function OwnerSignInForm({ labels }: { labels: Dictionary["owner"] }) {
       : null;
 
   return (
-    <form action={action}>
+    <form className={styles.form} action={action}>
       <label htmlFor="owner-secret">{labels.secretLabel}</label>
       <input
         id="owner-secret"

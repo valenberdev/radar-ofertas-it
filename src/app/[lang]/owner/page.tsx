@@ -4,6 +4,7 @@ import { isOwnerRequest } from "@/app/_auth/owner-access";
 import { OwnerSignInForm } from "@/app/_components/owner-sign-in-form";
 import { getDictionary } from "@/app/_i18n/dictionaries";
 import { resolveLocale } from "@/app/_i18n/resolve-locale";
+import styles from "./page.module.css";
 
 export async function generateMetadata({
   params,
@@ -19,7 +20,7 @@ export default async function OwnerPage({
   const signedIn = await isOwnerRequest();
 
   return (
-    <main>
+    <main className={styles.page}>
       <h1>{dict.heading}</h1>
       {signedIn ? (
         <>
@@ -30,7 +31,7 @@ export default async function OwnerPage({
         </>
       ) : (
         <>
-          <p>{dict.description}</p>
+          <p className={styles.description}>{dict.description}</p>
           <OwnerSignInForm labels={dict} />
         </>
       )}
