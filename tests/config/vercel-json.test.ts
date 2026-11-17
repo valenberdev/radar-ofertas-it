@@ -19,11 +19,20 @@ const { crons } = vercelConfigSchema.parse(raw);
 
 describe("vercel.json crons", () => {
   it("schedules every ingest source exactly once", () => {
-    const paths = crons.map((cron) => cron.path).sort();
+    const paths = crons
+      .map((cron) => cron.path)
+      .filter((path) => path.startsWith("/api/cron/ingest/"))
+      .sort();
 
     expect(paths).toEqual(
       SOURCES.map((source) => `/api/cron/ingest/${source}`).sort(),
     );
+  });
+
+  it("schedules the daily purge exactly once", () => {
+    expect(
+      crons.filter((cron) => cron.path === "/api/cron/purge"),
+    ).toHaveLength(1);
   });
 
   it.each(crons.map((cron) => [cron.path, cron.schedule]))(
