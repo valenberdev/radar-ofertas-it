@@ -9,7 +9,7 @@ Accepted
 The radar is public: recruiters can try it without an account, and the owner uses it for his own job search. Three things make that risky.
 
 - Every search can call Gemini up to four times (one profile extraction and up to three scoring batches), and the free tier gives one daily quota for the whole project. One visitor could use it up in minutes and leave the owner without searches.
-- The text people paste is usually a CV, which is personal data, and the Gemini free tier may use what it receives to improve Google's products.
+- The text people paste is usually a CV, which is personal data. The project uses a paid Gemini tier: under the Gemini API terms, Google does not use paid-tier prompts or responses to improve its products and keeps them only for a limited time to detect abuse. This would not hold with a free-tier key, so the privacy notice must change if the key ever moves to an unpaid project.
 - The project must stay at zero cost, without new paid services.
 
 ## Decision

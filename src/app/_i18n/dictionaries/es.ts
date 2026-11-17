@@ -35,7 +35,7 @@ export const es: Dictionary = {
     profileHint:
       "Pega tu CV o describe tu experiencia, tus habilidades y los puestos que buscas.",
     privacyNotice:
-      "Tu texto se envía a Google Gemini (nivel gratuito), que puede usarlo para mejorar sus productos. Antes de enviarlo se borran emails, teléfonos y enlaces. No pegues datos sensibles.",
+      "Tu texto se envía a Google Gemini para analizarlo. Google lo guarda por un tiempo limitado para detectar abusos y no lo usa para mejorar sus productos. Antes de enviarlo se borran emails, teléfonos y enlaces. No pegues datos sensibles.",
     countryLabel: "País donde vives",
     countryHint: "Solo se muestran ofertas que aceptan personas de este país.",
     submit: "Buscar ofertas",

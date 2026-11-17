@@ -33,7 +33,7 @@ export const en = {
     profileHint:
       "Paste your CV or describe your experience, skills and the roles you want.",
     privacyNotice:
-      "Your text is sent to Google Gemini (free tier), which may use it to improve its products. Before sending it, emails, phone numbers and links are removed. Do not paste sensitive data.",
+      "Your text is sent to Google Gemini to be analyzed. Google keeps it for a limited time to detect abuse and does not use it to improve its products. Before sending it, emails, phone numbers and links are removed. Do not paste sensitive data.",
     countryLabel: "Country you live in",
     countryHint: "Only offers that accept people from this country are shown.",
     submit: "Find offers",
