@@ -20,7 +20,8 @@
     "eval:retest": "tsx scripts/eval/build-labeling.mts --retest",
     "eval:agreement": "tsx scripts/eval/report-agreement.mts",
     "eval:run": "tsx --env-file-if-exists=.env.local scripts/eval/run-experiments.mts",
-    "eval:report": "tsx scripts/eval/report-experiments.mts"
+    "eval:report": "tsx scripts/eval/report-experiments.mts",
+    "check:prod": "tsx scripts/check-production/run.mts"
   },
   "dependencies": {
     "next": "^16.4.6",
