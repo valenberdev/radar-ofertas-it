@@ -89,6 +89,15 @@ export const en = {
     firstSearch:
       "From your next search in this browser on, new offers will be marked.",
   },
+  status: {
+    notFoundHeading: "Page not found",
+    notFoundText: "The address does not match any page of the radar.",
+    errorHeading: "Something went wrong",
+    errorText:
+      "The page could not be loaded. Try again, and if it keeps failing, come back in a few minutes.",
+    retry: "Try again",
+    backHome: "Go to the search",
+  },
 };
 
 export type Dictionary = typeof en;

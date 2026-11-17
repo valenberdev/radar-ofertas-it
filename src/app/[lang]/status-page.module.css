@@ -1,0 +1,16 @@
+.page {
+    display: grid;
+    gap: 1rem;
+    padding-top: 4rem;
+}
+
+.text {
+    color: var(--muted);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+}

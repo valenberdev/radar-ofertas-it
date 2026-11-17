@@ -91,4 +91,13 @@ export const es: Dictionary = {
     firstSearch:
       "Desde tu próxima búsqueda en este navegador se van a marcar las ofertas nuevas.",
   },
+  status: {
+    notFoundHeading: "Página no encontrada",
+    notFoundText: "La dirección no corresponde a ninguna página del radar.",
+    errorHeading: "Algo salió mal",
+    errorText:
+      "La página no se pudo cargar. Vuelve a intentarlo y, si sigue fallando, regresa en unos minutos.",
+    retry: "Reintentar",
+    backHome: "Ir a la búsqueda",
+  },
 };
