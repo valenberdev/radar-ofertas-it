@@ -44,14 +44,46 @@ function readText(steps: readonly unknown[]): string {
   return text;
 }
 
-function statusError(status: number): LlmError {
+const ERROR_CODE = /^[A-Z][A-Z0-9_]{0,63}$/;
+
+const googleErrorSchema = z.object({
+  error: z.object({
+    status: z.string().optional(),
+    details: z.array(z.object({ reason: z.string().optional() })).optional(),
+  }),
+});
+
+function errorCodes(body: unknown): string {
+  const parsed = googleErrorSchema.safeParse(
+    Array.isArray(body) ? body[0] : body,
+  );
+  if (!parsed.success) {
+    return "";
+  }
+  const { status, details = [] } = parsed.data.error;
+  const codes = [status, ...details.map((detail) => detail.reason)].filter(
+    (code): code is string => code !== undefined && ERROR_CODE.test(code),
+  );
+  return [...new Set(codes)].join(" ");
+}
+
+async function readErrorCodes(response: Response): Promise<string> {
+  try {
+    return errorCodes(await response.json());
+  } catch {
+    return "";
+  }
+}
+
+function statusError(status: number, codes: string): LlmError {
+  const detail = codes === "" ? String(status) : `${status} ${codes}`;
   if (status === 429) {
-    return new LlmError("quota", "Gemini quota exceeded (429)");
+    return new LlmError("quota", `Gemini quota exceeded (${detail})`);
   }
   if (status === 408 || status >= 500) {
-    return new LlmError("unavailable", `Gemini is unavailable (${status})`);
+    return new LlmError("unavailable", `Gemini is unavailable (${detail})`);
   }
-  return new LlmError("rejected", `Gemini rejected the request (${status})`);
+  return new LlmError("rejected", `Gemini rejected the request (${detail})`);
 }
 
 export function createGeminiClient(
@@ -111,8 +143,7 @@ export function createGeminiClient(
         },
       });
       if (!response.ok) {
-        await response.body?.cancel();
-        throw statusError(response.status);
+        throw statusError(response.status, await readErrorCodes(response));
       }
 
       const interaction = interactionSchema.safeParse(await readJson(response));

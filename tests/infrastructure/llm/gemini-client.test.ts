@@ -318,20 +318,121 @@ describe("createGeminiClient", () => {
       expect(error.message).toContain(String(status));
     });
 
-    it("releases the body of a failed response", async () => {
-      let cancelled = false;
-      const body = new ReadableStream({
-        cancel() {
-          cancelled = true;
-        },
-      });
-      const fetchMock = vi.fn<typeof fetch>(
-        async () => new Response(body, { status: 503 }),
+    it("adds the error codes of Google to the message", async () => {
+      const fetchMock = vi.fn<typeof fetch>(async () =>
+        jsonResponse(
+          [
+            {
+              error: {
+                code: 400,
+                message: "API key not valid. Please pass a valid API key.",
+                status: "INVALID_ARGUMENT",
+                details: [
+                  {
+                    "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+                    reason: "API_KEY_INVALID",
+                  },
+                  { "@type": "other" },
+                ],
+              },
+            },
+          ],
+          400,
+        ),
       );
 
-      await failureOf(clientWith(fetchMock).generateJson("prompt", schema));
+      const error = await failureOf(
+        clientWith(fetchMock).generateJson("prompt", schema),
+      );
 
-      expect(cancelled).toBe(true);
+      expect(error.message).toBe(
+        "Gemini rejected the request (400 INVALID_ARGUMENT API_KEY_INVALID)",
+      );
+    });
+
+    it("reads the error codes when the error is not wrapped in a list", async () => {
+      const fetchMock = vi.fn<typeof fetch>(async () =>
+        jsonResponse(
+          {
+            error: {
+              status: "RESOURCE_EXHAUSTED",
+              details: [{ reason: "RATE_LIMIT_EXCEEDED" }],
+            },
+          },
+          429,
+        ),
+      );
+
+      const error = await failureOf(
+        clientWith(fetchMock).generateJson("prompt", schema),
+      );
+
+      expect(error.message).toBe(
+        "Gemini quota exceeded (429 RESOURCE_EXHAUSTED RATE_LIMIT_EXCEEDED)",
+      );
+    });
+
+    it("does not repeat a code that appears twice", async () => {
+      const fetchMock = vi.fn<typeof fetch>(async () =>
+        jsonResponse(
+          {
+            error: {
+              status: "UNAVAILABLE",
+              details: [{ reason: "UNAVAILABLE" }],
+            },
+          },
+          503,
+        ),
+      );
+
+      const error = await failureOf(
+        clientWith(fetchMock).generateJson("prompt", schema),
+      );
+
+      expect(error.message).toBe("Gemini is unavailable (503 UNAVAILABLE)");
+    });
+
+    it.each([
+      [
+        "a body that is not JSON",
+        () => new Response("<html>Bad gateway</html>", { status: 502 }),
+      ],
+      ["a JSON body without an error", () => jsonResponse({ ok: false }, 502)],
+      ["an empty body", () => new Response(null, { status: 502 })],
+    ])("keeps only the status for %s", async (_name, response) => {
+      const fetchMock = vi.fn<typeof fetch>(async () => response());
+
+      const error = await failureOf(
+        clientWith(fetchMock).generateJson("prompt", schema),
+      );
+
+      expect(error.message).toBe("Gemini is unavailable (502)");
+    });
+
+    it("leaves out anything that does not look like an error code", async () => {
+      const fetchMock = vi.fn<typeof fetch>(async () =>
+        jsonResponse(
+          {
+            error: {
+              status: `bad key ${API_KEY}`,
+              details: [
+                { reason: "secret prompt" },
+                { reason: "PERMISSION_DENIED" },
+                { reason: "X".repeat(65) },
+              ],
+            },
+          },
+          403,
+        ),
+      );
+
+      const error = await failureOf(
+        clientWith(fetchMock).generateJson("secret prompt", schema),
+      );
+
+      expect(error.message).toBe(
+        "Gemini rejected the request (403 PERMISSION_DENIED)",
+      );
     });
 
     it("never repeats the key, the prompt or the response body in an error", async () => {
