@@ -50,6 +50,8 @@ export const en = {
       invalid_country: "Choose a country from the list.",
       disabled: "AI search is not set up on this server.",
       unexpected: "Something went wrong. Try again in a few minutes.",
+      rate_limited:
+        "You reached today's limit of searches from this connection. Try again tomorrow.",
     },
   },
   results: {

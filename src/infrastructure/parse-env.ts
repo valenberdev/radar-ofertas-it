@@ -34,6 +34,7 @@ const GEMINI_SETTINGS = [
   "GEMINI_MODEL",
   "GEMINI_DAILY_LIMIT",
   "DEMO_DAILY_LIMIT",
+  "IP_HASH_SECRET",
 ] as const;
 
 const envSchema = z
@@ -47,6 +48,7 @@ const envSchema = z
     GEMINI_DAILY_LIMIT: optionalPositiveInteger(),
     DEMO_DAILY_LIMIT: optionalPositiveInteger(),
     OWNER_SECRET: optionalText(32),
+    IP_HASH_SECRET: optionalText(32),
   })
   .superRefine((env, context) => {
     if (env.GEMINI_API_KEY !== undefined) {

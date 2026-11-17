@@ -15,6 +15,7 @@ const GEMINI = {
   GEMINI_MODEL: "gemini-test",
   GEMINI_DAILY_LIMIT: "500",
   DEMO_DAILY_LIMIT: "300",
+  IP_HASH_SECRET: "h".repeat(32),
 };
 
 const SECRET = "s".repeat(32);
@@ -71,14 +72,16 @@ describe("parseEnv with the Gemini settings", () => {
     expect(geminiConfig(env)).toBeNull();
   });
 
-  it.each(["GEMINI_MODEL", "GEMINI_DAILY_LIMIT", "DEMO_DAILY_LIMIT"])(
-    "requires %s when the key is set",
-    (name) => {
-      expect(() => parseEnv({ ...BASE, ...GEMINI, [name]: undefined })).toThrow(
-        `is required when GEMINI_API_KEY is set\n  → at ${name}`,
-      );
-    },
-  );
+  it.each([
+    "GEMINI_MODEL",
+    "GEMINI_DAILY_LIMIT",
+    "DEMO_DAILY_LIMIT",
+    "IP_HASH_SECRET",
+  ])("requires %s when the key is set", (name) => {
+    expect(() => parseEnv({ ...BASE, ...GEMINI, [name]: undefined })).toThrow(
+      `is required when GEMINI_API_KEY is set\n  → at ${name}`,
+    );
+  });
 
   it("names every missing setting at once", () => {
     const message = errorMessage(() =>
@@ -88,6 +91,19 @@ describe("parseEnv with the Gemini settings", () => {
     expect(message).toContain("GEMINI_MODEL");
     expect(message).toContain("GEMINI_DAILY_LIMIT");
     expect(message).toContain("DEMO_DAILY_LIMIT");
+    expect(message).toContain("IP_HASH_SECRET");
+  });
+
+  it("reads the secret used to hash client addresses", () => {
+    expect(parseEnv({ ...BASE, ...GEMINI }).IP_HASH_SECRET).toBe(
+      "h".repeat(32),
+    );
+  });
+
+  it("rejects a hashing secret shorter than 32 characters", () => {
+    expect(() =>
+      parseEnv({ ...BASE, ...GEMINI, IP_HASH_SECRET: "h".repeat(31) }),
+    ).toThrow(/IP_HASH_SECRET/);
   });
 
   it("does not require the other settings without the key", () => {

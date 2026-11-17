@@ -30,16 +30,20 @@ function form(fields: Record<string, string>): FormData {
 
 function setup(overrides: Partial<RunSearchDeps> = {}) {
   const isOwner = vi.fn<RunSearchDeps["isOwner"]>(async () => false);
+  const allowVisitorSearch = vi.fn<RunSearchDeps["allowVisitorSearch"]>(
+    async () => true,
+  );
   const search = vi.fn<RunSearchDeps["search"]>(async () => DONE);
   const log = vi.fn<RunSearchDeps["log"]>();
   const deps: RunSearchDeps = {
     enabled: true,
     isOwner,
+    allowVisitorSearch,
     search,
     log,
     ...overrides,
   };
-  return { deps, isOwner, search, log };
+  return { deps, isOwner, allowVisitorSearch, search, log };
 }
 
 describe("runSearch", () => {
@@ -166,6 +170,79 @@ describe("runSearch", () => {
         form({ profile: "I use Docker", country: "Argentina" }),
       ),
     ).toEqual({ status: "error", reason: "unexpected" });
+  });
+
+  it("counts a visitor search against the limit before searching", async () => {
+    const { deps, allowVisitorSearch, search } = setup();
+
+    await runSearch(
+      deps,
+      form({ profile: "I use Docker", country: "Argentina" }),
+    );
+
+    expect(allowVisitorSearch).toHaveBeenCalledOnce();
+    expect(allowVisitorSearch.mock.invocationCallOrder[0]).toBeLessThan(
+      search.mock.invocationCallOrder[0] ?? 0,
+    );
+  });
+
+  it("stops a visitor who reached the limit", async () => {
+    const { deps, search } = setup({ allowVisitorSearch: async () => false });
+
+    expect(
+      await runSearch(
+        deps,
+        form({ profile: "I use Docker", country: "Argentina" }),
+      ),
+    ).toEqual({ status: "error", reason: "rate_limited" });
+    expect(search).not.toHaveBeenCalled();
+  });
+
+  it("does not limit the owner", async () => {
+    const { deps, allowVisitorSearch, search } = setup({
+      isOwner: async () => true,
+    });
+
+    await runSearch(
+      deps,
+      form({ profile: "I use Docker", country: "Argentina" }),
+    );
+
+    expect(allowVisitorSearch).not.toHaveBeenCalled();
+    expect(search).toHaveBeenCalledOnce();
+  });
+
+  it("does not count requests that fail before searching", async () => {
+    const invalid = setup();
+    const disabled = setup({ enabled: false });
+
+    await runSearch(
+      invalid.deps,
+      form({ profile: "I use Docker", country: "Atlantis" }),
+    );
+    await runSearch(
+      disabled.deps,
+      form({ profile: "I use Docker", country: "Argentina" }),
+    );
+
+    expect(invalid.allowVisitorSearch).not.toHaveBeenCalled();
+    expect(disabled.allowVisitorSearch).not.toHaveBeenCalled();
+  });
+
+  it("turns a failure of the limit into a generic error", async () => {
+    const { deps, log } = setup({
+      allowVisitorSearch: async () => {
+        throw new Error("database down");
+      },
+    });
+
+    expect(
+      await runSearch(
+        deps,
+        form({ profile: "I use Docker", country: "Argentina" }),
+      ),
+    ).toEqual({ status: "error", reason: "unexpected" });
+    expect(log).toHaveBeenCalledWith("Search failed: database down");
   });
 
   it("does not log anything when the search works", async () => {

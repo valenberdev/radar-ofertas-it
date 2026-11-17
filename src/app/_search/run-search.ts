@@ -11,6 +11,7 @@ export type SearchErrorReason =
   | SearchOffersFailure
   | "invalid_country"
   | "disabled"
+  | "rate_limited"
   | "unexpected";
 
 export type SearchState =
@@ -21,6 +22,7 @@ export type SearchState =
 export interface RunSearchDeps {
   readonly enabled: boolean;
   readonly isOwner: () => Promise<boolean>;
+  readonly allowVisitorSearch: () => Promise<boolean>;
   readonly search: (
     mode: SearchMode,
     input: SearchOffersInput,
@@ -42,6 +44,9 @@ export async function runSearch(
   }
   try {
     const mode: SearchMode = (await deps.isOwner()) ? "owner" : "demo";
+    if (mode === "demo" && !(await deps.allowVisitorSearch())) {
+      return { status: "error", reason: "rate_limited" };
+    }
     const result = await deps.search(mode, {
       text: typeof text === "string" ? text : "",
       country,

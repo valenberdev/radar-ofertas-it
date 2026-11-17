@@ -52,6 +52,8 @@ export const es: Dictionary = {
       invalid_country: "Elige un país de la lista.",
       disabled: "La búsqueda con IA no está configurada en este servidor.",
       unexpected: "Algo salió mal. Vuelve a intentarlo en unos minutos.",
+      rate_limited:
+        "Llegaste al límite de búsquedas de hoy desde esta conexión. Vuelve a intentarlo mañana.",
     },
   },
   results: {
