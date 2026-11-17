@@ -53,6 +53,24 @@ export const en = {
       rate_limited:
         "You reached today's limit of searches from this connection. Try again tomorrow.",
     },
+    upload: {
+      button: "Load CV from a file",
+      hint: "PDF, DOCX or TXT, up to {maxMb} MB. The file is read in your browser: it is not uploaded, only its text is used.",
+      reading: "Reading {name}…",
+      loaded: "The text of {name} was loaded. Review it before searching.",
+      tooLong:
+        "The text of {name} was loaded, but it has {length} characters and the limit is {max}. Shorten it before searching.",
+      errors: {
+        unsupported_type:
+          "That format cannot be read. Use a PDF, a DOCX or a TXT file.",
+        too_large: "The file is larger than {maxMb} MB.",
+        empty_file: "The file is empty.",
+        no_text:
+          "No text was found in the file. If it is a scanned PDF, paste the text by hand.",
+        unreadable:
+          "The file could not be read. It may be damaged or password protected. Try another format or paste the text.",
+      },
+    },
   },
   results: {
     heading: "Results",

@@ -55,6 +55,24 @@ export const es: Dictionary = {
       rate_limited:
         "Llegaste al límite de búsquedas de hoy desde esta conexión. Vuelve a intentarlo mañana.",
     },
+    upload: {
+      button: "Cargar CV desde un archivo",
+      hint: "PDF, DOCX o TXT, hasta {maxMb} MB. El archivo se lee en tu navegador: no se sube, solo se usa el texto.",
+      reading: "Leyendo {name}…",
+      loaded: "Se cargó el texto de {name}. Revísalo antes de buscar.",
+      tooLong:
+        "Se cargó el texto de {name}, pero tiene {length} caracteres y el máximo es {max}. Acórtalo antes de buscar.",
+      errors: {
+        unsupported_type:
+          "No se puede leer ese formato. Usa un PDF, un DOCX o un TXT.",
+        too_large: "El archivo pesa más de {maxMb} MB.",
+        empty_file: "El archivo está vacío.",
+        no_text:
+          "No se encontró texto en el archivo. Si es un PDF escaneado, pega el texto a mano.",
+        unreadable:
+          "No se pudo leer el archivo. Puede estar dañado o protegido con contraseña. Prueba con otro formato o pega el texto.",
+      },
+    },
   },
   results: {
     heading: "Resultados",

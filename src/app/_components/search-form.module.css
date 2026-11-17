@@ -36,3 +36,27 @@
 .status {
     margin-top: 1.25rem;
 }
+
+
+.upload {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-block: 0.375rem;
+}
+
+.uploadButton {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: var(--signal);
+    border: 1.5px solid var(--signal);
+}
+
+.uploadButton:hover:not(:disabled) {
+    background: var(--track);
+}
+
+.uploadStatus {
+    font-size: 0.875rem;
+}
