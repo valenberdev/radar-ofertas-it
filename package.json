@@ -24,7 +24,9 @@
     "check:prod": "tsx scripts/check-production/run.mts"
   },
   "dependencies": {
+    "mammoth": "^1.13.0",
     "next": "^16.4.6",
+    "pdfjs-dist": "^6.5.438",
     "pg": "^8.23.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
