@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="ground" cx="24%" cy="18%" r="100%">
+      <stop offset="0" stop-color="#12706b"/>
+      <stop offset="1" stop-color="#061418"/>
+    </radialGradient>
+    <linearGradient id="sweep" gradientUnits="userSpaceOnUse" x1="32" y1="32" x2="50" y2="13">
+      <stop offset="0" stop-color="#4fd9bc" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#4fd9bc" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#ground)"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="14.25" fill="none" stroke="#4fd9bc" stroke-opacity="0.35" stroke-width="1.5"/>
+  <path d="M32 32V10A22 22 0 0 1 47.6 16.4Z" fill="url(#sweep)"/>
+  <circle cx="32" cy="32" r="20" fill="none" stroke="#4fd9bc" stroke-width="5"/>
+  <circle cx="32" cy="32" r="6" fill="#4fd9bc"/>
+  <circle cx="44" cy="20" r="5.2" fill="#ff8f66"/>
+</svg>
