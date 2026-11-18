@@ -1,11 +1,18 @@
 .form {
     display: grid;
-    gap: 0.5rem;
+    gap: 0.625rem;
     max-width: 24rem;
     margin-top: 0.5rem;
 }
 
 .form button {
     justify-self: start;
+    min-width: 10rem;
     margin-top: 0.5rem;
+}
+
+@media (max-width: 30rem) {
+    .form button {
+        justify-self: stretch;
+    }
 }
