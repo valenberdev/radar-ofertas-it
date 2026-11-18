@@ -4,6 +4,8 @@ Remote IT job offers, ranked by how well they fit your profile.
 
 **Live demo:** [radar-ofertas-it.vercel.app](https://radar-ofertas-it.vercel.app) (Spanish and English)
 
+![Search results in light mode: the profile form with a sample CV on top, followed by remote IT offers ranked by a 0–100 fit score with a ten-bar meter](docs/screenshots/results-es-light.png)
+
 Paste your CV or a description of your experience, or load it from a PDF, DOCX or TXT file, and pick the country you live in. The app shows the remote offers that accept people from that country, ordered by a 0–100 fit score with a short reason for each one. Offers that appeared since your last search are marked as new.
 
 ## How it works
@@ -31,6 +33,10 @@ flowchart LR
 4. **Scoring.** Gemini scores the 30 candidates in a single call with a structured JSON output validated by Zod. Scores are cached per profile and offer, so repeating a search is free.
 
 If the daily quota runs out halfway, the offers already scored are shown first and the rest are listed by how many of your skills they mention, with a notice that says why.
+
+| ![Search results in dark mode, with the form on top and offers ranked by fit score](docs/screenshots/results-es-dark.png) | ![Search results on a phone: the first three offers, each with its fit score and meter](docs/screenshots/results-es-mobile.png) |
+| :---: | :---: |
+| Dark mode | Mobile |
 
 ## Privacy and limits
 
