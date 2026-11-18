@@ -1,0 +1,1220 @@
+{
+  "snapshotId": "2026-11-18",
+  "labels": [
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/coderio-co/jobs/senior-full-stack-developer-con-experiencia-en-node-js-y-react-js-remoto-lata",
+      "contentHash": "97fd9bb125884c10732b35e411f811e195afd51c1a10d54f2107c42cdeebc713",
+      "title": "Senior Full-Stack Developer con experiencia en Node.js y React.js – Remoto (LATA",
+      "company": "Coderio",
+      "url": "https://himalayas.app/companies/coderio-co/jobs/senior-full-stack-developer-con-experiencia-en-node-js-y-react-js-remoto-lata?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/talentcross/jobs/sr-fullstack-developer-remoto",
+      "contentHash": "3a76ad21accecb427923591ab149daf68605665c2ad47baa6cc669569ec6dc5f",
+      "title": "Sr Fullstack Developer - Remoto",
+      "company": "TalentCross",
+      "url": "https://himalayas.app/companies/talentcross/jobs/sr-fullstack-developer-remoto?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/koombea/jobs/ai-software-engineer-typescript-node-js-aws",
+      "contentHash": "f44bc2935adab916c61a5cbcb2f1ac556bb7362326421f94a25f8119febc4a62",
+      "title": "AI Software Engineer (TypeScript/Node.js/AWS)",
+      "company": "Koombea",
+      "url": "https://himalayas.app/companies/koombea/jobs/ai-software-engineer-typescript-node-js-aws?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/rekluti/jobs/desarrollador-full-stack-senior-java-react",
+      "contentHash": "adfe794cf0275be857081d2cadf51db7409a13738bd309bd6cd5109df58825fc",
+      "title": "Desarrollador Full Stack Senior (Java + React)",
+      "company": "XKTalent Inc. - Rimutee",
+      "url": "https://himalayas.app/companies/rekluti/jobs/desarrollador-full-stack-senior-java-react?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/zarego/jobs/full-stack-developer-java-react-remote-latam",
+      "contentHash": "326db99aa14d6e704c6d03629a11cfd3ecaa6a44cf5e9083d09c550a14c45739",
+      "title": "Full Stack Developer (Java, React) - Remote LATAM",
+      "company": "Zarego",
+      "url": "https://himalayas.app/companies/zarego/jobs/full-stack-developer-java-react-remote-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/coderio-co/jobs/sr-fullstack-developer-javascript-java",
+      "contentHash": "c5284c8549a5ae2774542ffaf5585031c21d0b05a8b431ae091b5c75f0de6db4",
+      "title": "Sr. Fullstack Developer (Javascript/Java)",
+      "company": "Coderio",
+      "url": "https://himalayas.app/companies/coderio-co/jobs/sr-fullstack-developer-javascript-java?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/rekluti/jobs/desarrollador-full-stack-java-react-bilingue",
+      "contentHash": "53b845329b06d71af1438ccca846554561bef47eb8eb613c3833684774707318",
+      "title": "DESARROLLADOR FULL STACK (JAVA  + REACT) BILINGUE",
+      "company": "XKTalent Inc. - Rimutee",
+      "url": "https://himalayas.app/companies/rekluti/jobs/desarrollador-full-stack-java-react-bilingue?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/lifted-an-upwork-company/jobs/107-full-stack-software-engineer-node-js-react-headless-cms",
+      "contentHash": "889951104aa9c34cc6ed41b539d72804a76933081d0d7b58db3046701f9cfb25",
+      "title": "#107 - Full-Stack Software Engineer - Node.js, React & Headless CMS",
+      "company": "Lifted (an Upwork Company)",
+      "url": "https://himalayas.app/companies/lifted-an-upwork-company/jobs/107-full-stack-software-engineer-node-js-react-headless-cms?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/magmalabs/jobs/senior-software-engineer-node-js",
+      "contentHash": "36fe35935223872a5ef79ead4ed5151b26ea95ca2464fbc332f5fd153eeb694c",
+      "title": "Senior Software Engineer (Node.js)",
+      "company": "MagmaLabs",
+      "url": "https://himalayas.app/companies/magmalabs/jobs/senior-software-engineer-node-js?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/my-va-support-inc/jobs/software-developer-mobile-web",
+      "contentHash": "7991a1f39655e408a7729b829830d93c81f5361bb50b1959398f8c95d2e88dfe",
+      "title": "Software Developer (Mobile & Web)",
+      "company": "My VA Support, Inc.",
+      "url": "https://himalayas.app/companies/my-va-support-inc/jobs/software-developer-mobile-web?utm_source=api",
+      "band": 2
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/motorola-solutions/jobs/sr-staff-full-stack-software-engineer-go-javascript-postgresql-docker",
+      "contentHash": "6125da333612b4c815904812999e1d07a8cf3125c69f137d4a0c60e4899e16f0",
+      "title": "Sr. Staff Full-Stack Software Engineer – Go | JavaScript | PostgreSQL | Docker",
+      "company": "Motorola Solutions",
+      "url": "https://himalayas.app/companies/motorola-solutions/jobs/sr-staff-full-stack-software-engineer-go-javascript-postgresql-docker?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/hivex/jobs/fullstack-developer-react-node-js-9559398791",
+      "contentHash": "bd8301413594ce0eeaf92e77202a1d96845365da5e0dd0154f71ac869fa75666",
+      "title": "FullStack Developer (react + node.js)",
+      "company": "Hivex",
+      "url": "https://himalayas.app/companies/hivex/jobs/fullstack-developer-react-node-js-9559398791?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/dacodes/jobs/fullstack-net-engineer-sql-avanzado-react-vue-angular-latam",
+      "contentHash": "fd0ac6a00ba07f603328768a3deedb7bd6694b14c895f98a50afc0039c780770",
+      "title": "Fullstack .NET Engineer (SQL avanzado+ React/Vue/Angular) - LATAM",
+      "company": "DaCodes",
+      "url": "https://himalayas.app/companies/dacodes/jobs/fullstack-net-engineer-sql-avanzado-react-vue-angular-latam?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/darwoft/jobs/1026-full-stack-developer-react-python-sr-remote-latam",
+      "contentHash": "7d935e6debc03a743f47eb4afb1ed49f6c0dc8125fb15bb1c6f5167a545a6ff5",
+      "title": "1026 - Full Stack Developer (React & Python) · Sr · Remote · LATAM",
+      "company": "Darwoft",
+      "url": "https://himalayas.app/companies/darwoft/jobs/1026-full-stack-developer-react-python-sr-remote-latam?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/human-power-bg/jobs/full-stack-node-js-react-developer",
+      "contentHash": "f3ac73872c0eae1a69fe2e2e55ff3490520f8a144d1c4c408295a8bd541b5586",
+      "title": "Full-Stack Node.js & React Developer",
+      "company": "Human Power BG",
+      "url": "https://himalayas.app/companies/human-power-bg/jobs/full-stack-node-js-react-developer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/oowlish-technology/jobs/senior-software-engineer-full-stack-node-js-react-ai-focus-9577447628",
+      "contentHash": "1b10f61371bc02cbce414cf6271a46d492bd7b743b6981dac184c27b74694911",
+      "title": "Senior Software Engineer (Full Stack | Node.js & React | AI Focus)",
+      "company": "Oowlish Technology",
+      "url": "https://himalayas.app/companies/oowlish-technology/jobs/senior-software-engineer-full-stack-node-js-react-ai-focus-9577447628?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/van-hyde-international/jobs/engineering-team-lead-java-react-remote-latam",
+      "contentHash": "a7548cbcbbfcb8fc202339674a5387dcfa96213022e189245a3b0d6140e6b1da",
+      "title": "Engineering Team Lead (Java / React) | Remote LATAM",
+      "company": "Van Hyde International",
+      "url": "https://himalayas.app/companies/van-hyde-international/jobs/engineering-team-lead-java-react-remote-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/dacodes/jobs/full-stack-engineer-typescript-aws-english-required-mexico-latam-only",
+      "contentHash": "a5ddb6d258f1960dd67680b7bd0cd70719d4fba3c9dfd562d7b7bd52747c2704",
+      "title": "Full Stack Engineer - TypeScript & AWS - English Required- México&LATAM Only",
+      "company": "DaCodes",
+      "url": "https://himalayas.app/companies/dacodes/jobs/full-stack-engineer-typescript-aws-english-required-mexico-latam-only?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/hivex/jobs/junior-full-stack-developer-react-node-js-2690051801",
+      "contentHash": "039186b8686c76f23b36721cdbd78763c41ad55a18832afca653ecf655949d6b",
+      "title": "Junior+ Full Stack Developer (React & Node.js)",
+      "company": "Hivex",
+      "url": "https://himalayas.app/companies/hivex/jobs/junior-full-stack-developer-react-node-js-2690051801?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/aliancers/jobs/desarrollador-a-fullstack-react-node-js",
+      "contentHash": "26c1736e90b634a01fbdc284540a2be84a5d824dfc96a771915154fe2bbe8625",
+      "title": "Desarrollador/a Fullstack (React + Node.js)",
+      "company": "Aliancers",
+      "url": "https://himalayas.app/companies/aliancers/jobs/desarrollador-a-fullstack-react-node-js?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/talentcross/jobs/java-developer-senior",
+      "contentHash": "6f9b39f3b3292ee0161d9172d4f67d1be9d6241d56543beede538f23d2e830a8",
+      "title": "Java Developer Senior",
+      "company": "TalentCross",
+      "url": "https://himalayas.app/companies/talentcross/jobs/java-developer-senior?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/xablu/jobs/senior-full-stack-developer-react-typescript-3595311195",
+      "contentHash": "0cb9ee4848beb10de8cfe244fae6207f3fdb48f51e807b9a73db7b8101ea4c02",
+      "title": "Senior Full Stack Developer (React, TypeScript)",
+      "company": "Xablu",
+      "url": "https://himalayas.app/companies/xablu/jobs/senior-full-stack-developer-react-typescript-3595311195?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/rekluti/jobs/desarrollador-fullstack-go-node-react",
+      "contentHash": "98d679451f5ecd61db8543eef8cf9fb9715f3e5c9d8c43667361829029c81342",
+      "title": "Desarrollador Fullstack (Go + Node + React)",
+      "company": "XKTalent Inc. - Rimutee",
+      "url": "https://himalayas.app/companies/rekluti/jobs/desarrollador-fullstack-go-node-react?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/bluelight-consulting/jobs/full-stack-and-backend-nodejs-typescript-javascript-engineer-senior-remote-7244324800",
+      "contentHash": "e216b5ef2c4715ab0a6b55746c985f187e52b81202a907605c1cf30436f67657",
+      "title": "Full Stack and Backend NodeJS TypeScript/JavaScript Engineer (Senior) - Remote,",
+      "company": "Bluelight Consulting",
+      "url": "https://himalayas.app/companies/bluelight-consulting/jobs/full-stack-and-backend-nodejs-typescript-javascript-engineer-senior-remote-7244324800?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/darwoft/jobs/1042-frontend-ux-engineer-react-typescript-ai-sr-remote-latam",
+      "contentHash": "8fefa14eba5380fcb811d7d175df5f55b6808ba4d6cdf3161aa55ff488e16774",
+      "title": "1042 - Frontend / UX Engineer (React/TypeScript/AI) · Sr · Remote · LATAM",
+      "company": "Darwoft",
+      "url": "https://himalayas.app/companies/darwoft/jobs/1042-frontend-ux-engineer-react-typescript-ai-sr-remote-latam?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/we-are-tims/jobs/sr-software-engineer-bilingue-full-stack-java-react",
+      "contentHash": "5678c1259dae966d83108ef8ed64d34db9d5a52de091c7b3695a020f935d6255",
+      "title": "Sr Software Engineer bilingüe (Full-Stack Java/React)",
+      "company": "We are Tims",
+      "url": "https://himalayas.app/companies/we-are-tims/jobs/sr-software-engineer-bilingue-full-stack-java-react?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/bluelight-consulting/jobs/full-stack-and-backend-nodejs-typescript-javascript-engineer-senior-latin-am-5815872322",
+      "contentHash": "ff3f9b2c2edac2ccc9b191092ad06cfb9f791efbecc049f3826dcfbcefc0f087",
+      "title": "Full Stack and Backend NodeJS TypeScript/JavaScript Engineer (Senior) - Latin Am",
+      "company": "Bluelight Consulting",
+      "url": "https://himalayas.app/companies/bluelight-consulting/jobs/full-stack-and-backend-nodejs-typescript-javascript-engineer-senior-latin-am-5815872322?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/rekluti/jobs/desarrollador-fullstack-go-react-node-espanol",
+      "contentHash": "36c05ea77adb873a7dcd6680432b2d820a452ad9f232f7498e290cb13f25ae6c",
+      "title": "DESARROLLADOR FULLSTACK (GO + REACT + NODE) - ESPAÑOL",
+      "company": "XKTalent Inc. - Rimutee",
+      "url": "https://himalayas.app/companies/rekluti/jobs/desarrollador-fullstack-go-react-node-espanol?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/idelsoft/jobs/full-stack-developer-svelte-react-node-js-latam",
+      "contentHash": "5b072a7d3936b06422b41c31c2b43ef3266e8ae6b0bb545d753d0a7c707afb98",
+      "title": "Full-Stack Developer - Svelte, React & Node.js (LATAM)",
+      "company": "iDelsoft",
+      "url": "https://himalayas.app/companies/idelsoft/jobs/full-stack-developer-svelte-react-node-js-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/opinov8/jobs/senior-full-stack-engineer-net-react-ai-services",
+      "contentHash": "0e72fd2897b93380690799ec7732c24563001ab8c9f64a0c12411598499f9150",
+      "title": "Senior Full Stack Engineer (.NET/React) - AI Services",
+      "company": "Opinov8",
+      "url": "https://himalayas.app/companies/opinov8/jobs/senior-full-stack-engineer-net-react-ai-services?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/hivex/jobs/middle-react-developer-6818943107",
+      "contentHash": "8be4e9fa4e92cc242df3e7f1aeccb869b0b063047ac94dff91fd13f55f4644b0",
+      "title": "Middle React Developer",
+      "company": "Hivex",
+      "url": "https://himalayas.app/companies/hivex/jobs/middle-react-developer-6818943107?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/rekluti/jobs/ingeniero-cloud-gcp-latam-espanol",
+      "contentHash": "26d8829dce381e8ab7f76e1ad870f4e725fbea24ec5371b5d38a1c754e59ff6a",
+      "title": "INGENIERO CLOUD (GCP) - LATAM (ESPAÑOL)",
+      "company": "XKTalent Inc. - Rimutee",
+      "url": "https://himalayas.app/companies/rekluti/jobs/ingeniero-cloud-gcp-latam-espanol?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/world-business-lenders/jobs/cloud-engineering-analyst",
+      "contentHash": "9765c038329aab533cb0ea5e5ce2c52df466d8d722d46fa91ba971e9e82e777f",
+      "title": "Cloud Engineering Analyst",
+      "company": "World Business Lenders",
+      "url": "https://himalayas.app/companies/world-business-lenders/jobs/cloud-engineering-analyst?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/rekluti/jobs/desarrollador-azure-remoto",
+      "contentHash": "34a27d85152a8c90cb01b10d8f588800b1af66ff88ea8ad14d982d80afc8187b",
+      "title": "DESARROLLADOR AZURE - REMOTO",
+      "company": "XKTalent Inc. - Rimutee",
+      "url": "https://himalayas.app/companies/rekluti/jobs/desarrollador-azure-remoto?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/canonical/jobs/senior-software-engineer-maas",
+      "contentHash": "439222dc1070f4d096e1c1817d695f0a758c22d8553a1c3cbdd003b5e68db7d1",
+      "title": "Senior Software Engineer - MAAS",
+      "company": "Canonical",
+      "url": "https://himalayas.app/companies/canonical/jobs/senior-software-engineer-maas?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/inv/jobs/swe-infrastructure-specialist-java-freelance-ai-trainer-project",
+      "contentHash": "0ed1eaf6966be1f053a9d5528043fa4d3e8c4def4db06fbbab1d733ca5206b0c",
+      "title": "SWE Infrastructure Specialist (Java) – Freelance AI Trainer Project",
+      "company": "Invisible Technologies",
+      "url": "https://himalayas.app/companies/inv/jobs/swe-infrastructure-specialist-java-freelance-ai-trainer-project?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/playbypoint/jobs/senior-full-stack-software-engineer-developer-platform-remote-latam",
+      "contentHash": "022d66b1078a4f426280e65ef9391e87d4f7c12d7f8894e6d20ec89679127982",
+      "title": "Senior Full Stack Software Engineer — Developer Platform (Remote LATAM)",
+      "company": "Playbypoint",
+      "url": "https://himalayas.app/companies/playbypoint/jobs/senior-full-stack-software-engineer-developer-platform-remote-latam?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/ryz-labs/jobs/staff-software-engineer-elixir",
+      "contentHash": "5964624cb7e365388e51d5848f014a908ce6693d6f0d0b12978977333c92f613",
+      "title": "Staff Software Engineer (Elixir)",
+      "company": "Ryz Labs",
+      "url": "https://himalayas.app/companies/ryz-labs/jobs/staff-software-engineer-elixir?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/micro1/jobs/unreal-engine-developer",
+      "contentHash": "e5eece9f402aa555e0cf9307df6f7b23a698bf73008e3bbb9e95cbfd633518a2",
+      "title": "Unreal Engine Developer",
+      "company": "micro1",
+      "url": "https://himalayas.app/companies/micro1/jobs/unreal-engine-developer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/opswat/jobs/l3-technical-support-engineer",
+      "contentHash": "687ba59cc2c3954fc93b39d6b5721df1a02f1fac01efbaf296921c42650c923e",
+      "title": "L3 Technical Support Engineer",
+      "company": "OPSWAT",
+      "url": "https://himalayas.app/companies/opswat/jobs/l3-technical-support-engineer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/inv/jobs/coding-specialist-fluent-in-japanese-ai-trainer",
+      "contentHash": "b9df2d44f8178faec765b4a594153d0e881fc9c2904865e7a1d7c2f99cd5e610",
+      "title": "Coding Specialist (Fluent in Japanese) – AI Trainer",
+      "company": "Invisible Technologies",
+      "url": "https://himalayas.app/companies/inv/jobs/coding-specialist-fluent-in-japanese-ai-trainer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/asg-company/jobs/full-stack-developer-intern",
+      "contentHash": "c756dfe642026ae57dcd14aa62e5ab7aaead943f1ced55bc5cb574204324f84a",
+      "title": "Full Stack Developer Intern",
+      "company": "ASG Company",
+      "url": "https://himalayas.app/companies/asg-company/jobs/full-stack-developer-intern?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/arionkoder/jobs/rust-engineer",
+      "contentHash": "bdfc323ba16c3a6794e661e0fbc7a73b2d380da06df4263e23d9bbbeda4cd830",
+      "title": "Rust Engineer",
+      "company": "Arionkoder",
+      "url": "https://himalayas.app/companies/arionkoder/jobs/rust-engineer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/backblaze/jobs/director-enterprise-systems-architecture-latam",
+      "contentHash": "04e3658855f71ecca949c32e7623ca3e16daa9c886a3527fe5e517350fba463f",
+      "title": "Director, Enterprise Systems & Architecture (LATAM)",
+      "company": "Backblaze",
+      "url": "https://himalayas.app/companies/backblaze/jobs/director-enterprise-systems-architecture-latam?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "a-junior-backend",
+      "offerKey": "himalayas:https://himalayas.app/companies/micro1/jobs/video-data-annotator-966806508",
+      "contentHash": "378ad6f919ce1bd21ac5f426376c2c065c07cfc7967c3ddd13473f315f659f08",
+      "title": "Video Data Annotator",
+      "company": "micro1",
+      "url": "https://himalayas.app/companies/micro1/jobs/video-data-annotator-966806508?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/lifted-an-upwork-company/jobs/107-full-stack-software-engineer-node-js-react-headless-cms",
+      "contentHash": "889951104aa9c34cc6ed41b539d72804a76933081d0d7b58db3046701f9cfb25",
+      "title": "#107 - Full-Stack Software Engineer - Node.js, React & Headless CMS",
+      "company": "Lifted (an Upwork Company)",
+      "url": "https://himalayas.app/companies/lifted-an-upwork-company/jobs/107-full-stack-software-engineer-node-js-react-headless-cms?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/nearshore-business-solutions/jobs/fullstack-javascript-engineer",
+      "contentHash": "d5aefbec9b73fa11d200a6720bdcda416163188c9861bf3f07a71940681d8ad3",
+      "title": "Fullstack JavaScript Engineer",
+      "company": "Nearshore Business Solutions",
+      "url": "https://himalayas.app/companies/nearshore-business-solutions/jobs/fullstack-javascript-engineer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/accelone/jobs/front-end-developer-react-js-4980132945",
+      "contentHash": "f7c947cc47c9ed278e889533b069b2dee4d837cece34e66829a14f1d1a4f0bb4",
+      "title": "Front-End Developer (React.js)",
+      "company": "AccelOne",
+      "url": "https://himalayas.app/companies/accelone/jobs/front-end-developer-react-js-4980132945?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/venon-solutions/jobs/1021-ai-native-full-stack-engineer-react-next-js-php",
+      "contentHash": "c487c5fbcda4ee7c6eb117f9b44a36d96716b9fd5b7112a064612ec7b29e0c6b",
+      "title": "#1021 - AI-Native Full-Stack Engineer (React, Next.js, PHP)",
+      "company": "Venon Solutions",
+      "url": "https://himalayas.app/companies/venon-solutions/jobs/1021-ai-native-full-stack-engineer-react-next-js-php?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/coderio-co/jobs/senior-full-stack-developer-con-experiencia-en-node-js-y-react-js-remoto-lata",
+      "contentHash": "97fd9bb125884c10732b35e411f811e195afd51c1a10d54f2107c42cdeebc713",
+      "title": "Senior Full-Stack Developer con experiencia en Node.js y React.js – Remoto (LATA",
+      "company": "Coderio",
+      "url": "https://himalayas.app/companies/coderio-co/jobs/senior-full-stack-developer-con-experiencia-en-node-js-y-react-js-remoto-lata?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/magmalabs/jobs/senior-software-engineer-reactjs",
+      "contentHash": "277cc960f743b53588f8cf93fcca1a8166d66e2479ada9b4e0888a2d8737ab1f",
+      "title": "Senior Software Engineer (ReactJS)",
+      "company": "MagmaLabs",
+      "url": "https://himalayas.app/companies/magmalabs/jobs/senior-software-engineer-reactjs?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/bluelight-consulting/jobs/full-stack-and-backend-nodejs-typescript-javascript-engineer-senior-remote-7244324800",
+      "contentHash": "e216b5ef2c4715ab0a6b55746c985f187e52b81202a907605c1cf30436f67657",
+      "title": "Full Stack and Backend NodeJS TypeScript/JavaScript Engineer (Senior) - Remote,",
+      "company": "Bluelight Consulting",
+      "url": "https://himalayas.app/companies/bluelight-consulting/jobs/full-stack-and-backend-nodejs-typescript-javascript-engineer-senior-remote-7244324800?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/darwoft/jobs/1042-frontend-ux-engineer-react-typescript-ai-sr-remote-latam",
+      "contentHash": "8fefa14eba5380fcb811d7d175df5f55b6808ba4d6cdf3161aa55ff488e16774",
+      "title": "1042 - Frontend / UX Engineer (React/TypeScript/AI) · Sr · Remote · LATAM",
+      "company": "Darwoft",
+      "url": "https://himalayas.app/companies/darwoft/jobs/1042-frontend-ux-engineer-react-typescript-ai-sr-remote-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/darwoft/jobs/1026-full-stack-developer-react-python-sr-remote-latam",
+      "contentHash": "7d935e6debc03a743f47eb4afb1ed49f6c0dc8125fb15bb1c6f5167a545a6ff5",
+      "title": "1026 - Full Stack Developer (React & Python) · Sr · Remote · LATAM",
+      "company": "Darwoft",
+      "url": "https://himalayas.app/companies/darwoft/jobs/1026-full-stack-developer-react-python-sr-remote-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/canonical/jobs/web-frontend-engineer-js-css-react-flutter",
+      "contentHash": "d356dc570f70877e56be76e426f7d46bf8ee78e83f31fc3845dee9d37ae79366",
+      "title": "Web Frontend Engineer - JS, CSS, React, Flutter",
+      "company": "Canonical",
+      "url": "https://himalayas.app/companies/canonical/jobs/web-frontend-engineer-js-css-react-flutter?utm_source=api",
+      "band": 2
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/able-co/jobs/senior-software-data-engineer-javascript",
+      "contentHash": "0250452d6180da389149aba97e424eada81ddc52853e41f840de07ccf0ba0389",
+      "title": "Senior Software & Data Engineer, JavaScript",
+      "company": "Able",
+      "url": "https://himalayas.app/companies/able-co/jobs/senior-software-data-engineer-javascript?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/bluelight-consulting/jobs/full-stack-and-backend-nodejs-typescript-javascript-engineer-senior-latin-am-5815872322",
+      "contentHash": "ff3f9b2c2edac2ccc9b191092ad06cfb9f791efbecc049f3826dcfbcefc0f087",
+      "title": "Full Stack and Backend NodeJS TypeScript/JavaScript Engineer (Senior) - Latin Am",
+      "company": "Bluelight Consulting",
+      "url": "https://himalayas.app/companies/bluelight-consulting/jobs/full-stack-and-backend-nodejs-typescript-javascript-engineer-senior-latin-am-5815872322?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/aoa/jobs/senior-frontend-engineer-react-latam",
+      "contentHash": "561e49d855fabcb77f7eabe6fde7e5d0d7c58792be9e090869c8c7daa5d9facc",
+      "title": "Senior Frontend Engineer (React) - LATAM",
+      "company": "AOA",
+      "url": "https://himalayas.app/companies/aoa/jobs/senior-frontend-engineer-react-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/magmalabs/jobs/senior-software-engineer-react-native",
+      "contentHash": "8cf1b43eae7b5c02261a82617d89b3c1d35f3ab7dc0d4a791079bc114d935dff",
+      "title": "Senior Software Engineer (React Native)",
+      "company": "MagmaLabs",
+      "url": "https://himalayas.app/companies/magmalabs/jobs/senior-software-engineer-react-native?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/luxury-presence/jobs/product-engineer-internal-tools-latam",
+      "contentHash": "b76777977ddf2ee3c79dced3438b11ad3e7d6d2e9d6e085ea8eb0a5ca7b48dc2",
+      "title": "Product Engineer, Internal Tools - LATAM",
+      "company": "Luxury Presence",
+      "url": "https://himalayas.app/companies/luxury-presence/jobs/product-engineer-internal-tools-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/rekluti/jobs/desarrollador-fullstack-go-react-node-espanol",
+      "contentHash": "36c05ea77adb873a7dcd6680432b2d820a452ad9f232f7498e290cb13f25ae6c",
+      "title": "DESARROLLADOR FULLSTACK (GO + REACT + NODE) - ESPAÑOL",
+      "company": "XKTalent Inc. - Rimutee",
+      "url": "https://himalayas.app/companies/rekluti/jobs/desarrollador-fullstack-go-react-node-espanol?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/dacodes/jobs/full-stack-engineer-typescript-aws-english-required-mexico-latam-only",
+      "contentHash": "a5ddb6d258f1960dd67680b7bd0cd70719d4fba3c9dfd562d7b7bd52747c2704",
+      "title": "Full Stack Engineer - TypeScript & AWS - English Required- México&LATAM Only",
+      "company": "DaCodes",
+      "url": "https://himalayas.app/companies/dacodes/jobs/full-stack-engineer-typescript-aws-english-required-mexico-latam-only?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/inv/jobs/swe-infrastructure-specialist-js-ts-python-freelance-ai-trainer-project",
+      "contentHash": "6ffc3427750371e28b5779158af8f9c896f7ffe7fe5dc6671e111b302a7dfc09",
+      "title": "SWE Infrastructure Specialist (JS/TS/Python) – Freelance AI Trainer Project",
+      "company": "Invisible Technologies",
+      "url": "https://himalayas.app/companies/inv/jobs/swe-infrastructure-specialist-js-ts-python-freelance-ai-trainer-project?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/makai-digital/jobs/senior-fullstack-engineer",
+      "contentHash": "985eb5beb02b679d2ae27a3314b26a2e03d42116cdcc3fbd7c981b4291621ecf",
+      "title": "Senior Fullstack Engineer",
+      "company": "Makai Digital",
+      "url": "https://himalayas.app/companies/makai-digital/jobs/senior-fullstack-engineer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/makai-digital/jobs/senior-frontend-engineer",
+      "contentHash": "da8e46e15517f99feb9ff63c1e34d48090043704727f819ae8b071323d41612d",
+      "title": "Senior Frontend Engineer",
+      "company": "Makai Digital",
+      "url": "https://himalayas.app/companies/makai-digital/jobs/senior-frontend-engineer?utm_source=api",
+      "band": 2
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/hivex/jobs/react-native-developer-5428119961",
+      "contentHash": "8502da29d4b995aba5e00cce8a8c154145f6f3fbf9b388199c9a61a3ab39d259",
+      "title": "React Native Developer",
+      "company": "Hivex",
+      "url": "https://himalayas.app/companies/hivex/jobs/react-native-developer-5428119961?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/xablu/jobs/senior-full-stack-developer-react-typescript-3595311195",
+      "contentHash": "0cb9ee4848beb10de8cfe244fae6207f3fdb48f51e807b9a73db7b8101ea4c02",
+      "title": "Senior Full Stack Developer (React, TypeScript)",
+      "company": "Xablu",
+      "url": "https://himalayas.app/companies/xablu/jobs/senior-full-stack-developer-react-typescript-3595311195?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/knowmad-mood/jobs/fullstack-developer-react-python",
+      "contentHash": "8d8a138ceafdd5e71e29fbab1ff1853a8605fff418dac5bcef7bdaa3927fde7c",
+      "title": "Fullstack Developer (React + Python)",
+      "company": "knowmad mood",
+      "url": "https://himalayas.app/companies/knowmad-mood/jobs/fullstack-developer-react-python?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/eventmobi/jobs/senior-front-end-engineer-remote-8476835680",
+      "contentHash": "658b1219e427d44b631cfba5514a98d58df8e08b96add286295f0b609c228110",
+      "title": "Senior Front End Engineer - Remote",
+      "company": "EventMobi",
+      "url": "https://himalayas.app/companies/eventmobi/jobs/senior-front-end-engineer-remote-8476835680?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/oowlish-technology/jobs/senior-react-native-engineer-expo-typescript",
+      "contentHash": "bb0c5fdcbcdea9bbee84821e295b839d47cc32a6e18a03c47ccd5e0e56a5747d",
+      "title": "Senior React Native Engineer (Expo & TypeScript)",
+      "company": "Oowlish Technology",
+      "url": "https://himalayas.app/companies/oowlish-technology/jobs/senior-react-native-engineer-expo-typescript?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/my-va-support-inc/jobs/software-developer-mobile-web",
+      "contentHash": "7991a1f39655e408a7729b829830d93c81f5361bb50b1959398f8c95d2e88dfe",
+      "title": "Software Developer (Mobile & Web)",
+      "company": "My VA Support, Inc.",
+      "url": "https://himalayas.app/companies/my-va-support-inc/jobs/software-developer-mobile-web?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/hivex/jobs/fullstack-developer-react-node-js-9559398791",
+      "contentHash": "bd8301413594ce0eeaf92e77202a1d96845365da5e0dd0154f71ac869fa75666",
+      "title": "FullStack Developer (react + node.js)",
+      "company": "Hivex",
+      "url": "https://himalayas.app/companies/hivex/jobs/fullstack-developer-react-node-js-9559398791?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/coderio-co/jobs/sr-fullstack-developer-javascript-java",
+      "contentHash": "c5284c8549a5ae2774542ffaf5585031c21d0b05a8b431ae091b5c75f0de6db4",
+      "title": "Sr. Fullstack Developer (Javascript/Java)",
+      "company": "Coderio",
+      "url": "https://himalayas.app/companies/coderio-co/jobs/sr-fullstack-developer-javascript-java?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/rekluti/jobs/desarrollador-fullstack-go-node-react",
+      "contentHash": "98d679451f5ecd61db8543eef8cf9fb9715f3e5c9d8c43667361829029c81342",
+      "title": "Desarrollador Fullstack (Go + Node + React)",
+      "company": "XKTalent Inc. - Rimutee",
+      "url": "https://himalayas.app/companies/rekluti/jobs/desarrollador-fullstack-go-node-react?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/search-atlas/jobs/senior-full-stack-engineer-django-next-js-9755090924",
+      "contentHash": "b91b09edf48c08cb40de3aa33024a4b5fb625bff707b20acbb31b183c46d8b28",
+      "title": "Senior Full-Stack Engineer (Django / Next.js)",
+      "company": "Search Atlas",
+      "url": "https://himalayas.app/companies/search-atlas/jobs/senior-full-stack-engineer-django-next-js-9755090924?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/software-mind/jobs/8be-data-scientist-ai-ml",
+      "contentHash": "1c09cb6f5becc1f118a8ff4235cb562083a73010fca3ba8d0e479b46014ad221",
+      "title": "[8BE] Data Scientist (AI + ML)",
+      "company": "Software Mind",
+      "url": "https://himalayas.app/companies/software-mind/jobs/8be-data-scientist-ai-ml?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/bluelight-consulting/jobs/senior-business-analyst-latin-america-remote-214786741",
+      "contentHash": "4a79608436a1580a7187115dbc4a2689ad1a32c3ac4f3780954badf895650b4e",
+      "title": "Senior Business Analyst - Latin America, Remote",
+      "company": "Bluelight Consulting",
+      "url": "https://himalayas.app/companies/bluelight-consulting/jobs/senior-business-analyst-latin-america-remote-214786741?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/creamos-ltd/jobs/senior-full-stack-developer-latam",
+      "contentHash": "732da9df2f485378075bb219b89a6166677a07e56dd1d1fe3de4b5f620386a7b",
+      "title": "Senior Full-Stack Developer (LATAM)",
+      "company": "Creamos Ltd",
+      "url": "https://himalayas.app/companies/creamos-ltd/jobs/senior-full-stack-developer-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/backblaze/jobs/sr-software-engineer-application-security-5136123984",
+      "contentHash": "d5d6450db0d3c2d0bf5ffe0e9cb9983fd1613bf217fbd8df1307d99f0fcc1ac9",
+      "title": "Sr. Software Engineer - Application Security",
+      "company": "Backblaze",
+      "url": "https://himalayas.app/companies/backblaze/jobs/sr-software-engineer-application-security-5136123984?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/van-hyde-international/jobs/engineering-team-lead-java-react-remote-latam",
+      "contentHash": "a7548cbcbbfcb8fc202339674a5387dcfa96213022e189245a3b0d6140e6b1da",
+      "title": "Engineering Team Lead (Java / React) | Remote LATAM",
+      "company": "Van Hyde International",
+      "url": "https://himalayas.app/companies/van-hyde-international/jobs/engineering-team-lead-java-react-remote-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/a5-talent-finders/jobs/python-react-fullstack-engineer-latam",
+      "contentHash": "6da61e18c6de695be5d436163309fcb30253ad1bd36c47848159b48a2e796762",
+      "title": "Python React Fullstack Engineer LATAM",
+      "company": "A5 Talent Finders",
+      "url": "https://himalayas.app/companies/a5-talent-finders/jobs/python-react-fullstack-engineer-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/nearshore-business-solutions/jobs/senior-php-developer",
+      "contentHash": "58faf2d2441b51aa440ffcc9e56b00738fd41167bf0c117dfa55665901ca88b3",
+      "title": "Senior PHP Developer",
+      "company": "Nearshore Business Solutions",
+      "url": "https://himalayas.app/companies/nearshore-business-solutions/jobs/senior-php-developer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/bluelight-consulting/jobs/react-engineer-remote-latin-america-2745735184",
+      "contentHash": "2738968f740462fdbd51525dec7ec3097cca43bd6e3ffdfe535edef88fa0d231",
+      "title": "React Engineer - Remote, Latin America",
+      "company": "Bluelight Consulting",
+      "url": "https://himalayas.app/companies/bluelight-consulting/jobs/react-engineer-remote-latin-america-2745735184?utm_source=api",
+      "band": 2
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/inv/jobs/georgian-language-specialist-ai-trainer",
+      "contentHash": "25eb56ba8a62bee9144d10170f0c2abd06375cf56e2d57063aff8272f839174b",
+      "title": "Georgian Language Specialist - AI Trainer",
+      "company": "Invisible Technologies",
+      "url": "https://himalayas.app/companies/inv/jobs/georgian-language-specialist-ai-trainer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/rekluti/jobs/devops-aws-espanol-100-remoto",
+      "contentHash": "e58ab1fe48713bf31a80449e9527523319a8339556a49c3ebcf449a356df6195",
+      "title": "DEVOPS AWS - Español - 100% Remoto",
+      "company": "XKTalent Inc. - Rimutee",
+      "url": "https://himalayas.app/companies/rekluti/jobs/devops-aws-espanol-100-remoto?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/world-business-lenders/jobs/data-integration-and-governance-analyst",
+      "contentHash": "d2419672ba5f9f945d959f32d617db61731fdc32d3dfca014219dffdbfeacc25",
+      "title": "Data Integration and Governance Analyst",
+      "company": "World Business Lenders",
+      "url": "https://himalayas.app/companies/world-business-lenders/jobs/data-integration-and-governance-analyst?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/inv/jobs/fulah-language-specialist-ai-trainer",
+      "contentHash": "6243e752fd20a90f1d937827e7df067170b48c6a86f9c3b2aa592a59b6497002",
+      "title": "Fulah Language Specialist - AI Trainer",
+      "company": "Invisible Technologies",
+      "url": "https://himalayas.app/companies/inv/jobs/fulah-language-specialist-ai-trainer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/zimperium/jobs/detection-researcher-coding-focused",
+      "contentHash": "5558d960ae9b721f491fff518df34f6e4d1fec6ef44e982631cbebbf85e602ca",
+      "title": "Detection Researcher (Coding Focused)",
+      "company": "Zimperium",
+      "url": "https://himalayas.app/companies/zimperium/jobs/detection-researcher-coding-focused?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/devlane/jobs/sr-ai-engineer",
+      "contentHash": "30b108d62ea81aedb030e4c2885f195a35255a9e3b7426a366a550aff4ee83a8",
+      "title": "Sr. AI Engineer",
+      "company": "Devlane",
+      "url": "https://himalayas.app/companies/devlane/jobs/sr-ai-engineer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "b-mid-frontend",
+      "offerKey": "himalayas:https://himalayas.app/companies/airdna/jobs/strategy-planning-analyst-latam",
+      "contentHash": "54fa4d5f21652fa97b1859d7886984a7b85af2c3455577c10ed0acb5df1e6049",
+      "title": "Strategy & Planning Analyst (LATAM)",
+      "company": "AirDNA",
+      "url": "https://himalayas.app/companies/airdna/jobs/strategy-planning-analyst-latam?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/darwoft/jobs/1046-data-engineer-python-aws-snowflake-senior-remote-arg",
+      "contentHash": "477a43f971b2001c6a1c96871ccac806abf798e23ad10b0329ec41939d44837f",
+      "title": "1046 - Data Engineer (Python/AWS/Snowflake) · Senior · Remote · ARG",
+      "company": "Darwoft",
+      "url": "https://himalayas.app/companies/darwoft/jobs/1046-data-engineer-python-aws-snowflake-senior-remote-arg?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/darwoft/jobs/1045-dataops-engineer-python-aws-snowflake-senior-remote-arg",
+      "contentHash": "b7e4a806f743d612100a0b7ee92e731432594f391de350c735620d4d3bb19a4d",
+      "title": "1045 - DataOps Engineer (Python/AWS/Snowflake) · Senior · Remote · ARG",
+      "company": "Darwoft",
+      "url": "https://himalayas.app/companies/darwoft/jobs/1045-dataops-engineer-python-aws-snowflake-senior-remote-arg?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/elitebrain/jobs/database-administrator-dba-remote-latam-aws-sql-server-postgresql-mexi",
+      "contentHash": "27d6b705082e3d9e2923b6a63490bf712539f7b259091e4e3d1799b54a6aa352",
+      "title": "Database Administrator (DBA) | Remote LATAM | AWS, SQL Server & PostgreSQL (Mexi",
+      "company": "ELITEBRAIN",
+      "url": "https://himalayas.app/companies/elitebrain/jobs/database-administrator-dba-remote-latam-aws-sql-server-postgresql-mexi?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/mutt-data/jobs/data-engineer-senior-4526006196",
+      "contentHash": "cc0f7cc74f5adca5cb6b45eb5a160f2346100dad7a520a5c1f93d71252668e3f",
+      "title": "Data Engineer Senior",
+      "company": "Mutt Data",
+      "url": "https://himalayas.app/companies/mutt-data/jobs/data-engineer-senior-4526006196?utm_source=api",
+      "band": 2
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/coderio/jobs/senior-data-engineer",
+      "contentHash": "1968da770ec9df4eb55b89269fcd7504a94c00b4e0c38cab8fdc4dff2842dfea",
+      "title": "Senior Data Engineer",
+      "company": "Coderio",
+      "url": "https://himalayas.app/companies/coderio/jobs/senior-data-engineer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/azumo/jobs/data-engineer",
+      "contentHash": "6397fb348a5616edd52bf6ce1ab95ab54a4d79c35b3d3ae8c9173d4b07b6c0ee",
+      "title": "Data Engineer",
+      "company": "Azumo",
+      "url": "https://himalayas.app/companies/azumo/jobs/data-engineer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/accelone/jobs/full-stack-developer-python-django-react-snowflake",
+      "contentHash": "81abd43daa89bc74d26eb7298ab55d1bd7c1a392f71d4315d4123b9e9fdf6ab2",
+      "title": "Full Stack Developer (Python/Django + React + Snowflake)",
+      "company": "AccelOne",
+      "url": "https://himalayas.app/companies/accelone/jobs/full-stack-developer-python-django-react-snowflake?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/accelone/jobs/senior-full-stack-engineer-python-react-aws",
+      "contentHash": "8ab78d202ccf7f9e685b07644a58baeaf63a611af417cc0e8e7b2580d2c2f6b4",
+      "title": "Senior Full Stack Engineer (Python | React | AWS)",
+      "company": "AccelOne",
+      "url": "https://himalayas.app/companies/accelone/jobs/senior-full-stack-engineer-python-react-aws?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/motum/jobs/senior-data-engineer-snowflake",
+      "contentHash": "3b561e078c849ca294328a4e14ac0b4a157ca3274c018a0aeacdb240d2605b97",
+      "title": "Senior Data Engineer (Snowflake)",
+      "company": "Motum",
+      "url": "https://himalayas.app/companies/motum/jobs/senior-data-engineer-snowflake?utm_source=api",
+      "band": 2
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/agentic-dream/jobs/data-scientist-remote-latam-only",
+      "contentHash": "d097cd22d0c4855981b033db5091f889b19b6e4a6cbbe0749c386ac5f256c9b5",
+      "title": "Data Scientist | Remote LATAM Only",
+      "company": "Agentic Dream",
+      "url": "https://himalayas.app/companies/agentic-dream/jobs/data-scientist-remote-latam-only?utm_source=api",
+      "band": 3
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/pavago/jobs/full-stack-ai-engineer",
+      "contentHash": "210cff32f8ae2a52a7d5fc5edad245c99b8024b608b92e7dd19dd4247dc3b7df",
+      "title": "Full-Stack AI Engineer",
+      "company": "Pavago",
+      "url": "https://himalayas.app/companies/pavago/jobs/full-stack-ai-engineer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/strategic-systems-international/jobs/senior-ai-data-engineer",
+      "contentHash": "65b34748bb6c1905d3cdd48eaf4918700db22010fef0d2590619287c4a985fab",
+      "title": "Senior AI Data Engineer",
+      "company": "Strategic Systems International",
+      "url": "https://himalayas.app/companies/strategic-systems-international/jobs/senior-ai-data-engineer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/dacodes/jobs/senior-data-engineer-snowflake-dbt-remoto-mexico-y-latam",
+      "contentHash": "36be50f965c897d5130c44300cd7155c4de7374dac3d296d308b121c48ebbd86",
+      "title": "Senior Data Engineer - Snowflake & dbt | Remoto México y LATAM",
+      "company": "DaCodes",
+      "url": "https://himalayas.app/companies/dacodes/jobs/senior-data-engineer-snowflake-dbt-remoto-mexico-y-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/lateral-group/jobs/senior-snowflake-engineer-latam",
+      "contentHash": "9bb4fdbe30e1a2cb8fba34cd9da1d69c86775c1ea442c64a7498d2eca84b1e1f",
+      "title": "Senior Snowflake Engineer (LATAM)",
+      "company": "Lateral Group",
+      "url": "https://himalayas.app/companies/lateral-group/jobs/senior-snowflake-engineer-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/nearshore-business-solutions/jobs/data-engineer-with-snowflake",
+      "contentHash": "8449ea7e88d71e8a3c685b455e13c541ecb910b65cb801b3d2b9e4762039188e",
+      "title": "Data Engineer with Snowflake",
+      "company": "Nearshore Business Solutions",
+      "url": "https://himalayas.app/companies/nearshore-business-solutions/jobs/data-engineer-with-snowflake?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/phdata/jobs/senior-devops-engineer-data-platforms-latam-based",
+      "contentHash": "b02354851c5ced820f23749ee3040dda0cee08070244dce8e4f1325127ce01e4",
+      "title": "Senior DevOps Engineer (Data Platforms) - LATAM Based",
+      "company": "phData",
+      "url": "https://himalayas.app/companies/phdata/jobs/senior-devops-engineer-data-platforms-latam-based?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/phdata/jobs/solutions-architect",
+      "contentHash": "aafdf9ebfd67bf71b4edc268698551ba9e5cb236b766340abc1303fd38aae541",
+      "title": "Solutions Architect",
+      "company": "phData",
+      "url": "https://himalayas.app/companies/phdata/jobs/solutions-architect?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/phdata/jobs/senior-data-engineer-792267286",
+      "contentHash": "7bfc18237eb91049a1667f69090357ecc8615221e4df2b593f1932de2cc3c302",
+      "title": "Senior Data Engineer",
+      "company": "phData",
+      "url": "https://himalayas.app/companies/phdata/jobs/senior-data-engineer-792267286?utm_source=api",
+      "band": 2
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/lifted-an-upwork-company/jobs/126292-senior-finops-data-engineer",
+      "contentHash": "67c3e8a3fceaa5be10096823eb8cc45174d0f5028c677e59ad8373ea795fdfed",
+      "title": "#126292 - Senior FinOps Data Engineer",
+      "company": "Lifted (an Upwork Company)",
+      "url": "https://himalayas.app/companies/lifted-an-upwork-company/jobs/126292-senior-finops-data-engineer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/thinkbridge/jobs/python-backend-developer-latin-america",
+      "contentHash": "f2547fe6bb8d8509f3372f4bf6425c11005c32795ffa0f6b46dc5bd309ffecc3",
+      "title": "Python Backend Developer - Latin America",
+      "company": "thinkbridge",
+      "url": "https://himalayas.app/companies/thinkbridge/jobs/python-backend-developer-latin-america?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/arionkoder/jobs/senior-python-engineer",
+      "contentHash": "df0603cb3a3d8ef6993e7b7cfd715440e031e8d98946b63ebb95f6222b98c6a0",
+      "title": "Senior Python Engineer",
+      "company": "Arionkoder",
+      "url": "https://himalayas.app/companies/arionkoder/jobs/senior-python-engineer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/codea-it/jobs/sr-data-scientist",
+      "contentHash": "49e4e7caf64c2c81843f1feaf8a6ad01e886a32ce72889bcc57cd0ba2a5c67d0",
+      "title": "SR Data Scientist",
+      "company": "Codea IT",
+      "url": "https://himalayas.app/companies/codea-it/jobs/sr-data-scientist?utm_source=api",
+      "band": 3
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/alpaca/jobs/senior-data-engineer-9851422618",
+      "contentHash": "b99348068a3c71c741156485956b33f3fa9cf581d77b2f4d91fc34ebba9a4ff0",
+      "title": "Senior Data Engineer",
+      "company": "Alpaca",
+      "url": "https://himalayas.app/companies/alpaca/jobs/senior-data-engineer-9851422618?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/fractal-river/jobs/data-engineer-remote-latin-america",
+      "contentHash": "49e21c5255f2e9c08cab408cc992651c607e60a13f0cbf3b58e88e89ed4790da",
+      "title": "Data Engineer (Remote - Latin America)",
+      "company": "Fractal River",
+      "url": "https://himalayas.app/companies/fractal-river/jobs/data-engineer-remote-latin-america?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/darwoft/jobs/1032-data-science-price-elasticity-sr-remote-latam",
+      "contentHash": "060a6c63120ecfc2c750c173e4f7f1d6b7b4f035d42abcf8ad3e9400feb4f4b4",
+      "title": "1032 - Data Science (Price Elasticity) · Sr · Remote · LATAM",
+      "company": "Darwoft",
+      "url": "https://himalayas.app/companies/darwoft/jobs/1032-data-science-price-elasticity-sr-remote-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/darwoft/jobs/143l-data-engineer-python-go-data-ingestion-cloud-senior-remote-latam",
+      "contentHash": "c5c4907836ff2806ced98c3112f8023c037f6aea218ca733dfeca877de8eb788",
+      "title": "143L - Data Engineer (Python/Go/Data Ingestion/Cloud) · Senior · Remote · LATAM",
+      "company": "Darwoft",
+      "url": "https://himalayas.app/companies/darwoft/jobs/143l-data-engineer-python-go-data-ingestion-cloud-senior-remote-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/phdata/jobs/solutions-architect-latam",
+      "contentHash": "1a33dcf2dbfb062acd1c52518b1efb7fef7b9131ebce38cee3647e6684fb6550",
+      "title": "Solutions Architect (LATAM)",
+      "company": "phData",
+      "url": "https://himalayas.app/companies/phdata/jobs/solutions-architect-latam?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/azumo/jobs/data-scientist",
+      "contentHash": "bb598e0639709ecd513fcbcdf8698eaf609cd8a8dc1c6aff754c7add6a1341c3",
+      "title": "Data Scientist",
+      "company": "Azumo",
+      "url": "https://himalayas.app/companies/azumo/jobs/data-scientist?utm_source=api",
+      "band": 2
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/lifted-an-upwork-company/jobs/126292-data-engineer",
+      "contentHash": "cff4b3a8c4b4bab3c52b6eadf2a95765b981028cb63237f3f93575c399109f84",
+      "title": "#126292 - Data Engineer",
+      "company": "Lifted (an Upwork Company)",
+      "url": "https://himalayas.app/companies/lifted-an-upwork-company/jobs/126292-data-engineer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/lifted-an-upwork-company/jobs/136209-data-engineer-hr-analytics-ai-ready-data",
+      "contentHash": "265b1078aceab2d32fa2a13f55e8ce8b70a420053e7eb2b969daf15cf588870b",
+      "title": "#136209 - Data Engineer - HR Analytics & AI-Ready Data",
+      "company": "Lifted (an Upwork Company)",
+      "url": "https://himalayas.app/companies/lifted-an-upwork-company/jobs/136209-data-engineer-hr-analytics-ai-ready-data?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/looi-consulting/jobs/senior-database-administrator",
+      "contentHash": "3b816ab7b2ad5418f257e49937f26a2afcc567770cbb8e3aa7086c713cb23f9f",
+      "title": "Senior Database Administrator",
+      "company": "Looi Consulting",
+      "url": "https://himalayas.app/companies/looi-consulting/jobs/senior-database-administrator?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/talentus-global/jobs/powercampus-implementation-consultant-administrator-engineer-latam-candidates-o",
+      "contentHash": "4c54e7fdaeb2572acb07263af86f08cf4efab1a56340e65e3060824492080ef8",
+      "title": "PowerCampus Implementation/Consultant/Administrator Engineer (LATAM CANDIDATES O",
+      "company": "Talentus Global",
+      "url": "https://himalayas.app/companies/talentus-global/jobs/powercampus-implementation-consultant-administrator-engineer-latam-candidates-o?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/agentic-dream/jobs/backend-specialist-remote-latam-only",
+      "contentHash": "80a729d814c83797a7c1a1bbf58a52a4e039df5f7c687d4fb595243f8d67473c",
+      "title": "Backend Specialist | Remote LATAM Only",
+      "company": "Agentic Dream",
+      "url": "https://himalayas.app/companies/agentic-dream/jobs/backend-specialist-remote-latam-only?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/vana-org/jobs/analista-de-inteligencia-de-negocios-l2",
+      "contentHash": "4a254f402f4036b00cefc3947e6dcbc6d290cbb00e3e130fccc6f52a89b871c9",
+      "title": "Analista de Inteligencia de Negocios L2",
+      "company": "Vana",
+      "url": "https://himalayas.app/companies/vana-org/jobs/analista-de-inteligencia-de-negocios-l2?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/software-mind/jobs/8gt-senior-business-intelligence-engineer",
+      "contentHash": "ece96523d9dc8a7d4d6bb51cd46e494de66cbff3fdaa5d0b2c90fdbdf303abce",
+      "title": "[8GT] Senior Business Intelligence Engineer",
+      "company": "Software Mind",
+      "url": "https://himalayas.app/companies/software-mind/jobs/8gt-senior-business-intelligence-engineer?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/talentus-global/jobs/senior-ellucian-banner-developer-latam-candidates-only",
+      "contentHash": "2a8de2e85eea2501aaccf2a3a4a8674e4345d32a3bf0ace67e4a016db818637b",
+      "title": "Senior Ellucian Banner Developer - (LATAM CANDIDATES ONLY)",
+      "company": "Talentus Global",
+      "url": "https://himalayas.app/companies/talentus-global/jobs/senior-ellucian-banner-developer-latam-candidates-only?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/oowlish-technology/jobs/senior-kafka-aws-integration-engineer",
+      "contentHash": "c6a3756452a0d471897aa87632ee26bf6469c2847e4d12adf696ce074b80c6bc",
+      "title": "Senior Kafka/AWS Integration Engineer",
+      "company": "Oowlish Technology",
+      "url": "https://himalayas.app/companies/oowlish-technology/jobs/senior-kafka-aws-integration-engineer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/atomic-hr/jobs/data-engineer-marketing-oriented-remote-for-marketing-agency-for-education",
+      "contentHash": "3f86f69225fd10664e5efae3ff6adbb2cba6de075ff4966e2f14430270840e9e",
+      "title": "Data Engineer (Marketing-oriented) | Remote for Marketing Agency for Education",
+      "company": "Atomic HR",
+      "url": "https://himalayas.app/companies/atomic-hr/jobs/data-engineer-marketing-oriented-remote-for-marketing-agency-for-education?utm_source=api",
+      "band": 1
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/we-are-tims/jobs/microsoft-fabric-consultant-power-bi",
+      "contentHash": "3c2900621d7aef03d88a5f0fecd8d03154eb311673fc0ed2b260d59819ec119a",
+      "title": "Microsoft Fabric Consultant / Power BI",
+      "company": "We are Tims",
+      "url": "https://himalayas.app/companies/we-are-tims/jobs/microsoft-fabric-consultant-power-bi?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/inv/jobs/afrikaans-voice-acting-specialist-ai-trainer",
+      "contentHash": "2a3bc82aefe4f1a80d1ce7f1a266133dc32ef32f564c44e2a8cc3a63e6c6ac82",
+      "title": "Afrikaans Voice Acting Specialist - AI Trainer",
+      "company": "Invisible Technologies",
+      "url": "https://himalayas.app/companies/inv/jobs/afrikaans-voice-acting-specialist-ai-trainer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/baja-nearshore/jobs/bs01wd-webflow-developer-remote-latam",
+      "contentHash": "f0b5cf9493675d880df6ae4d7bd02a53d257898571cb0cdf4fa1252f23d8e94d",
+      "title": "(BS01WD) Webflow Developer - Remote, LATAM",
+      "company": "Baja Nearshore",
+      "url": "https://himalayas.app/companies/baja-nearshore/jobs/bs01wd-webflow-developer-remote-latam?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/bridgenext/jobs/senior-qa-engineer-manual-automation-medtech",
+      "contentHash": "eb48e0b7c21ba392cdeeed4144476b666027557fe76bb2227cab3e5b1629eefb",
+      "title": "Senior QA Engineer (Manual & Automation) - MedTech",
+      "company": "Bridgenext",
+      "url": "https://himalayas.app/companies/bridgenext/jobs/senior-qa-engineer-manual-automation-medtech?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/inv/jobs/stem-specialist-fluent-in-vietnamese-ai-trainer",
+      "contentHash": "76dd1bd484706ad93456cf0f9fa2b9158910516581153a174144dd7e1e2ca07d",
+      "title": "STEM Specialist (Fluent in Vietnamese) - AI Trainer",
+      "company": "Invisible Technologies",
+      "url": "https://himalayas.app/companies/inv/jobs/stem-specialist-fluent-in-vietnamese-ai-trainer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/inv/jobs/persian-trilingual-language-specialist-ai-trainer",
+      "contentHash": "0a72c07a750963ff9319f9b9946dd1e04489a90c6191451fceef7e2df8d4d5e6",
+      "title": "Persian Trilingual Language Specialist – AI Trainer",
+      "company": "Invisible Technologies",
+      "url": "https://himalayas.app/companies/inv/jobs/persian-trilingual-language-specialist-ai-trainer?utm_source=api",
+      "band": 0
+    },
+    {
+      "persona": "c-senior-data",
+      "offerKey": "himalayas:https://himalayas.app/companies/aquiva-and-hapi/jobs/aquiva-senior-salesforce-engineer-ai-native-development",
+      "contentHash": "62a8defdd2296c211f2fb79699a269d34081d7cf1be1295227cff330ee47f25e",
+      "title": "Aquiva - Senior Salesforce Engineer — AI-Native Development",
+      "company": "Aquiva and Hapi",
+      "url": "https://himalayas.app/companies/aquiva-and-hapi/jobs/aquiva-senior-salesforce-engineer-ai-native-development?utm_source=api",
+      "band": 0
+    }
+  ]
+}
