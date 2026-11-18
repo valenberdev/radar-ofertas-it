@@ -106,6 +106,7 @@ function setup(options: Setup = {}) {
     scores: { findMany, saveMany },
     quota: { tryConsume },
     now: () => NOW,
+    batchSize: 10,
   };
   return { deps, listEligible, findMany, saveMany, tryConsume, score, stored };
 }
@@ -117,8 +118,36 @@ function matchedIds(result: {
 }
 
 describe("SCORING_BATCH_SIZE", () => {
-  it("is 10 offers per call", () => {
-    expect(SCORING_BATCH_SIZE).toBe(10);
+  it("is 30 offers per call", () => {
+    expect(SCORING_BATCH_SIZE).toBe(30);
+  });
+
+  it("covers every candidate of a default search", () => {
+    expect(SCORING_BATCH_SIZE).toBeGreaterThanOrEqual(DEFAULT_TOP_K);
+  });
+
+  it("is the batch size when the dependencies do not set one", async () => {
+    const { deps, score, tryConsume } = setup({
+      offers: numbered(DEFAULT_TOP_K + 5),
+    });
+    const withoutBatchSize: MatchOffersDeps = {
+      reader: deps.reader,
+      scorer: deps.scorer,
+      scores: deps.scores,
+      quota: deps.quota,
+      now: deps.now,
+    };
+
+    const result = await matchOffers(withoutBatchSize, {
+      profile: PROFILE,
+      country: "Argentina",
+    });
+
+    expect(score.mock.calls.map((call) => call[1].length)).toEqual([
+      DEFAULT_TOP_K,
+    ]);
+    expect(tryConsume).toHaveBeenCalledTimes(1);
+    expect(result.matches).toHaveLength(DEFAULT_TOP_K);
   });
 });
 

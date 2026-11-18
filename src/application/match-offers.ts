@@ -17,7 +17,7 @@ import type {
   ScoreStore,
 } from "./ports/score-store";
 
-export const SCORING_BATCH_SIZE = 10;
+export const SCORING_BATCH_SIZE = 30;
 
 export interface MatchOffersDeps {
   readonly reader: OfferReader;
@@ -25,6 +25,7 @@ export interface MatchOffersDeps {
   readonly scores: ScoreStore;
   readonly quota: DailyQuota;
   readonly now: () => Date;
+  readonly batchSize?: number;
 }
 
 export interface MatchOffersInput {
@@ -65,8 +66,9 @@ async function scorePending(
   known: Map<string, OfferScore>,
 ): Promise<ScoringStop | null> {
   const entries = [...pending];
-  for (let start = 0; start < entries.length; start += SCORING_BATCH_SIZE) {
-    const batch = entries.slice(start, start + SCORING_BATCH_SIZE);
+  const size = deps.batchSize ?? SCORING_BATCH_SIZE;
+  for (let start = 0; start < entries.length; start += size) {
+    const batch = entries.slice(start, start + size);
     if (!(await deps.quota.tryConsume(1))) {
       return "quota";
     }
