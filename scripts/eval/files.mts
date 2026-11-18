@@ -16,6 +16,10 @@ export const EVAL_PATHS = {
   configs: join(DIRECTORY, "configs.json"),
   runs: join(DIRECTORY, "runs.local.jsonl"),
   results: join(DIRECTORY, "results.json"),
+  judgeDocument: (persona: string) =>
+    join(DIRECTORY, `judge-${persona}.local.md`),
+  judgeAnswer: (persona: string) =>
+    join(DIRECTORY, `judge-${persona}.answer.txt`),
 } as const;
 
 export async function readJsonFile(path: string): Promise<unknown> {

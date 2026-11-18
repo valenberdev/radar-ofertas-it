@@ -148,6 +148,12 @@ describe("EVAL_PATHS", () => {
     );
     expect(EVAL_PATHS.configs).toMatch(/[\\/]eval[\\/]configs\.json$/);
     expect(EVAL_PATHS.results).toMatch(/[\\/]eval[\\/]results\.json$/);
+    expect(EVAL_PATHS.judgeDocument("a-junior-backend")).toMatch(
+      /[\\/]eval[\\/]judge-a-junior-backend\.local\.md$/,
+    );
+    expect(EVAL_PATHS.judgeAnswer("a-junior-backend")).toMatch(
+      /[\\/]eval[\\/]judge-a-junior-backend\.answer\.txt$/,
+    );
     expect(EVAL_PATHS.runs).toMatch(/runs\.local\.jsonl$/);
   });
 });
