@@ -35,7 +35,13 @@ export default async function RootLayout({
   return (
     <html lang={lang} className={sans.variable}>
       <body>
-        <header className="site-header">
+        <div className="backdrop" aria-hidden="true">
+          <span className="shape shape-tide" />
+          <span className="shape shape-ember" />
+          <span className="shape shape-deep" />
+        </div>
+        <header className="site-header glass">
+          <span className="site-mark" aria-hidden="true" />
           <LanguageSwitcher
             current={lang}
             label={dict.languageSwitcher.label}
