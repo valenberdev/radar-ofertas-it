@@ -20,7 +20,7 @@ flowchart LR
     R --> P[Extract a profile with Gemini, cached by hash]
     P --> F[Prefilter eligible offers by skills: top 30]
     DB --> F
-    F --> G[Score with Gemini in batches of 10, cached]
+    F --> G[Score with Gemini in one call, cached]
     G --> O[Offers ranked by fit, with a reason]
   end
 ```
@@ -28,7 +28,7 @@ flowchart LR
 1. **Ingestion.** Two daily cron jobs pull offers from the Himalayas API and from the Hacker News "Who is hiring?" thread. Offers are normalized to one model, deduplicated across sources and kept only while they are active.
 2. **Profile.** The text is redacted, hashed and turned into a structured profile (skills, roles, languages and a short summary) by Gemini. The same text never costs a second call.
 3. **Prefilter.** A deterministic ranking by skills, with the title weighing more than the description, keeps the 30 most promising offers for the country. Everything else never reaches the model.
-4. **Scoring.** Gemini scores the candidates in batches of 10 with a structured JSON output validated by Zod. Scores are cached per profile and offer, so repeating a search is free.
+4. **Scoring.** Gemini scores the 30 candidates in a single call with a structured JSON output validated by Zod. Scores are cached per profile and offer, so repeating a search is free.
 
 If the daily quota runs out halfway, the offers already scored are shown first and the rest are listed by how many of your skills they mention, with a notice that says why.
 
@@ -56,17 +56,18 @@ More detail in [`docs/spec.md`](docs/spec.md) and [`docs/data-model.md`](docs/da
 
 Every decision that shapes the code has an Architecture Decision Record:
 
-| ADR                                                            | Decision                                                               |
-| -------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [0001](docs/adr/0001-layered-architecture.md)                  | Layered architecture in a single package                               |
-| [0002](docs/adr/0002-neon-pg-docker-dev-only.md)               | Neon Postgres, `pg` with explicit SQL, and Docker for development only |
-| [0003](docs/adr/0003-url-based-i18n.md)                        | URL-based i18n with hand-made dictionaries                             |
-| [0004](docs/adr/0004-own-migration-runner.md)                  | Own SQL migration runner                                               |
-| [0005](docs/adr/0005-job-sources-and-ingestion.md)             | Job sources and daily ingestion                                        |
-| [0006](docs/adr/0006-offer-deduplication.md)                   | Offer deduplication                                                    |
-| [0007](docs/adr/0007-profile-extraction-and-offer-scoring.md)  | Profile extraction and offer scoring                                   |
-| [0008](docs/adr/0008-abuse-limits-owner-mode-and-retention.md) | Abuse limits, owner mode and data retention                            |
-| [0009](docs/adr/0009-loading-the-cv-from-a-file.md)            | Loading the CV from a file                                             |
+| ADR                                                             | Decision                                                               |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [0001](docs/adr/0001-layered-architecture.md)                   | Layered architecture in a single package                               |
+| [0002](docs/adr/0002-neon-pg-docker-dev-only.md)                | Neon Postgres, `pg` with explicit SQL, and Docker for development only |
+| [0003](docs/adr/0003-url-based-i18n.md)                         | URL-based i18n with hand-made dictionaries                             |
+| [0004](docs/adr/0004-own-migration-runner.md)                   | Own SQL migration runner                                               |
+| [0005](docs/adr/0005-job-sources-and-ingestion.md)              | Job sources and daily ingestion                                        |
+| [0006](docs/adr/0006-offer-deduplication.md)                    | Offer deduplication                                                    |
+| [0007](docs/adr/0007-profile-extraction-and-offer-scoring.md)   | Profile extraction and offer scoring                                   |
+| [0008](docs/adr/0008-abuse-limits-owner-mode-and-retention.md)  | Abuse limits, owner mode and data retention                            |
+| [0009](docs/adr/0009-loading-the-cv-from-a-file.md)             | Loading the CV from a file                                             |
+| [0010](docs/adr/0010-measuring-the-prefilter-and-the-scorer.md) | Measuring the prefilter and the scorer                                 |
 
 ## Tech stack
 
@@ -122,7 +123,11 @@ curl -H "Authorization: Bearer <your CRON_SECRET>" http://localhost:3000/api/cro
 
 ## Measuring the scorer
 
-The [`eval`](eval/README.md) folder holds the tools to check whether the prefilter and Gemini rank offers like a person would: three fictional personas, a labeling page, a test–retest check of the labels, recall of the prefilter and Spearman correlation of the scorer, with a decision rule fixed before running. The tooling is built and tested; the labeled results are not published yet.
+The [`eval`](eval/README.md) folder measures whether the prefilter and Gemini rank offers well: three fictional personas, 135 labeled offers, recall of the prefilter, Spearman correlation of the scorer, and a decision rule fixed before running ([ADR-0010](docs/adr/0010-measuring-the-prefilter-and-the-scorer.md)).
+
+- The labels come from Claude Opus 5.5 used as a judge. A human check of 30 of them agreed only weakly (weighted kappa 0.32, below the 0.60 set in advance), so the results measure agreement with that judge, not with a person.
+- Against the judge, Gemini's order reaches a Spearman of 0.58, against 0.02 for the prefilter alone.
+- Batches of 5, 10 and 30 offers rank equally well within the noise, so the app now scores the 30 candidates in one call instead of three.
 
 ## Known limitations
 
