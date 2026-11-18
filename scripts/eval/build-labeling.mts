@@ -13,7 +13,7 @@ import { buildLabelingPage } from "./labeling-page.mts";
 import { createRandom, hashSeed, sampled } from "./random.mts";
 
 const ORDER_SEED = 20261110;
-const RETEST_COUNT = 20;
+const RETEST_COUNT = 30;
 
 function offersByKey(
   snapshot: Snapshot,
