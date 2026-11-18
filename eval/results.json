@@ -1,0 +1,153 @@
+{
+  "snapshotId": "2026-11-18",
+  "repetitions": 3,
+  "relevantFromBand": 2,
+  "precisionK": 5,
+  "prefilterRecall": {
+    "a-junior-backend": {
+      "relevantInCandidates": 1,
+      "relevantInBeyondSample": 0,
+      "beyondSampleSize": 8,
+      "relevantInUnmatchedSample": 0,
+      "unmatchedSampleSize": 7,
+      "estimatedRelevantTotal": 1,
+      "recall": 1
+    },
+    "b-mid-frontend": {
+      "relevantInCandidates": 2,
+      "relevantInBeyondSample": 1,
+      "beyondSampleSize": 8,
+      "relevantInUnmatchedSample": 0,
+      "unmatchedSampleSize": 7,
+      "estimatedRelevantTotal": 51.25,
+      "recall": 0.03902439024390244
+    },
+    "c-senior-data": {
+      "relevantInCandidates": 6,
+      "relevantInBeyondSample": 0,
+      "beyondSampleSize": 8,
+      "relevantInUnmatchedSample": 0,
+      "unmatchedSampleSize": 7,
+      "estimatedRelevantTotal": 6,
+      "recall": 1
+    }
+  },
+  "prefilterBaseline": {
+    "quality": 0.02294339230019377,
+    "byPersona": {
+      "a-junior-backend": {
+        "spearman": 0.2543131128034567,
+        "precisionAt5": 0
+      },
+      "b-mid-frontend": {
+        "spearman": -0.0931580458923183,
+        "precisionAt5": 0
+      },
+      "c-senior-data": {
+        "spearman": -0.09232489001055709,
+        "precisionAt5": 0.2
+      }
+    }
+  },
+  "configs": [
+    {
+      "configId": "flash-lite-b5",
+      "model": "gemini-3.5-flash-lite",
+      "batchSize": 5,
+      "completeRepetitions": 3,
+      "qualityByRepetition": [
+        0.5573407005102533,
+        0.5588132737491017,
+        0.6055185908778397
+      ],
+      "quality": 0.5738908550457316,
+      "qualityByPersona": {
+        "a-junior-backend": 0.4055148870466149,
+        "b-mid-frontend": 0.6367697857614582,
+        "c-senior-data": 0.6793878923291216
+      },
+      "precisionAt5": 0.3111111111111111,
+      "callsPerSearch": 6,
+      "searchLatencyMs": 11688,
+      "unscoredRate": 0,
+      "failures": 0
+    },
+    {
+      "configId": "flash-lite-b10",
+      "model": "gemini-3.5-flash-lite",
+      "batchSize": 10,
+      "completeRepetitions": 3,
+      "qualityByRepetition": [
+        0.5064969703353073,
+        0.5579355080005407,
+        0.572262882478753
+      ],
+      "quality": 0.5455651202715336,
+      "qualityByPersona": {
+        "a-junior-backend": 0.35709346736144815,
+        "b-mid-frontend": 0.60271483159497,
+        "c-senior-data": 0.6768870618581828
+      },
+      "precisionAt5": 0.3555555555555556,
+      "callsPerSearch": 3,
+      "searchLatencyMs": 8879.777777777777,
+      "unscoredRate": 0,
+      "failures": 0
+    },
+    {
+      "configId": "flash-lite-b15",
+      "model": "gemini-3.5-flash-lite",
+      "batchSize": 15,
+      "completeRepetitions": 3,
+      "qualityByRepetition": [
+        0.5009852001425527,
+        0.5140757970241921,
+        0.5917662743306537
+      ],
+      "quality": 0.5356090904991327,
+      "qualityByPersona": {
+        "a-junior-backend": 0.24096462337504013,
+        "b-mid-frontend": 0.6594927637230011,
+        "c-senior-data": 0.7063698843993572
+      },
+      "precisionAt5": 0.3777777777777778,
+      "callsPerSearch": 2,
+      "searchLatencyMs": 7907.444444444444,
+      "unscoredRate": 0.003703703703703704,
+      "failures": 0
+    },
+    {
+      "configId": "flash-lite-b30",
+      "model": "gemini-3.5-flash-lite",
+      "batchSize": 30,
+      "completeRepetitions": 3,
+      "qualityByRepetition": [
+        0.5797927260855006,
+        0.5772965254257026,
+        0.5859166866594111
+      ],
+      "quality": 0.5810019793902047,
+      "qualityByPersona": {
+        "a-junior-backend": 0.4041947113622848,
+        "b-mid-frontend": 0.5933090967152537,
+        "c-senior-data": 0.745502130093076
+      },
+      "precisionAt5": 0.4000000000000001,
+      "callsPerSearch": 1,
+      "searchLatencyMs": 7000,
+      "unscoredRate": 0,
+      "failures": 0
+    }
+  ],
+  "decision": {
+    "best": "flash-lite-b30",
+    "bestQuality": 0.5810019793902047,
+    "noise": 0.0453905370940505,
+    "equivalent": [
+      "flash-lite-b10",
+      "flash-lite-b30",
+      "flash-lite-b5"
+    ],
+    "chosen": "flash-lite-b30"
+  }
+}
